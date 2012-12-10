@@ -1,0 +1,55 @@
+\section{Troisième séance}
+
+\subsection{Questions Réponses}
+
+Le groupe a pu poser des questions quand aux données en entrée:
+\begin{itemize}
+    \item Possibilité d'avoir la pièce dans son état initial (avant pliage).\\
+
+    \item Quel matériau sera utilisé pour les tests.\\
+        Un acier, possédant des caractéristiques  classiques.
+        C'est en fonction du modèle que l'on peut déterminer les caractéristiques nécessaires ou possibles.
+    \item Faut il prendre en compte un jeu dans la position du poinçon à l'état final?\\
+        L'épaisseur de la tôle étant supposée constante, le poinçon sera fixe (sans jeu) à la fin de son déplacement.
+        Il faut cependant faire attention à une tolérance de l'ordre du centième de millimètre et aussi contrôler la cohérence du modèle (poinçon DANS la tôle à un instant t?)
+\end{itemize}
+
+Nous avons ensuite vu des notions mathématiques utiles dans le cadre du projet telles que les maillages à utiliser, les méthodes d'approximations pour la positions des points en 2D.
+
+\subsection{À faire}
+Il nous faut prendre connaissance du logiciel freemem++ qui permet de simuler les déformations.
+Nous devons apprendre à nous en servir et trouver une façon propre de l'intégrer à notre projet.
+%\begin{itemize}
+    %\item Peut on avoir la pièce dans son état initial?\\
+        %???
+    %\item Un matériau de test?\\
+        %Un acier.\\
+        %Caractéristiques mécaniques classiques.
+        %C'est en fonction du modèle qu'on peut savoir quelles caractéristiques on doit/peut choisir.
+    %\item Faut il considérer un jeu dans la position du poinçon à la fin du mouvement?\\
+        %Non, on considère l'épaisseur de la tôle constante donc le poinçon se déplace au maximum sans déformer la matériau. (Dimensions nominales)\\
+        %En général, la tolérance est de l'ordre du centième de millimètre.\\
+
+        %Il faut prendre en compte les différentes tolérances.\\
+        %Savoir vérifier si le modèle est mauvais (Poinçons DANS la tôle après pliage).
+%\end{itemize}
+
+%Mécanique des milieux déformables:
+%\begin{itemize}
+    %\item Utiliser un maillage triangulaire.
+        %Modèle à raffiner selon la précision requise pour l'affichage. (Poisson, Laplace, différences finies)
+%\end{itemize}
+
+%Interpolation de Lagrange.
+%Intégrale de Riemann.
+%Équation de Poisson.
+%$\Delta u$ : Laplacien de u (Somme des dérivées). $\Delta u = \frac{\delta^2 u}{x^2} + \frac{\delta^2 u}{y^2}$
+%On a besoin de: $f(u) = f(\nable u, u, \Delta u)$
+%Ce qu'il reste après une intégration par partie: $\intD(u) \nabla u \nable v d$
+
+%Méthode de Newton: calculer le $x$ tel que $f(x)=0$ par une suite de tangentes.
+
+%Freefem++
+
+%Fibre neutre
+%Beam

@@ -1,0 +1,34 @@
+\section{Seconde séance}
+
+Aujourd'hui nous avons abordés les différentes structures de données que nous pourrions utiliser.
+Cela nous a amené à d'autres questionnements sur la réalisation du projet.
+Nous avons discutés sur:
+\begin{itemize}
+    \item Les données fournies:
+        \begin{itemize}
+            \item La pièce obtenue, après déformation, mais avant le retour élastique. (données 3D)
+            \item La matrice. (Descriptions / Mouvements)
+            \item Le poinçon. (Descriptions / Mouvements)
+            \item La matière. (Caractéristiques en base de donnée. On pourrait avoir une interface qui pourrait rajouter un matériaux et ses caractéristiques servants aux calculs)
+        \end{itemize}
+        \item Les actions à entreprendre:
+        \begin{itemize}
+            \item Calcul du retour élastique... nous avons pour cela plusieurs données dont le fait qu'un matériaux plié est divisé en deux parties sur sa largeur (une en extension et une en traction). Cela nous donne un angle de retour élastique au niveau du pliage.
+            \item Calcul des mouvements de la pièce... gràce à l'angle, nous pouvons calculer les différents mouvements de tout les points définissant la pièce, et donc obtenir une aire de déplacement.
+        \end{itemize}
+        \item Les sorties obtenues:
+        \begin{itemize}
+            \item Eventuellement la transformation qui à amené la pièce dans l'état d'entrée (pièce fournie en donnée)
+            \item Les trajectoires de la pièce lors du retour elastique
+            \item L'angle dû au retour élastique
+        \end{itemize}
+\end{itemize}
+
+Nous avons aussi définis quelques exemple de pliage de base pour débuter.\\
+
+Objectif suivant:
+\begin{itemize}
+        \item Avoir discuté plus profondéments sur les structures de données que nous allons utiliser.
+        \item Commencer à définir le côté calcul et le côté graphique du projet.
+\end{itemize}
+
