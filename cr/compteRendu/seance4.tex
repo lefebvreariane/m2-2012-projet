@@ -1,0 +1,41 @@
+\section{Séance 4}
+
+\subsection{Interface utilisateur}
+Nous avons choisi que l'utilisateur détermine le temps de visualisation de la déformation ce qui nous donnera le nombre d'étapes à calculer pour une scène.
+Une étape correspond à la déformation à un temps t.
+
+Le programme utilise Qt pour son interface graphique.
+Il sera possible d'ouvrir plusieurs scènes en même temps (un thread par scène).
+
+\subsection{Architecture}
+Notre programme utilisera le logiciel freefem++ pour les calculs de déformations de la tôle au cours du temps.
+Le calcul de collisions entre la tôle, la matrice et le poinçon sera effectué pour chaque étape de la cinématique.
+Aucune déformation n'est effectuée tant qu'il n'y a pas de collision détectée.
+Une étape correspondra donc uniquement à la descente du poinçon jusqu'au premier contact avec la tôle.
+
+Nous supposons une épaisseur constante pour la tôle et travaillons à partir de la fibre neutre pour l'affichage et les calculs de collisions.
+
+\subsection{Calcul d'une déformation}
+
+\paragraph{Entrées}
+\begin{itemize}
+    \item Les forces appliquées par le poinçon sur la tôle.
+    \item Les points de la fibre neutre à l'instant t-1 ainsi que son épaisseur.
+    \item Les contraintes sur certains points (fixes ou non).
+    \item Le polygone de la matrice.
+\end{itemize}
+
+\paragraph{Sorties}
+\begin{itemize}
+    \item La nouvelle position des points de la fibre neutre à l'instant t.
+\end{itemize}
+
+\subsection{À définir}
+\begin{itemize}
+    \item Affichage de l'aire totale de déplacement de la tôle ou sélection d'un (ou plusieurs) point(s) par l'utilisateur et affichage de son déplacement au cours du temps.
+    \item Types de données échangées avec freefem++: nurbs, points, structures complexes.
+    \item Enregistrement ou non de chaque étape sur disque dur pour ré affichage rapide.
+    \item Possibilité de calculer une suite de scène si le temps imparti est suffisant.
+\end{itemize}
+
+%Le but du projet est de donner les informations utiles à la réduction de l'encombrement de la machine outils.

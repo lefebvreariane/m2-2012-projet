@@ -1,0 +1,29 @@
+\section{Séance 5}
+
+\subsection{Interface utilisateur}
+L'utilisateur ne choisira pas seulement une durée de visualisation mais:
+\begin{itemize}
+    \item Un pas de déplacement pour le poinçon.
+    \item Une durée de visualisation.
+    \item Une durée de pliage.
+\end{itemize}
+Le pas de déplacement correspondra à la précision de notre simulation et il sera possible de revoir la cinématique intégralement ou image par image.
+
+Il sera possible de voir la surface parcourue par la tôle durant toute une scène et de suivre un ou plusieurs points au cours du temps.
+
+\subsection{Représentation des scènes}
+Chaque scène sera décrite par un fichier xml.
+Elle contiendra la position initiale de la tôle et de la matrice ainsi que l'ensemble des positions du poinçon.
+Il sera donc possible de simuler des mouvements simples de translation ou plus complexes tels que des rotations pour le poinçon.
+
+\subsection{Utilisation de freefem++}
+La durée de pliage et le déplacement du poinçon permettront d'évaluer une vitesse de déplacement (position, vitesse, accélération).
+Ces informations seront passées à freefem++ pour le calcul de la déformation de la tôle.
+
+\subsection{À définir}
+\begin{itemize}
+    \item Comment évaluer le point à suivre?\\
+        Clic souris ou noeud dans le maillage de la tôle.
+    \item Comment avoir des forces réalistes à passer en argument à freefem++?
+    \item Quelle quantité d'informations sauvegarder sur disque ou garde en RAM pour chaque scène?
+\end{itemize}
