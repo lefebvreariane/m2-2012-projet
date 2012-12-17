@@ -1,0 +1,7 @@
+\beamer@endinputifotherversion {3.24pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Description du projet}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{TopSolid}{2}{0}{1}
+\beamer@subsectionintoc {1}{2}{Mots cl\IeC {\'e}s}{3}{0}{1}
+\beamer@sectionintoc {2}{Description du logiciel}{5}{0}{2}
+\beamer@subsectionintoc {2}{1}{Freefem++}{5}{0}{2}
