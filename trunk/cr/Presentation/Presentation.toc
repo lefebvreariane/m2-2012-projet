@@ -1,7 +1,14 @@
 \beamer@endinputifotherversion {3.24pt}
 \select@language {french}
 \beamer@sectionintoc {1}{Description du projet}{2}{0}{1}
-\beamer@subsectionintoc {1}{1}{TopSolid}{2}{0}{1}
-\beamer@subsectionintoc {1}{2}{Mots cl\IeC {\'e}s}{3}{0}{1}
-\beamer@sectionintoc {2}{Description du logiciel}{5}{0}{2}
-\beamer@subsectionintoc {2}{1}{Freefem++}{5}{0}{2}
+\beamer@subsectionintoc {1}{1}{Missler}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Mots cl\IeC {\'e}s}{4}{0}{1}
+\beamer@sectionintoc {2}{Description du logiciel}{7}{0}{2}
+\beamer@subsectionintoc {2}{1}{Freefem++}{8}{0}{2}
+\beamer@subsectionintoc {2}{2}{Interface utilisateur}{9}{0}{2}
+\beamer@sectionintoc {3}{Organisation}{15}{0}{3}
+\beamer@subsectionintoc {3}{1}{R\IeC {\'e}partition des t\IeC {\^a}ches}{16}{0}{3}
+\beamer@subsectionintoc {3}{2}{Diagramme de Gantt}{17}{0}{3}
+\beamer@sectionintoc {4}{Conclusion}{17}{0}{4}
+\beamer@subsectionintoc {4}{1}{Perspectives}{18}{0}{4}
+\beamer@subsectionintoc {4}{2}{Questions}{19}{0}{4}
