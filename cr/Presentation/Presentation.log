@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2012.12.10)  17 DEC 2012 13:06
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Arch Linux) (format=pdflatex 2012.12.10)  18 DEC 2012 13:13
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -966,124 +966,24 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
 Package: listings 2007/02/22 1.4 (Carsten Heinz)
-)
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.13 \AtBeginSection[]\begin{f
-                              rame}
-? q
-OK, entering \batchmode...
-! Undefined control sequence.
-\beamer@tableofcontents ...}{\makeatletter \pause 
-                                                  [0]\@input {\jobname .toc}...
-l.15 ...tents[currentsection,hideothersubsections]
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
- (./Presentation.toc
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.3 ...onintoc {1}{Description du projet}{2}{0}{1}
-                                                  
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.3 ...onintoc {1}{Description du projet}{2}{0}{1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.3 ...onintoc {1}{Description du projet}{2}{0}{1}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-
-! LaTeX Error: Missing \begin{document}.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.6 ...intoc {2}{Description du logiciel}{5}{0}{2}
-                                                  
-You're in trouble here.  Try typing  <return>  to proceed.
-If that doesn't work, type  X <return>  to quit.
-
-! Undefined control sequence.
-<recently read> \Hy@colorlink 
-                              
-l.6 ...intoc {2}{Description du logiciel}{5}{0}{2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-! Undefined control sequence.
-\close@pdflink ->\Hy@endcolorlink 
-                                  \Hy@VerboseLinkStop \pdfendlink 
-l.6 ...intoc {2}{Description du logiciel}{5}{0}{2}
-                                                  
-The control sequence at the end of the top line
-of your error message was never \def'ed. If you have
-misspelled it (e.g., `\hobx'), type `I' and the correct
-spelling (e.g., `I\hbox'). Otherwise just continue,
-and I'll forget about whatever was undefined.
-
-)
-! Too many }'s.
-\endframe ->\egroup 
-                    \begingroup \def \@currenvir {frame}
-l.16     \end{frame}
-                    
-You've closed more groups than you opened.
-Such booboos are generally harmless, so keep going.
-
- (./Presentation.aux)
+) (./Presentation.aux)
 \openout1 = `Presentation.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 22.
-LaTeX Font Info:    ... okay on input line 22.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 33.
+LaTeX Font Info:    ... okay on input line 33.
+
 *geometry* driver: auto-detecting
 *geometry* detected driver: pdftex
 *geometry* verbose mode - [ preamble ] result:
@@ -1118,7 +1018,7 @@ LaTeX Font Info:    ... okay on input line 22.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
- (/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
+(/usr/share/texmf-dist/tex/context/base/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count164
 \scratchdimen=\dimen192
@@ -1131,10 +1031,10 @@ LaTeX Font Info:    ... okay on input line 22.
 \MPnumerator=\count168
 \makeMPintoPDFobject=\count169
 \everyMPtoPDFconversion=\toks44
-)
-(/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
+) (/usr/share/texmf-dist/tex/latex/oberdiek/epstopdf-base.sty
 Package: epstopdf-base 2010/02/09 v2.5 Base part for package epstopdf
- (/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
+
+(/usr/share/texmf-dist/tex/latex/oberdiek/grfext.sty
 Package: grfext 2010/08/19 v1.1 Manage graphics extensions (HO)
 )
 Package grfext Info: Graphics extension search list:
@@ -1145,10 +1045,12 @@ G,.JBIG2,.JB2,.eps]
 (/usr/share/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
 File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Liv
 e
-)) ABD: EveryShipout initializing macros
+))
+ABD: EveryShipout initializing macros
 \AtBeginShipoutBox=\box56
-Package hyperref Info: Link coloring OFF on input line 22.
- (/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
+Package hyperref Info: Link coloring OFF on input line 33.
+
+(/usr/share/texmf-dist/tex/latex/hyperref/nameref.sty
 Package: nameref 2012/10/27 v2.43 Cross-referencing by name of section
 
 (/usr/share/texmf-dist/tex/generic/oberdiek/gettitlestring.sty
@@ -1156,55 +1058,56 @@ Package: gettitlestring 2010/12/03 v1.4 Cleanup title references (HO)
 )
 \c@section@level=\count170
 )
-LaTeX Info: Redefining \ref on input line 22.
-LaTeX Info: Redefining \pageref on input line 22.
-LaTeX Info: Redefining \nameref on input line 22.
- (./Presentation.out) (./Presentation.out)
+LaTeX Info: Redefining \ref on input line 33.
+LaTeX Info: Redefining \pageref on input line 33.
+LaTeX Info: Redefining \nameref on input line 33.
+
+(./Presentation.out) (./Presentation.out)
 \@outlinefile=\write5
 \openout5 = `Presentation.out'.
 
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 22.
+(Font)                  OT1/cmr/m/n --> OT1/cmss/m/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 22.
+(Font)                  OT1/cmr/bx/n --> OT1/cmss/bx/n on input line 33.
 \symnumbers=\mathgroup6
 \sympureletters=\mathgroup7
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 22.
+(Font)                  OT1/cmss/m/n --> T1/cmr/m/n on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 22.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 22.
+(Font)                  OT1/cmr/bx/n --> T1/cmss/bx/n on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathsf on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 22.
+(Font)                  OT1/cmss/m/n --> T1/cmss/m/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 22.
+(Font)                  OT1/cmss/bx/n --> T1/cmss/m/n on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathit on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 22.
+(Font)                  OT1/cmr/m/it --> T1/cmss/m/it on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 22.
-LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 22.
+(Font)                  OT1/cmr/bx/it --> T1/cmss/m/it on input line 33.
+LaTeX Font Info:    Redeclaring math alphabet \mathtt on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 22.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 22.
+(Font)                  OT1/cmtt/m/n --> T1/cmtt/m/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `numbers' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 22.
+(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 33.
 LaTeX Font Info:    Overwriting symbol font `pureletters' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 22.
+(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathrm' in version `bold'
-(Font)                  OT1/cmss/bx/n --> T1/cmr/bx/n on input line 22.
+(Font)                  OT1/cmss/bx/n --> T1/cmr/bx/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `bold'
-(Font)                  T1/cmss/bx/n --> T1/cmss/bx/n on input line 22.
+(Font)                  T1/cmss/bx/n --> T1/cmss/bx/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 22.
+(Font)                  T1/cmss/m/n --> T1/cmss/bx/n on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 22.
+(Font)                  T1/cmss/m/it --> T1/cmss/bx/it on input line 33.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  T1/cmtt/m/n --> T1/cmtt/bx/n on input line 22.
+(Font)                  T1/cmtt/m/n --> T1/cmtt/bx/n on input line 33.
 
 (/usr/share/texmf-dist/tex/latex/beamer/translator/dicts/translator-basic-dicti
 onary/translator-basic-dictionary-English.dict
@@ -1230,145 +1133,168 @@ Dictionary: translator-numbers-dictionary, Language: English
 tionary/translator-theorem-dictionary-English.dict
 Dictionary: translator-theorem-dictionary, Language: English 
 )
-LaTeX Info: Redefining \includegraphics on input line 22.
-LaTeX Info: Redefining \degres on input line 22.
-LaTeX Info: Redefining \dots on input line 22.
-LaTeX Info: Redefining \up on input line 22.
+LaTeX Info: Redefining \includegraphics on input line 33.
+LaTeX Info: Redefining \degres on input line 33.
+LaTeX Info: Redefining \dots on input line 33.
+LaTeX Info: Redefining \up on input line 33.
 \c@lstlisting=\count171
  (./Presentation.nav)
-Overfull \vbox (68.52869pt too high) has occurred while \output is active []
+Package epstopdf Info: Source file: <img/imag.eps>
+(epstopdf)                    date: 2012-12-17 15:13:56
+(epstopdf)                    size: 50795 bytes
+(epstopdf)             Output file: <img/imag-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-12-17 15:14:05
+(epstopdf)                    size: 24225 bytes
+(epstopdf)             Command: <repstopdf --outfile=img/imag-eps-converted-to.
+pdf img/imag.eps>
+(epstopdf)             \includegraphics on input line 34.
+Package epstopdf Info: Output file is already uptodate.
+
+<img/imag-eps-converted-to.pdf, id=85, 285.065pt x 329.23pt>
+File: img/imag-eps-converted-to.pdf Graphic file (type pdf)
+
+<use img/imag-eps-converted-to.pdf>
+Package pdftex.def Info: img/imag-eps-converted-to.pdf used on input line 34.
+(pdftex.def)             Requested size: 46.0916pt x 53.23047pt.
+LaTeX Font Info:    Try loading font information for U+msa on input line 34.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
+File: umsa.fd 2009/06/22 v3.00 AMS symbols A
+)
+LaTeX Font Info:    Try loading font information for U+msb on input line 34.
+
+(/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
+File: umsb.fd 2009/06/22 v3.00 AMS symbols B
+)
+Package epstopdf Info: Source file: <img/topSolid.eps>
+(epstopdf)                    date: 2012-12-17 15:06:02
+(epstopdf)                    size: 355125 bytes
+(epstopdf)             Output file: <img/topSolid-eps-converted-to.pdf>
+(epstopdf)                    date: 2012-12-17 15:09:22
+(epstopdf)                    size: 12201 bytes
+(epstopdf)             Command: <repstopdf --outfile=img/topSolid-eps-converted
+-to.pdf img/topSolid.eps>
+(epstopdf)             \includegraphics on input line 34.
+Package epstopdf Info: Output file is already uptodate.
+
+<img/topSolid-eps-converted-to.pdf, id=86, 1433.355pt x 354.32375pt>
+File: img/topSolid-eps-converted-to.pdf Graphic file (type pdf)
+
+<use img/topSolid-eps-converted-to.pdf>
+Package pdftex.def Info: img/topSolid-eps-converted-to.pdf used on input line 3
+4.
+(pdftex.def)             Requested size: 138.2795pt x 34.18013pt.
 
 
 LaTeX Font Warning: Font shape `T1/cmss/m/n' in size <4> not available
-(Font)              size <5> substituted on input line 23.
+(Font)              size <5> substituted on input line 34.
 
- [1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+[1{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}
+
+ <./img/imag-eps-converted-to.pdf> <./img/topSolid-eps-converted-to.pdf>] (./Pr
+esentation.toc) [2
 
 ]
-
-! Extra \fi.
- ->\errmessage  LaTeX Error: Environment \fi 
-                                              undefined.
-
-See the LaTeX manu...
-l.25 \section{Description du projet}
-                                    
-I'm ignoring this; it doesn't match any \if.
-
-! LaTeX Error: Environment  undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.25 \section{Description du projet}
-                                    
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
-LaTeX Font Info:    Try loading font information for U+msa on input line 38.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsa.fd
-File: umsa.fd 2009/06/22 v3.00 AMS symbols A
-)
-LaTeX Font Info:    Try loading font information for U+msb on input line 38.
- (/usr/share/texmf-dist/tex/latex/amsfonts/umsb.fd
-File: umsb.fd 2009/06/22 v3.00 AMS symbols B
-) <img/topSolid.jpg, id=93, 1027.84pt x 770.88pt>
+<img/topSolid.jpg, id=219, 1027.84pt x 770.88pt>
 File: img/topSolid.jpg Graphic file (type jpg)
  <use img/topSolid.jpg>
-Package pdftex.def Info: img/topSolid.jpg used on input line 38.
+Package pdftex.def Info: img/topSolid.jpg used on input line 55.
 (pdftex.def)             Requested size: 153.64493pt x 115.22708pt.
 
+
 LaTeX Font Warning: Font shape `T1/cmss/m/sc' undefined
-(Font)              using `T1/cmss/m/n' instead on input line 38.
+(Font)              using `T1/cmss/m/n' instead on input line 55.
 
- [2
+[3
 
- <./img/topSolid.jpg>] <img/fibreNeutre.jpg, id=128, 250.9375pt x 218.8175pt>
+ <./img/topSolid.jpg>]
+<img/fibreNeutre.jpg, id=265, 250.9375pt x 218.8175pt>
 File: img/fibreNeutre.jpg Graphic file (type jpg)
- <use img/fibreNeutre.jpg>
-Package pdftex.def Info: img/fibreNeutre.jpg used on input line 60.
-(pdftex.def)             Requested size: 153.64493pt x 133.98598pt.
- [3
 
- <./img/fibreNeutre.jpg>] <img/etape.jpg, id=165, 7227.0pt x 8455.59pt>
-File: img/etape.jpg Graphic file (type jpg)
- <use img/etape.jpg>
-Package pdftex.def Info: img/etape.jpg used on input line 79.
-(pdftex.def)             Requested size: 92.1879pt x 107.73315pt.
+<use img/fibreNeutre.jpg>
+Package pdftex.def Info: img/fibreNeutre.jpg used on input line 77.
+(pdftex.def)             Requested size: 153.64493pt x 133.98598pt.
  [4
 
- <./img/etape.jpg>]
-
-! Extra \fi.
- ->\errmessage  LaTeX Error: Environment \fi 
-                                              undefined.
-
-See the LaTeX manu...
-l.81 \section{Description du logiciel}
-                                      
-I'm ignoring this; it doesn't match any \if.
-
-! LaTeX Error: Environment  undefined.
-
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.81 \section{Description du logiciel}
-                                      
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
-
+ <./img/fibreNeutre.jpg>]
+<img/etape.jpg, id=311, 7227.0pt x 8455.59pt>
+File: img/etape.jpg Graphic file (type jpg)
+ <use img/etape.jpg>
+Package pdftex.def Info: img/etape.jpg used on input line 96.
+(pdftex.def)             Requested size: 92.1879pt x 107.73315pt.
  [5
 
+ <./img/etape.jpg>] [6
+
+] (./Presentation.toc) [7
+
 ]
+<img/maillage.png, id=451, 618.31pt x 618.31pt>
+File: img/maillage.png Graphic file (type png)
+ <use img/maillage.png>
+Package pdftex.def Info: img/maillage.png used on input line 130.
+(pdftex.def)             Requested size: 153.64493pt x 153.64308pt.
+ [8
 
-! Extra \fi.
- ->\errmessage  LaTeX Error: Environment \fi 
-                                              undefined.
+ <./img/maillage.png (PNG copy)>] [9
 
-See the LaTeX manu...
-l.99 \section{Organisation}
-                           
-I'm ignoring this; it doesn't match any \if.
+] [10
 
-! LaTeX Error: Environment  undefined.
+]
+<img/position.png, id=585, 650.43pt x 452.69125pt>
+File: img/position.png Graphic file (type png)
+ <use img/position.png>
+Package pdftex.def Info: img/position.png used on input line 178.
+(pdftex.def)             Requested size: 215.10196pt x 149.70631pt.
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.99 \section{Organisation}
-                           
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+Overfull \vbox (9.78435pt too high) detected at line 178
+ []
 
+[11
 
-! Extra \fi.
- ->\errmessage  LaTeX Error: Environment \fi 
-                                              undefined.
+ <./img/position.png>] <img/acceleration.png, id=637, 642.4pt x 419.5675pt>
+File: img/acceleration.png Graphic file (type png)
 
-See the LaTeX manu...
-l.102 \section{Conclusion}
-                          
-I'm ignoring this; it doesn't match any \if.
+<use img/acceleration.png>
+Package pdftex.def Info: img/acceleration.png used on input line 190.
+(pdftex.def)             Requested size: 215.10196pt x 140.48715pt.
 
-! LaTeX Error: Environment  undefined.
+Overfull \vbox (0.56519pt too high) detected at line 190
+ []
 
-See the LaTeX manual or LaTeX Companion for explanation.
-Type  H <return>  for immediate help.
- ...                                              
-                                                  
-l.102 \section{Conclusion}
-                          
-Your command was ignored.
-Type  I <command> <return>  to replace it with another command,
-or  <return>  to continue without it.
+[12
 
+ <./img/acceleration.png>]
+File: img/acceleration.png Graphic file (type png)
+ <use img/acceleration.png>
+Package pdftex.def Info: img/acceleration.png used on input line 202.
+(pdftex.def)             Requested size: 215.10196pt x 140.48715pt.
+
+Overfull \vbox (0.89435pt too high) detected at line 202
+ []
+
+[13
+
+] [14
+
+] (./Presentation.toc) [15
+
+] [16
+
+] (./Presentation.toc) [17
+
+] [18
+
+]
+<img/conclusion.png, id=956, 560.0925pt x 529.98pt>
+File: img/conclusion.png Graphic file (type png)
+ <use img/conclusion.png>
+Package pdftex.def Info: img/conclusion.png used on input line 240.
+(pdftex.def)             Requested size: 169.01036pt x 159.9252pt.
+
+[19
+
+ <./img/conclusion.png>]
 \tf@nav=\write6
 \openout6 = `Presentation.nav'.
 
@@ -1378,13 +1304,14 @@ or  <return>  to continue without it.
 \tf@snm=\write8
 \openout8 = `Presentation.snm'.
 
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 106.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 106.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 242.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 242.
  (./Presentation.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 106.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 106.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 242.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 242.
 Package rerunfilecheck Info: File `Presentation.out' has not changed.
-(rerunfilecheck)             Checksum: 8D0195D15177EE4CFFB3F2E52165A788;290.
+(rerunfilecheck)             Checksum: 2E65686C2D2510AB0EDE02F657735ABA;721.
+
 
 LaTeX Font Warning: Size substitutions with differences
 (Font)              up to 1.0pt have occurred.
@@ -1392,33 +1319,32 @@ LaTeX Font Warning: Size substitutions with differences
 
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 106.
- )
-(\end occurred inside a group at level 4)
-
-### semi simple group (level 4) entered at line 102 (\begingroup)
-### semi simple group (level 3) entered at line 99 (\begingroup)
-### semi simple group (level 2) entered at line 81 (\begingroup)
-### semi simple group (level 1) entered at line 25 (\begingroup)
-### bottom level 
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 242.
+ ) 
 Here is how much of TeX's memory you used:
- 18093 strings out of 493488
- 324376 string characters out of 3146891
- 410592 words of memory out of 3000000
- 20938 multiletter control sequences out of 15000+200000
- 15670 words of font info for 42 fonts, out of 3000000 for 9000
+ 18303 strings out of 493488
+ 328356 string characters out of 3146891
+ 414361 words of memory out of 3000000
+ 21093 multiletter control sequences out of 15000+200000
+ 16439 words of font info for 43 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
- 49i,20n,60p,401b,981s stack positions out of 5000i,500n,10000p,200000b,50000s
-{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc
-}</usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0600.pfb></usr/share/te
-xmf-dist/fonts/type1/public/cm-super/sfss0800.pfb></usr/share/texmf-dist/fonts/
-type1/public/cm-super/sfss1000.pfb></usr/share/texmf-dist/fonts/type1/public/cm
--super/sfss1095.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1440
-.pfb>
-Output written on Presentation.pdf (5 pages, 286733 bytes).
+ 49i,20n,64p,401b,750s stack positions out of 5000i,500n,10000p,200000b,50000s
+{/usr/share/texmf-dist/fonts/enc/dvips/cm-super/cm-super-t1.enc}</usr/share/t
+exmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texmf-dist/font
+s/type1/public/amsfonts/cm/cmmi8.pfb></usr/share/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmss10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cm
+sy10.pfb></usr/share/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/
+share/texmf-dist/fonts/type1/public/cm-super/sfsi0800.pfb></usr/share/texmf-dis
+t/fonts/type1/public/cm-super/sfsi1095.pfb></usr/share/texmf-dist/fonts/type1/p
+ublic/cm-super/sfss0600.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/
+sfss0800.pfb></usr/share/texmf-dist/fonts/type1/public/cm-super/sfss0900.pfb></
+usr/share/texmf-dist/fonts/type1/public/cm-super/sfss1000.pfb></usr/share/texmf
+-dist/fonts/type1/public/cm-super/sfss1095.pfb></usr/share/texmf-dist/fonts/typ
+e1/public/cm-super/sfss1440.pfb>
+Output written on Presentation.pdf (19 pages, 558458 bytes).
 PDF statistics:
- 255 PDF objects out of 1000 (max. 8388607)
- 217 compressed objects within 3 object streams
- 19 named destinations out of 1000 (max. 500000)
- 146 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 1061 PDF objects out of 1200 (max. 8388607)
+ 973 compressed objects within 10 object streams
+ 60 named destinations out of 1000 (max. 500000)
+ 244 words of extra memory for PDF output out of 10000 (max. 10000000)
 
