@@ -1,15 +1,15 @@
 <?xml version="1.0"?>
-<project name="TopSolid" company="" manager="F. Pontarollo, C. Picard" phase="" project-start="20121003T000000Z" mrproject-version="2" calendar="1">
+<project name="TopSolid" company="" manager="F. Pontarollo, C. Picard" phase="" project-start="20121003T000000Z" mrproject-version="2">
   <properties/>
   <phases/>
   <calendars>
     <day-types>
-      <day-type id="0" name="Travaill&#xE9;" description="Un jour de travail normal"/>
-      <day-type id="1" name="Ch&#xF4;m&#xE9;" description="Un jour ch&#xF4;m&#xE9; normal"/>
-      <day-type id="2" name="Utiliser la base" description="Utilise un jour du calendrier de base"/>
+      <day-type id="0" name="Working" description="A default working day"/>
+      <day-type id="1" name="Nonworking" description="A default non working day"/>
+      <day-type id="2" name="Use base" description="Use day from base calendar"/>
       <day-type id="3" name="Mercredi" description=""/>
     </day-types>
-    <calendar id="1" name="Normal">
+    <calendar id="1" name="Default">
       <default-week mon="0" tue="0" wed="0" thu="0" fri="0" sat="1" sun="1"/>
       <overridden-day-types>
         <overridden-day-type id="0">
@@ -19,40 +19,82 @@
       </overridden-day-types>
       <days/>
     </calendar>
-    <calendar id="2" name="Default">
-      <default-week mon="1" tue="1" wed="0" thu="1" fri="1" sat="1" sun="1"/>
-      <overridden-day-types>
-        <overridden-day-type id="0">
-          <interval start="1330" end="1700"/>
-        </overridden-day-type>
-      </overridden-day-types>
-      <days/>
-    </calendar>
   </calendars>
   <tasks>
-    <task id="1" name="Mise au point des objectifs" note="" work="1240200" start="20121003T000000Z" end="20121214T164500Z" work-start="20121003T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
+    <task id="1" name="Mise au point des objectifs" note="" work="1216800" start="20121003T000000Z" end="20121214T133820Z" work-start="20121003T080000Z" percent-complete="100" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20121003T000000Z"/>
     </task>
-    <task id="2" name="Interface utilisateur" note="" work="234000" start="20121210T000000Z" end="20121221T164500Z" work-start="20121210T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="2" name="Pr&#xE9;sentation des objectifs" note="" work="93600" start="20121217T000000Z" end="20121221T081500Z" work-start="20121217T080000Z" percent-complete="80" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20121217T000000Z"/>
+      <predecessors>
+        <predecessor id="1" predecessor-id="1" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="3" name="Interface utilisateur: int&#xE9;gration visualisation" note="" work="140400" start="20121210T000000Z" end="20121217T164500Z" work-start="20121210T080000Z" percent-complete="80" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="must-start-on" time="20121210T000000Z"/>
     </task>
-    <task id="3" name="Pr&#xE9;sentation" note="" work="115200" start="20121217T000000Z" end="20121221T161500Z" work-start="20121217T080000Z" percent-complete="90" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20121217T000000Z"/>
+    <task id="4" name="Rendu graphique: QGL tutos" note="" work="70200" start="20121219T000000Z" end="20121221T164500Z" work-start="20121219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20121219T000000Z"/>
+      <predecessors>
+        <predecessor id="1" predecessor-id="3" type="FS"/>
+      </predecessors>
     </task>
-    <task id="4" name="Parseur" note="" work="70200" start="20121219T000000Z" end="20121221T164500Z" work-start="20121219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20121219T000000Z"/>
-    </task>
-    <task id="5" name="Freefem++" note="" work="70200" start="20121219T000000Z" end="20121221T164500Z" work-start="20121219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20121219T000000Z"/>
-    </task>
-    <task id="6" name="Parseur" note="" work="491400" start="20130109T000000Z" end="20130206T164500Z" work-start="20130109T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+    <task id="5" name="Rendu graphique: Impl&#xE9;mentation" note="" work="491400" start="20130109T000000Z" end="20130206T164500Z" work-start="20130109T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
       <constraint type="start-no-earlier-than" time="20130109T000000Z"/>
+      <predecessors>
+        <predecessor id="1" predecessor-id="4" type="FS"/>
+      </predecessors>
     </task>
-    <task id="7" name="Freefem++" note="" work="1357200" start="20130109T000000Z" end="20130329T164500Z" work-start="20130109T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
-      <constraint type="must-start-on" time="20130109T000000Z"/>
+    <task id="6" name="Interface utilisateur: int&#xE9;gration interactions souris" note="" work="491400" start="20130207T000000Z" end="20130307T164500Z" work-start="20130207T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20130207T000000Z"/>
+    </task>
+    <task id="7" name="Interactions souris: impl&#xE9;mentation" note="" work="374400" start="20130307T164500Z" end="20130329T164500Z" work-start="20130308T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <predecessors>
+        <predecessor id="1" predecessor-id="6" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="8" name="Parseur: XML tutos" note="" work="70200" start="20121219T000000Z" end="20121221T164500Z" work-start="20121219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20121219T000000Z"/>
+    </task>
+    <task id="9" name="Parseur: impl&#xE9;mentation" note="" work="491400" start="20130109T000000Z" end="20130206T164500Z" work-start="20130109T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20130109T000000Z"/>
+      <predecessors>
+        <predecessor id="1" predecessor-id="8" type="FS"/>
+      </predecessors>
+    </task>
+    <task id="10" name="Freefem++: tutos" note="" work="70200" start="20121219T000000Z" end="20121221T164500Z" work-start="20121219T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="must-start-on" time="20121219T000000Z"/>
+    </task>
+    <task id="11" name="Freefem++: impl&#xE9;mentation" note="" work="1357200" start="20130109T000000Z" end="20130329T164500Z" work-start="20130109T080000Z" percent-complete="0" priority="0" type="normal" scheduling="fixed-work">
+      <constraint type="start-no-earlier-than" time="20130109T000000Z"/>
+      <predecessors>
+        <predecessor id="1" predecessor-id="10" type="FS"/>
+      </predecessors>
     </task>
   </tasks>
   <resource-groups/>
-  <resources/>
-  <allocations/>
+  <resources>
+    <resource id="1" name="Miladi" short-name="Sina" type="1" units="0" email="shaksina@gmail.com" note="" std-rate="0"/>
+    <resource id="2" name="Lefebvre" short-name="Ariane" type="1" units="0" email="lefebvreariane@msn.com" note="" std-rate="0"/>
+    <resource id="3" name="Coves" short-name="Pablo" type="1" units="0" email="coves.pablo@gmail.com" note="" std-rate="0"/>
+  </resources>
+  <allocations>
+    <allocation task-id="11" resource-id="1" units="100"/>
+    <allocation task-id="10" resource-id="1" units="100"/>
+    <allocation task-id="2" resource-id="1" units="33"/>
+    <allocation task-id="1" resource-id="1" units="33"/>
+    <allocation task-id="7" resource-id="2" units="50"/>
+    <allocation task-id="6" resource-id="2" units="50"/>
+    <allocation task-id="5" resource-id="2" units="100"/>
+    <allocation task-id="4" resource-id="2" units="100"/>
+    <allocation task-id="3" resource-id="2" units="100"/>
+    <allocation task-id="2" resource-id="2" units="33"/>
+    <allocation task-id="1" resource-id="2" units="33"/>
+    <allocation task-id="9" resource-id="3" units="100"/>
+    <allocation task-id="8" resource-id="3" units="100"/>
+    <allocation task-id="7" resource-id="3" units="50"/>
+    <allocation task-id="6" resource-id="3" units="50"/>
+    <allocation task-id="2" resource-id="3" units="33"/>
+    <allocation task-id="1" resource-id="3" units="33"/>
+  </allocations>
 </project>
