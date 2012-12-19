@@ -7,6 +7,7 @@
 \usetheme{Darmstadt}
 \usecolortheme{seahorse}
 
+\usepackage{transparent}
 \usepackage{graphicx}
 \input{/home/pablo/Documents/Examples/lstset}
 
@@ -18,11 +19,12 @@
 }
 
 \titlegraphic{
+    %\includegraphics[width=.5\textwidth]{img/topSolid.eps}
     \begin{columns}
-        \column{.15\textwidth}
-        \includegraphics[width=\textwidth]{img/imag.eps}
-        \column{.45\textwidth}
-        \includegraphics[width=\textwidth]{img/topSolid.eps}
+    \column{.15\textwidth}
+    \includegraphics[width=\textwidth]{img/imag.eps}
+    \column{.45\textwidth}
+    \includegraphics[width=\textwidth]{img/topSolid.eps}
     \end{columns}
 }
 
@@ -31,6 +33,12 @@
 \date{}
 
 \begin{document}
+%{\setbeamertemplate{background canvas}{
+        %\transparent{0.2}
+        %\includegraphics[width=\paperwidth, height=\paperheight]{img/imag.png}
+    %}
+    %\maketitle
+%}
 \maketitle
 
 \section{Description du projet}
@@ -109,7 +117,7 @@
 \end{frame}
 
 \section{Description du logiciel}
-\subsection{Freefem++}
+\subsection{Open fem}
 \begin{frame}
     \frametitle{Gestion de la déformation}
     \begin{columns}
@@ -148,10 +156,9 @@
         \end{itemize}
         \column{.5\textwidth}
         \begin{figure}
-            %TODO: mettre image de la fenêtre.
-            %\includegraphics[width=\textwidth]{img/fenetre.jpg}
-            %\caption{}
-            \label{Fenetre}
+            \includegraphics[width=\textwidth]{img/interface.png}
+            \caption{Interface de test}
+            \label{Interface}
         \end{figure}
     \end{columns}
 \end{frame}
@@ -161,7 +168,7 @@
     \begin{itemize}
         \item QGLWidget.
         \item Interaction à la souris: sélection des points à suivre.
-        \item Affichage en transparence de l'aire couverte couverte par la tôle durant la scène complète.
+        \item Affichage en transparence de l'aire couverte par la tôle durant la scène complète.
     \end{itemize}
 \end{frame}
 \begin{frame}
@@ -170,11 +177,11 @@
     \begin{center}
         $P(t) = \frac{-Dmax}{2}*\cos(\frac{2}{Tmax}*\pi*t)+\frac{Dmax}{2}$
     \end{center}
-        \begin{figure}
-            \includegraphics[width=.7\textwidth]{img/position.png}
-            \caption{Position du poinçon}
-            \label{Position}
-        \end{figure}
+    \begin{figure}
+        \includegraphics[width=.7\textwidth]{img/position.png}
+        \caption{Position du poinçon}
+        \label{Position}
+    \end{figure}
 \end{frame}
 \begin{frame}
     \frametitle{Pour un rendu réaliste}
@@ -183,7 +190,7 @@
         $V(t) = \frac{\pi*Dmax}{Tmax}*\sin(\frac{2*\pi}{Tmax}*t)$
     \end{center}
     \begin{figure}
-        \includegraphics[width=.7\textwidth]{img/acceleration.png}
+        \includegraphics[width=.7\textwidth]{img/vitesse.png}
         \caption{Vitesse du poinçon}
         \label{Vitesse}
     \end{figure}
@@ -194,11 +201,11 @@
     \begin{center}
         $A(t) = \frac{2*\pi^2*Dmax}{Tmax^2}*\cos(\frac{2*\pi}{Tmax}*t)$
     \end{center}
-        \begin{figure}
-            \includegraphics[width=.7\textwidth]{img/acceleration.png}
-            \caption{Accélération du poinçon}
-            \label{Accélération}
-        \end{figure}
+    \begin{figure}
+        \includegraphics[width=.7\textwidth]{img/acceleration.png}
+        \caption{Accélération du poinçon}
+        \label{Accélération}
+    \end{figure}
 \end{frame}
 \begin{frame}
     \frametitle{Pour un rendu réaliste}
@@ -206,18 +213,40 @@
 \end{frame}
 
 \section{Organisation}
-\subsection{Répartition des tâches}
+\begin{frame}
+    \framesubtitle{Diagramme de gant}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/gantt.png}
+        \caption{Diagramme de Gantt}
+        \label{DiagrammeDeGant}
+    \end{figure}
+\end{frame}
 \begin{frame}
     \begin{itemize}
-        \item MCS: utilisation de freefem++.\\
+        \item MCS: utilisation de Open fem.\\
             Gestion de la déformation de la tôle à chaque étape.
         \item ICAO: rendu graphique des scènes.\\
-        Interface utilisateur et intéractions souris.
+            Interface utilisateur et intéractions souris.
         \item ICAO: gestion des fichiers et parseurs XML.\\
-            Communication avec freefem++.
+            Communication avec Open fem.
     \end{itemize}
 \end{frame}
-\subsection{Diagramme de Gantt}
+\begin{frame}
+    \framesubtitle{Répartition des tâches}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/ganttRepartition.png}
+        \caption{Répartition des tâches}
+        \label{Répartition}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \framesubtitle{Complétion des tâches}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/ganttCompletionTasks.png}
+        \caption{Complétion des tâches}
+        \label{Complétion}
+    \end{figure}
+\end{frame}
 
 \section{Conclusion}
 \subsection{Perspectives}

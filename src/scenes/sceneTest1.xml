@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<!DOCTYPE scene SYSTEM "scene.dtd">
+<scene>
+    <units>
+        <time timeUnit="s" duration="40"/>
+        <distance distanceUnit="mm" xAxis="20" yAxis="20"/>
+    </units>
+    <matrix closedMatrix="True">
+        <point x="0" y="0"/>
+        <point x="0" y="10"/>
+        <point x="10" y="10"/>
+        <point x="10" y="0"/>
+        <point x="0" y="0"/>
+    </matrix>
+    <punch closedPunch="True">
+        <point x="11" y="20"/>
+        <point x="20" y="20"/>
+        <point x="20" y="15"/>
+        <point x="11" y="15"/>
+        <point x="11" y="20"/>
+        <transformation>
+            <translation xTranslation="0" yTranslation="-10"/>
+        </transformation>
+    </punch>
+    <sheet thickness="2">
+        <line>
+            <point x="0" y="0"/>
+            <point x="20" y="0"/>
+        </line>
+    </sheet>
+</scene>
