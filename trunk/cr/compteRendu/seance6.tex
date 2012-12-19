@@ -1,10 +1,28 @@
-\section{Séance 6: Formules}
+ %open fem
+ %p48 -> 50 Déformation en fonction du déplacement 
+\section{Séance 6}
 
-\subsection{Position du poinçon au cours du temps}
+\subsection{Formules}
+\subsubsection{Position du poinçon au cours du temps}
 $P(t) = \frac{-Dmax}{2}*\cos(\frac{2}{Tmax}*\pi*t)+\frac{Dmax}{2}$
 
-\subsection{Vitesse au cours du temps}
+\subsubsection{Vitesse au cours du temps}
 $V(t) = \frac{\pi*Dmax}{Tmax}*\sin(\frac{2*\pi}{Tmax}*t)$
 
-\subsection{Accélération au cours du temps}
+\subsubsection{Accélération au cours du temps}
 $A(t) = \frac{2*\pi^2*Dmax}{Tmax^2}*\cos(\frac{2*\pi}{Tmax}*t)$
+
+\subsection{Forces en jeu}
+À partir des mouvements données par les formules ci dessus nous pouvons calculer les foces en jeu.
+Les équations sont données dans une thèse (Mohamed AZAOUZI - 2007) et décrivent les quatres calculs de forces (p55):
+\begin{itemize}
+    \item Loi d'écrouissage d'Hollomon.
+    \item Loi d'écrouissage de Krupkowski.
+    \item Loi d'écrouissage de Ludwick.
+    \item Loi d'écrouissage de Voce.
+\end{itemize}
+Nous avons aussi les caractéristiques d'un matérieux pour les tests unitaires (p56).
+
+\subsection{Changements}
+Le logiciel initialement prévu pour les calculs de déformations (freefem++) ne gère pas les éléments finis "coque".
+Nous utiliserons donc la librairie \textbf{Open fem} dans scilab pour le remplacer.
