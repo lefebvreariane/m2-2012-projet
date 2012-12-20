@@ -8,8 +8,29 @@ MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
     ui->setupUi(this);
-    this->centralWidget();
+    /*scene2 = new QGraphicsScene( 85, 36, 100, 100, this); // création de la scène
+
+    vue = new QGraphicsView(scene2, this); // création de la vue de la scène
+
+    layFen = new QGridLayout(this);
+    layFen->addWidget(vue, 0, 0); // le jeu
+
+    this->centralWidget()->setLayout(layFen);
+    */
+    //scene2 = new QWidget();
+    //QButton *test = new QButton("COUCOU");
+    //render->addWidget(scene2);
+    //this->centralWidget()->setLayout(layFen);
+
+    centerArea = new QWidget();
+    glLayout = new QVBoxLayout(this);
+    scene = new QGLWidget();
+
+    glLayout->addWidget(scene,0,0);
+    centerArea->setLayout(glLayout);
+    this->setCentralWidget(centerArea);
 }
 
 MainWindow::~MainWindow()
@@ -19,7 +40,6 @@ MainWindow::~MainWindow()
 
 void MainWindow::changeEvent(QEvent *e)
 {
-    cout << "coucou1" << endl;
     QMainWindow::changeEvent(e);
     switch (e->type()) {
     case QEvent::LanguageChange:
