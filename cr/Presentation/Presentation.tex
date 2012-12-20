@@ -19,10 +19,10 @@
 
 \titlegraphic{
     \begin{columns}
-    \column{.15\textwidth}
-    \includegraphics[width=\textwidth]{img/imag.eps}
-    \column{.45\textwidth}
-    \includegraphics[width=\textwidth]{img/topSolid.eps}
+        \column{.15\textwidth}
+        \includegraphics[width=\textwidth]{img/imag.eps}
+        \column{.45\textwidth}
+        \includegraphics[width=\textwidth]{img/topSolid.eps}
     \end{columns}
 }
 
@@ -53,21 +53,52 @@
         \end{figure}
     \end{columns}
 \end{frame}
-\subsection{Mots clés}
+\subsection{Emboutissage}
 \begin{frame}
     \begin{columns}
         \column{.5\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{img/Emboutissage1.jpg}
+            \caption{Etape 1 : poinçon et serre-flan relevés.}
+        \end{figure}
+        \column{.5\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{img/Emboutissage2.jpg}
+            \caption{Etape 2 : le serre-flan descend et applique une pression pour maintenir la tôle sans l'empêcher de fluer.}
+        \end{figure}
+    \end{columns}
+\end{frame}
+\begin{frame}
+    \begin{columns}
+        \column{.5\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{img/Emboutissage3.jpg}
+            \caption{Etape 3 : le poinçon descend ce qui provoque la déformation plastique de la tôle en l'appliquant contre la matrice.}
+        \end{figure}
+        \column{.5\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{img/Emboutissage4.jpg}
+            \caption{Etape 4 : le poinçon et le serre-flan se relèvent : la pièce conserve la forme acquise puisque la limite d'élasticité est dépassée.}
+        \end{figure}
+    \end{columns}
+\end{frame}
+\subsection{Mots clés}
+\begin{frame}
+    \begin{columns}
+        \column{.6\textwidth}
         \frametitle{Une scène}
-        Une scène est composée de plusieurs éléments:
+        Une scène est composée de:
         \begin{itemize}
-            \item Une matrice:\\
+            \item \textbf{Une matrice}: 
                 Définie par un polygone, fixe au cours du temps.
-            \item Un poinçon:\\
+            \item \textbf{Un dévêtisseur}:
+                Défini par un polygone, il vient fixer une partie de la tôle à la matrice durant le pliage.
+            \item \textbf{Un poinçon}:
                 Défini par un polygone dont on connait le mouvement au cours du temps.
-            \item Une tôle:\\
+            \item \textbf{Une tôle}:
                 Considérée d'épaisseur fixe, elle est décrite par sa fibre neutre.
         \end{itemize}
-        \column{0.5\textwidth}
+        \column{0.4\textwidth}
         \begin{figure}
             \includegraphics[width=\textwidth]{img/fibreNeutre.jpg}
             \caption{Fibre neutre}
@@ -111,8 +142,9 @@
 \begin{frame}
     \frametitle{Fichier de scène}
     \framesubtitle{Contenu}
-        \lstinputlisting{../../src/scenes/scene.dtd}[language=xml, caption={Une scène}]
+    \lstinputlisting{../../src/scenes/scene.dtd}[language=xml, caption={Une scène}]
 \end{frame}
+
 \section{Description du logiciel}
 \subsection{Open fem}
 \begin{frame}
@@ -207,6 +239,20 @@
 \begin{frame}
     \frametitle{Pour un rendu réaliste}
     \framesubtitle{Calcul des forces sur la tôle}
+    La courbe d'écrouissage relie l'évolution de la limite élastique à la variable interne d'écrouissage $\sigma_0$ (c.a.d.\ la déformation équivalente plastique $\bar{\epsilon}$).
+    \begin{itemize}
+        \item \textbf{Loi d'écrouissage d'Hollomon}:
+            $\bar\sigma=K\bar{\epsilon}^n$\\
+            {\footnotesize{Efficacité limitée pour les petites déformations.}}
+        \item \textbf{Loi d'écrouissage de Krupkowski}:
+            $\bar\sigma=K({\epsilon_0+\bar{\epsilon}})^n$\\
+            {\footnotesize{Avec $\epsilon_0$ une déformation seuil.}}
+        \item \textbf{Loi d'écrouissage de Ludwick}:
+            $\bar\sigma=\sigma_0+K{\bar{\epsilon}}^n$
+        \item \textbf{Loi d'écrouissage de Voce}:
+            $\bar\sigma = \sigma_0 + \sigma_{s} [1-\exp{(-\frac{\bar\epsilon}{\epsilon_0})}]$\\
+            {\footnotesize{Avec $\sigma_0$ une contrainte seuil.}}
+    \end{itemize}
 \end{frame}
 
 \section{Organisation}
