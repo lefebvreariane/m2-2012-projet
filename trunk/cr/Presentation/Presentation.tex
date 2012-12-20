@@ -7,7 +7,6 @@
 \usetheme{Darmstadt}
 \usecolortheme{seahorse}
 
-\usepackage{transparent}
 \usepackage{graphicx}
 \input{/home/pablo/Documents/Examples/lstset}
 
@@ -19,7 +18,6 @@
 }
 
 \titlegraphic{
-    %\includegraphics[width=.5\textwidth]{img/topSolid.eps}
     \begin{columns}
     \column{.15\textwidth}
     \includegraphics[width=\textwidth]{img/imag.eps}
@@ -33,12 +31,6 @@
 \date{}
 
 \begin{document}
-%{\setbeamertemplate{background canvas}{
-        %\transparent{0.2}
-        %\includegraphics[width=\paperwidth, height=\paperheight]{img/imag.png}
-    %}
-    %\maketitle
-%}
 \maketitle
 
 \section{Description du projet}
@@ -104,6 +96,7 @@
 \end{frame}
 \begin{frame}
     \frametitle{Fichier de scène}
+    \framesubtitle{Aperçu}
     \begin{itemize}
         \item Utilisation du XML: facile à lire et à faire évoluer.
         \item Un fichier de scène est utilisé pour décrire les différents éléments d'une scène.
@@ -115,7 +108,11 @@
         \item Format aussi utilisé pour sauvegarder l'état du système à chaque étape.
     \end{itemize}
 \end{frame}
-
+\begin{frame}
+    \frametitle{Fichier de scène}
+    \framesubtitle{Contenu}
+        \lstinputlisting{../../src/scenes/scene.dtd}[language=xml, caption={Une scène}]
+\end{frame}
 \section{Description du logiciel}
 \subsection{Open fem}
 \begin{frame}
@@ -213,14 +210,15 @@
 \end{frame}
 
 \section{Organisation}
+\subsection{Diagramme de Gantt}
 \begin{frame}
-    \framesubtitle{Diagramme de gant}
     \begin{figure}
         \includegraphics[width=\textwidth]{img/gantt.png}
         \caption{Diagramme de Gantt}
         \label{DiagrammeDeGant}
     \end{figure}
 \end{frame}
+\subsection{Répartition des tâches}
 \begin{frame}
     \begin{itemize}
         \item MCS: utilisation de Open fem.\\
@@ -232,15 +230,14 @@
     \end{itemize}
 \end{frame}
 \begin{frame}
-    \framesubtitle{Répartition des tâches}
     \begin{figure}
         \includegraphics[width=\textwidth]{img/ganttRepartition.png}
         \caption{Répartition des tâches}
         \label{Répartition}
     \end{figure}
 \end{frame}
+\subsection{Complétion des tâches}
 \begin{frame}
-    \framesubtitle{Complétion des tâches}
     \begin{figure}
         \includegraphics[width=\textwidth]{img/ganttCompletionTasks.png}
         \caption{Complétion des tâches}

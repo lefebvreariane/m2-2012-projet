@@ -1,30 +1,23 @@
 <!ELEMENT scene (units, matrix,punch,sheet)>
-
 <!ELEMENT units (time, distance)>
 <!ELEMENT time EMPTY>
 <!ATTLIST time
     timeUnit (ms|s) "s"
-    duration CDATA #REQUIRED
->
+    duration CDATA #REQUIRED>
 <!ELEMENT distance EMPTY>
 <!ATTLIST distance
     distanceUnit (um|mm|cm) "mm"
     xAxis CDATA #REQUIRED
-    yAxis CDATA #REQUIRED
->
-
+    yAxis CDATA #REQUIRED>
 <!ELEMENT matrix (point+)>
 <!ATTLIST matrix closedMatrix (True|False) #IMPLIED>
-
 <!ELEMENT punch (point+, transformation)>
 <!ATTLIST punch closedPunch (True|False) #IMPLIED>
 <!ELEMENT transformation (translation|rotation)>
 <!ELEMENT translation EMPTY>
 <!ATTLIST translation
     xTranslation CDATA #REQUIRED
-    yTranslation CDATA #REQUIRED
->
-
+    yTranslation CDATA #REQUIRED>
 <!ELEMENT sheet (line|curve)+>
 <!ATTLIST sheet thickness CDATA "2">
 <!ELEMENT line (point, point)>
@@ -33,10 +26,8 @@
 <!ATTLIST node n CDATA #REQUIRED>
 <!ELEMENT degree EMPTY>
 <!ATTLIST degree d CDATA #REQUIRED>
-
 <!ELEMENT point EMPTY>
 <!ATTLIST point
     fixed (True|False) #IMPLIED
     x CDATA #REQUIRED
-    y CDATA #REQUIRED
->
+    y CDATA #REQUIRED>

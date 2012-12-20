@@ -4,16 +4,18 @@
 #
 #-------------------------------------------------
 
-QT       += opengl
+QT       += opengl core xml
 
 TARGET = fenetre
 TEMPLATE = app
 
 
 SOURCES += main.cpp\
-        mainwindow.cpp
+        mainwindow.cpp \
+    sceneparser.cpp
 
-HEADERS  += mainwindow.h
+HEADERS  += mainwindow.h \
+    sceneparser.h
 
 FORMS    += mainwindow.ui
 
