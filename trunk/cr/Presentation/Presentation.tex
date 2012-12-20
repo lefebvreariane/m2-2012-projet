@@ -8,7 +8,6 @@
 \usecolortheme{seahorse}
 
 \usepackage{graphicx}
-\input{/home/pablo/Documents/Examples/lstset}
 
 \AtBeginSection[]{
     \begin{frame}
@@ -130,6 +129,7 @@
     \framesubtitle{Aperçu}
     \begin{itemize}
         \item Utilisation du XML: facile à lire et à faire évoluer.
+        \item Utilisation d'une DTD pour vérifier la cohérence des fichers.
         \item Un fichier de scène est utilisé pour décrire les différents éléments d'une scène.
             \begin{itemize}
                 \item Forme et position de la matrice.
@@ -138,11 +138,6 @@
             \end{itemize}
         \item Format aussi utilisé pour sauvegarder l'état du système à chaque étape.
     \end{itemize}
-\end{frame}
-\begin{frame}
-    \frametitle{Fichier de scène}
-    \framesubtitle{Contenu}
-    \lstinputlisting{../../src/scenes/scene.dtd}[language=xml, caption={Une scène}]
 \end{frame}
 
 \section{Description du logiciel}
