@@ -8,8 +8,10 @@
 #include <QTextEdit>
 #include <QMdiSubWindow>
 #include <QMessageBox>
-
-
+#include <QGLWidget>
+#include <QGridLayout>
+#include <QGraphicsScene>
+#include <QGraphicsView>
 
 namespace Ui {
     class MainWindow;
@@ -24,8 +26,10 @@ public:
     QAction *actionVisualize;
     QAction *actionDocumentation, *actionAbout;
 
+    QVBoxLayout *glLayout;
+    QGLWidget *scene;
+    QWidget *centerArea;
 
-    QWidget rendu;
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
