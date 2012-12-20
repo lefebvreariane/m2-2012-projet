@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Mon Dec 17 13:35:54 2012
+** Created: Wed Dec 19 15:52:16 2012
 **      by: Qt User Interface Compiler version 4.6.2
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -14,14 +14,24 @@
 #include <QtGui/QAction>
 #include <QtGui/QApplication>
 #include <QtGui/QButtonGroup>
+#include <QtGui/QComboBox>
+#include <QtGui/QDockWidget>
+#include <QtGui/QDoubleSpinBox>
+#include <QtGui/QFrame>
+#include <QtGui/QGroupBox>
+#include <QtGui/QHBoxLayout>
 #include <QtGui/QHeaderView>
+#include <QtGui/QLabel>
 #include <QtGui/QMainWindow>
 #include <QtGui/QMenu>
 #include <QtGui/QMenuBar>
+#include <QtGui/QSlider>
+#include <QtGui/QSpacerItem>
+#include <QtGui/QSpinBox>
 #include <QtGui/QStatusBar>
-#include <QtGui/QTabWidget>
 #include <QtGui/QTextEdit>
 #include <QtGui/QToolBar>
+#include <QtGui/QVBoxLayout>
 #include <QtGui/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -36,8 +46,9 @@ public:
     QAction *actionAbout;
     QAction *actionVisualize;
     QWidget *centralWidget;
-    QTabWidget *tabWidget;
-    QWidget *tab;
+    QVBoxLayout *verticalLayout;
+    QFrame *frame;
+    QHBoxLayout *horizontalLayout;
     QTextEdit *textEdit;
     QMenuBar *menuBar;
     QMenu *menuFile;
@@ -46,12 +57,26 @@ public:
     QMenu *menuHelp;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
+    QDockWidget *dockWidgetSimulationOptions;
+    QWidget *dockWidgetOptions;
+    QHBoxLayout *horizontalLayout_3;
+    QGroupBox *groupBoxOptions;
+    QVBoxLayout *verticalLayout_3;
+    QHBoxLayout *layoutPrecision;
+    QLabel *labelPrecision;
+    QDoubleSpinBox *doubleSpinBoxPrecision;
+    QComboBox *comboBoxUnites;
+    QHBoxLayout *layoutEtapes;
+    QSlider *sliderEtapes;
+    QSpinBox *spinBoxEtapes;
+    QSpacerItem *verticalSpacer;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QString::fromUtf8("MainWindow"));
-        MainWindow->resize(640, 480);
+        MainWindow->resize(691, 442);
+        MainWindow->setMinimumSize(QSize(500, 350));
         actionExit = new QAction(MainWindow);
         actionExit->setObjectName(QString::fromUtf8("actionExit"));
         actionOpen = new QAction(MainWindow);
@@ -69,24 +94,39 @@ public:
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         centralWidget->setMinimumSize(QSize(0, 0));
         centralWidget->setAutoFillBackground(false);
-        tabWidget = new QTabWidget(centralWidget);
-        tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setEnabled(true);
-        tabWidget->setGeometry(QRect(0, 0, 640, 422));
-        tabWidget->setElideMode(Qt::ElideNone);
-        tabWidget->setDocumentMode(true);
-        tabWidget->setTabsClosable(true);
-        tabWidget->setMovable(true);
-        tab = new QWidget();
-        tab->setObjectName(QString::fromUtf8("tab"));
-        textEdit = new QTextEdit(tab);
+        verticalLayout = new QVBoxLayout(centralWidget);
+        verticalLayout->setSpacing(6);
+        verticalLayout->setContentsMargins(11, 11, 11, 11);
+        verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
+        frame = new QFrame(centralWidget);
+        frame->setObjectName(QString::fromUtf8("frame"));
+        frame->setMinimumSize(QSize(50, 50));
+        QPalette palette;
+        QBrush brush(QColor(255, 255, 255, 255));
+        brush.setStyle(Qt::SolidPattern);
+        palette.setBrush(QPalette::Active, QPalette::Base, brush);
+        palette.setBrush(QPalette::Active, QPalette::Window, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Base, brush);
+        palette.setBrush(QPalette::Inactive, QPalette::Window, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Base, brush);
+        palette.setBrush(QPalette::Disabled, QPalette::Window, brush);
+        frame->setPalette(palette);
+        horizontalLayout = new QHBoxLayout(frame);
+        horizontalLayout->setSpacing(6);
+        horizontalLayout->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout->setObjectName(QString::fromUtf8("horizontalLayout"));
+        textEdit = new QTextEdit(frame);
         textEdit->setObjectName(QString::fromUtf8("textEdit"));
-        textEdit->setGeometry(QRect(0, 0, 640, 389));
-        tabWidget->addTab(tab, QString());
+
+        horizontalLayout->addWidget(textEdit);
+
+
+        verticalLayout->addWidget(frame);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QString::fromUtf8("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 640, 23));
+        menuBar->setGeometry(QRect(0, 0, 691, 23));
         menuFile = new QMenu(menuBar);
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuTools = new QMenu(menuBar);
@@ -102,6 +142,73 @@ public:
         statusBar = new QStatusBar(MainWindow);
         statusBar->setObjectName(QString::fromUtf8("statusBar"));
         MainWindow->setStatusBar(statusBar);
+        dockWidgetSimulationOptions = new QDockWidget(MainWindow);
+        dockWidgetSimulationOptions->setObjectName(QString::fromUtf8("dockWidgetSimulationOptions"));
+        dockWidgetSimulationOptions->setMinimumSize(QSize(239, 345));
+        dockWidgetSimulationOptions->setAcceptDrops(false);
+        dockWidgetSimulationOptions->setAutoFillBackground(true);
+        dockWidgetSimulationOptions->setFloating(false);
+        dockWidgetOptions = new QWidget();
+        dockWidgetOptions->setObjectName(QString::fromUtf8("dockWidgetOptions"));
+        dockWidgetOptions->setMinimumSize(QSize(239, 0));
+        horizontalLayout_3 = new QHBoxLayout(dockWidgetOptions);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        groupBoxOptions = new QGroupBox(dockWidgetOptions);
+        groupBoxOptions->setObjectName(QString::fromUtf8("groupBoxOptions"));
+        groupBoxOptions->setMinimumSize(QSize(239, 200));
+        verticalLayout_3 = new QVBoxLayout(groupBoxOptions);
+        verticalLayout_3->setSpacing(6);
+        verticalLayout_3->setContentsMargins(11, 11, 11, 11);
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        layoutPrecision = new QHBoxLayout();
+        layoutPrecision->setSpacing(6);
+        layoutPrecision->setObjectName(QString::fromUtf8("layoutPrecision"));
+        labelPrecision = new QLabel(groupBoxOptions);
+        labelPrecision->setObjectName(QString::fromUtf8("labelPrecision"));
+
+        layoutPrecision->addWidget(labelPrecision);
+
+        doubleSpinBoxPrecision = new QDoubleSpinBox(groupBoxOptions);
+        doubleSpinBoxPrecision->setObjectName(QString::fromUtf8("doubleSpinBoxPrecision"));
+
+        layoutPrecision->addWidget(doubleSpinBoxPrecision);
+
+        comboBoxUnites = new QComboBox(groupBoxOptions);
+        comboBoxUnites->setObjectName(QString::fromUtf8("comboBoxUnites"));
+
+        layoutPrecision->addWidget(comboBoxUnites);
+
+
+        verticalLayout_3->addLayout(layoutPrecision);
+
+        layoutEtapes = new QHBoxLayout();
+        layoutEtapes->setSpacing(6);
+        layoutEtapes->setObjectName(QString::fromUtf8("layoutEtapes"));
+        sliderEtapes = new QSlider(groupBoxOptions);
+        sliderEtapes->setObjectName(QString::fromUtf8("sliderEtapes"));
+        sliderEtapes->setOrientation(Qt::Horizontal);
+
+        layoutEtapes->addWidget(sliderEtapes);
+
+        spinBoxEtapes = new QSpinBox(groupBoxOptions);
+        spinBoxEtapes->setObjectName(QString::fromUtf8("spinBoxEtapes"));
+
+        layoutEtapes->addWidget(spinBoxEtapes);
+
+
+        verticalLayout_3->addLayout(layoutEtapes);
+
+        verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer);
+
+
+        horizontalLayout_3->addWidget(groupBoxOptions);
+
+        dockWidgetSimulationOptions->setWidget(dockWidgetOptions);
+        MainWindow->addDockWidget(static_cast<Qt::DockWidgetArea>(1), dockWidgetSimulationOptions);
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuTools->menuAction());
@@ -118,9 +225,6 @@ public:
 
         retranslateUi(MainWindow);
 
-        tabWidget->setCurrentIndex(0);
-
-
         QMetaObject::connectSlotsByName(MainWindow);
     } // setupUi
 
@@ -136,11 +240,18 @@ public:
 #ifndef QT_NO_ACCESSIBILITY
         centralWidget->setAccessibleName(QString());
 #endif // QT_NO_ACCESSIBILITY
-        tabWidget->setTabText(tabWidget->indexOf(tab), QApplication::translate("MainWindow", "(untitled)[*]", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "&File", 0, QApplication::UnicodeUTF8));
         menuTools->setTitle(QApplication::translate("MainWindow", "&Tools", 0, QApplication::UnicodeUTF8));
         menuToolbars->setTitle(QApplication::translate("MainWindow", "Toolbars", 0, QApplication::UnicodeUTF8));
         menuHelp->setTitle(QApplication::translate("MainWindow", "&Help", 0, QApplication::UnicodeUTF8));
+        dockWidgetSimulationOptions->setWindowTitle(QApplication::translate("MainWindow", "Simulation", 0, QApplication::UnicodeUTF8));
+        groupBoxOptions->setTitle(QApplication::translate("MainWindow", "Etapes", 0, QApplication::UnicodeUTF8));
+        labelPrecision->setText(QApplication::translate("MainWindow", "Pr\303\251cision:", 0, QApplication::UnicodeUTF8));
+        comboBoxUnites->clear();
+        comboBoxUnites->insertItems(0, QStringList()
+         << QApplication::translate("MainWindow", "ms", 0, QApplication::UnicodeUTF8)
+         << QApplication::translate("MainWindow", "s", 0, QApplication::UnicodeUTF8)
+        );
     } // retranslateUi
 
 };

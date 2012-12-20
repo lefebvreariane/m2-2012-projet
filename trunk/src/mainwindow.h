@@ -7,7 +7,9 @@
 #include <QMdiArea>
 #include <QTextEdit>
 #include <QMdiSubWindow>
-#include  <QMessageBox>
+#include <QMessageBox>
+
+
 
 namespace Ui {
     class MainWindow;
@@ -22,11 +24,8 @@ public:
     QAction *actionVisualize;
     QAction *actionDocumentation, *actionAbout;
 
-    QTabWidget *tabWidget;
-    QTextEdit *textEdit;
-    QWidget *tab;
 
-
+    QWidget rendu;
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
@@ -34,13 +33,11 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
-    void slotExit();
     Ui::MainWindow *ui;
 
 private slots:
 
 private slots:
-    void on_tabWidget_tabCloseRequested(int index);
     void on_actionExit_triggered();
 };
 
