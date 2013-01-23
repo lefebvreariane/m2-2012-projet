@@ -10,27 +10,9 @@ MainWindow::MainWindow(QWidget *parent) :
 {
 
     ui->setupUi(this);
-    /*scene2 = new QGraphicsScene( 85, 36, 100, 100, this); // création de la scène
 
-    vue = new QGraphicsView(scene2, this); // création de la vue de la scène
-
-    layFen = new QGridLayout(this);
-    layFen->addWidget(vue, 0, 0); // le jeu
-
-    this->centralWidget()->setLayout(layFen);
-    */
-    //scene2 = new QWidget();
-    //QButton *test = new QButton("COUCOU");
-    //render->addWidget(scene2);
-    //this->centralWidget()->setLayout(layFen);
-
-    centerArea = new QWidget();
-    glLayout = new QVBoxLayout(this);
     scene = new QGLWidget();
-
-    glLayout->addWidget(scene,0,0);
-    centerArea->setLayout(glLayout);
-    this->setCentralWidget(centerArea);
+    ui->glLayout->addWidget(scene,0,0);
 }
 
 MainWindow::~MainWindow()
@@ -49,6 +31,11 @@ void MainWindow::changeEvent(QEvent *e)
         break;
     }
 }
+
+
+/////////////////////////////////////////////
+// SLOTS ////////////////////////////////////
+/////////////////////////////////////////////
 
 void MainWindow::on_actionExit_triggered()
 {
@@ -75,4 +62,13 @@ void MainWindow::on_actionExit_triggered()
         // should never be reached
         break;
     }
+}
+
+void MainWindow::slot_radioButtonToogled(bool checked){
+
+    ui->comboBoxTime->setEnabled(checked);
+    ui->doubleSpinBoxTime->setEnabled(checked);
+
+    ui->comboBoxPas->setEnabled(!checked);
+    ui->doubleSpinBoxPas->setEnabled(!checked);
 }

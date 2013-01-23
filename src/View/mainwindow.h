@@ -12,6 +12,10 @@
 #include <QGridLayout>
 #include <QGraphicsScene>
 #include <QGraphicsView>
+#include <QRadioButton>
+#include <QDoubleSpinBox>
+#include <QComboBox>
+
 
 namespace Ui {
     class MainWindow;
@@ -20,15 +24,28 @@ namespace Ui {
 class MainWindow : public QMainWindow {
     Q_OBJECT
 public:
-    QMenu *menuFile, *menuTools, *menuHelp;
-    QMenu *menuToolbars; /// iconFinder sur internet!!!!
-    QAction *actionOpen, *actionSave, *actionExit;
-    QAction *actionVisualize;
-    QAction *actionDocumentation, *actionAbout;
+    // Menu UI
+    // QMenu *menuFile, *menuTools, *menuHelp;
+    // QAction *actionOpen, *actionSave, *actionExit;
+    // QAction *actionDocumentation, *actionAbout;
+    // QMenu *menuToolbars;
+    // QAction *actionVisualizationOptions, *actionSimulationOptions;
 
-    QVBoxLayout *glLayout;
+    // ToolBar
+    /// iconFinder sur internet!!!!
+
+    // Options UI
+    // QWidget *dockWidgetSimOptions, *dockWidgetVisuOptions;
+    // QDoubleSpinBox *doubleSpinBoxTime, *doubleSpinBoxPas;
+    // QComboBox *comboBoxTime, *comboBoxPas;
+
+    // Player UI
+    // QHBoxLayout *layoutPlayer;
+
+    // Scene
+    // QVBoxLayout *glLayout;
+    // QWidget *centralWidget;
     QGLWidget *scene;
-    QWidget *centerArea;
 
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -40,9 +57,8 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-
-private slots:
     void on_actionExit_triggered();
+    void slot_radioButtonToogled(bool checked);
 };
 
 #endif // MAINWINDOW_H
