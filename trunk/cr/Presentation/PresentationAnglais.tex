@@ -1,0 +1,194 @@
+\documentclass{beamer}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[francais]{babel}
+\usepackage{multimedia}
+\usepackage{textcomp}
+
+\usetheme{Darmstadt}
+\usecolortheme{seahorse}
+
+\usepackage{graphicx}
+
+\AtBeginSection[]{
+    \begin{frame}
+        \frametitle{Plan}
+        \tableofcontents[currentsection,hideothersubsections]
+    \end{frame} 
+}
+
+\titlegraphic{
+    \begin{columns}
+        \column{.15\textwidth}
+        \includegraphics[width=\textwidth]{img/imag.eps}
+        \column{.45\textwidth}
+        \includegraphics[width=\textwidth]{img/topSolid.eps}
+    \end{columns}
+}
+
+\title{TopSolid Project}
+\author{Ariane Lefebvre \and Pablo Coves}
+\date{}
+
+\begin{document}
+\maketitle
+
+\section{Introduction}
+\subsection{Missler software}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[width=.8\textwidth]{img/topSolid.jpg}
+        \caption{TopSolid Galaxy}
+        \label{TopSolid}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \begin{itemize}
+        \item First CAD/CAM solution on PC's in the 80's.\\
+            200 people, international resellers and around 25M of turnover.
+        \item Field of activities:
+            \begin{itemize}
+                \item General CAD/CAM:
+                    Design, assembly, mapping, cinematic.
+                    Turning, milling.
+                \item Tooling CAD/CAM:
+                    Mold, progressive, transfer and stamping die.
+                    Bending simulation.
+                \item Sheet metal CAD/CAM:
+                    Punching and cutting.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+\subsection{Progressive die tool}
+\begin{frame}
+    \begin{columns}
+    \column{.3\textwidth}
+        \begin{itemize}
+            \item Punch die.
+            \item Blank holder.
+            \item Metal strip.
+            \item Die holder.
+        \end{itemize}
+    \column{.7\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{img/dieTool.jpg}
+            \caption{Progressive die tool}
+        \end{figure}
+    \end{columns}
+\end{frame}
+\subsection{Basic operations}
+\begin{frame}
+    \begin{itemize}
+        \item Cutting:\\
+            Takes some parts of the initial material off.
+        \item Bending:\\
+            Change the shape of the initial material by pushing it strongly.
+        \item Stamping:\\
+            ??????
+    \end{itemize}
+\end{frame}
+\section{Project content}
+\subsection{Goal of the project}
+\begin{frame}
+\frametitle{Bending simulation}
+    At the moment, there is no software embedding those two essential features:
+    \begin{itemize}
+        \item Compute non intuitive trajectories of the free parts of the metal sheet.
+        \item Represent the spring back movement.
+    \end{itemize}
+\end{frame}
+\subsection{Specifications}
+\begin{frame}
+    \begin{itemize}
+        \item Bending simulation.
+        \item 2D representation.
+        \item Sheet metal part geometry: constant thickness.
+        \item Various punch die and punch holder shapes.
+        \item Various material characteristics.
+    \end{itemize}
+\end{frame}
+\subsection{User interface}
+\begin{frame}
+    In a one operation cycle we will allow the user to:
+    \begin{itemize}
+        \item Visualize all the simulation steps.
+        \item Visualize the trajectories of the free parts of the metal sheet.
+        \item Visualize the distance between two points at a given step.
+        \item Follow a given point over the time.
+    \end{itemize}
+\end{frame}
+\subsection{Implementation model}
+\begin{frame}
+    \begin{columns}
+        \column{.6\textwidth}
+        A 2D representation of:
+        \begin{itemize}
+            \item \textbf{A punch holder}: 
+                A polygon which does not move over the time.
+            \item \textbf{A stripper}:
+                A polygon that comes to fix a part of the metal sheet.
+            \item \textbf{A punch die}:
+                A polygon that we know the position over the time.
+            \item \textbf{A metal sheet}:
+                With its fixed thickness, it is described by its neutral axis with well known characteristics.
+        \end{itemize}
+        \column{0.4\textwidth}
+        \begin{figure}
+            \includegraphics[width=\textwidth]{img/fibreNeutre.jpg}
+            \caption{Neutral axis}
+            \label{FibreNeudre}
+        \end{figure}
+    \end{columns}
+\end{frame}
+\section{Tasks and progress}
+\subsection{Gantt diagram}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/gantt.png}
+        \caption{Diagramme de Gantt}
+        \label{DiagrammeDeGant}
+    \end{figure}
+\end{frame}
+\subsection{Tasks repartition}
+\begin{frame}
+    \begin{itemize}
+        \item MCS: handles open fem\\
+            Compute the metal sheet's deformation at every step.
+        \item ICAO: visual rendering.\\
+            Graphical user interface and interaction.
+        \item ICAO: XML scene description and parser.\\
+            Communication with open fem.
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/ganttRepartition.png}
+        \caption{Tasks repartition}
+        \label{Répartition}
+    \end{figure}
+\end{frame}
+\subsection{Tasks completion}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/ganttCompletionTasks.png}
+        \caption{Tasks completion}
+        \label{Complétion}
+    \end{figure}
+\end{frame}
+
+\section{Conclusion}
+\subsection{Possibilities}
+\begin{frame}
+    \begin{itemize}
+        \item Metal sheet thickness modification.
+        \item Punch and matrix modification by the user.
+    \end{itemize}
+\end{frame}
+\subsection{Questions}
+\begin{frame}
+    Thank you for your attention
+    \hfill Any questions?
+\end{frame}
+
+\end{document}
