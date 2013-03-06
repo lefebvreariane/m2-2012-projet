@@ -109,32 +109,6 @@
         \item Various material characteristics.
     \end{itemize}
 \end{frame}
-\subsection{Modelisation}
-\begin{frame}
-    In order to have a realistic representation of the bending process we will cut the problem into two parts:
-    \begin{enumerate}
-        \item XML scene representation containing
-            \begin{itemize}
-                \item The ??? placement for a whole scene.
-                \item The punch ???
-            \end{itemize}
-        \item A coq ???
-            \begin{itemize}
-                    \item ???
-                \end{itemize}
-        \end{enumerate}
-\end{frame}
-\subsection{User interface}
-\begin{frame}
-    In a one operation cycle we will allow the user to:
-    \begin{itemize}
-        \item Visualize all the simulation steps.
-        \item Visualize the trajectories of the free parts of the metal sheet.
-        \item Visualize the distance between two points at a given step.
-        \item Follow a given point over the time.
-    \end{itemize}
-\end{frame}
-\subsection{Implementation model}
 \begin{frame}
     \begin{columns}
         \column{.6\textwidth}
@@ -157,12 +131,55 @@
         \end{figure}
     \end{columns}
 \end{frame}
+\subsection{Modelisation}
+\begin{frame}
+    In order to have a realistic representation of the bending process we will cut the problem into two parts:
+    \begin{enumerate}
+        \item XML scene representation containing:
+            \begin{itemize}
+                \item Static parts geometry and position.
+                \item The material characteristics.
+                \item The boundary conditions.
+                \item The punch die geometry and position at every step.
+            \end{itemize}
+        \item A finite element solver using Open fem:
+            \begin{itemize}
+                \item Takes a step disposition and strengths applied to the metal sheet.
+                \item Return the new metal sheet shape.
+            \end{itemize}
+    \end{enumerate}
+\end{frame}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/openFem.png}
+        \caption{Dialog between Open fem and internal scene representation}
+    \end{figure}
+\end{frame}
+\subsection{User interface}
+\begin{frame}
+    In a one operation cycle we will allow the user to:
+    \begin{itemize}
+        \item Define the system's initial state.
+        \item Indicate the simulation's parameters.
+        \item Visualize all the simulation steps.
+        \item Visualize the trajectories of the free parts of the metal sheet.
+        \item Visualize the distance between two points at a given step.
+        \item Follow a given point over the time.
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/interface.png}
+        \caption{The graphical user interface}
+    \end{figure}
+\end{frame}
+\subsection{Implementation model}
 \section{Tasks and progress}
 \subsection{Gantt diagram}
 \begin{frame}
     \begin{figure}
         \includegraphics[width=\textwidth]{img/gantt.png}
-        \caption{Diagramme de Gantt}
+        \caption{Gantt Diagram}
         \label{DiagrammeDeGant}
     \end{figure}
 \end{frame}
@@ -198,7 +215,7 @@
 \begin{frame}
     \begin{itemize}
         \item Take sheet metal thickness modification into account.
-        \item Evaluate springback compensation to modify punch and die geometries.
+        \item Evaluate spring back compensation to modify punch and die geometries.
     \end{itemize}
 \end{frame}
 \subsection{Questions}
