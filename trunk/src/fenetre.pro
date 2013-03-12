@@ -8,14 +8,10 @@ TEMPLATE = app
 SOURCES += main.cpp \
     View/mainwindow.cpp \
     Controler/Visualization.cpp \
-    Model/xmlscene.cpp \
     Model/realscene.cpp
 
 HEADERS += Controler/Visualization.h \
     View/mainwindow.h \
-    Model/xmlscene.h \
     Model/realscene.h
 
 FORMS += View/mainwindow.ui
-
-#CONFIG += opengl xml

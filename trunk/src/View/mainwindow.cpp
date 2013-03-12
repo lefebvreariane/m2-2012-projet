@@ -7,8 +7,8 @@ using namespace std;
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
     qglscene = new QGLWidget();
-    xmlscene = new XmlScene("../src/scenes/sceneTest1.xml");
-    realScene = new RealScene();
+    //xmlscene = new XmlScene("../src/scenes/sceneTest1.xml");
+    realScene = new RealScene("../src/scenes/sceneTest1.xml");
     ui->glLayout->addWidget(qglscene,0,0);
 }
 
