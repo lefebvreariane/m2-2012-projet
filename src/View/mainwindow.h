@@ -15,7 +15,8 @@
 #include <QRadioButton>
 #include <QDoubleSpinBox>
 #include <QComboBox>
-
+#include "Model/xmlscene.h"
+#include "Model/realscene.h"
 
 namespace Ui {
     class MainWindow;
@@ -45,8 +46,9 @@ public:
     // Scene
     // QVBoxLayout *glLayout;
     // QWidget *centralWidget;
-    QGLWidget *scene;
-
+    QGLWidget *qglscene;
+    XmlScene *xmlscene;
+    RealScene *realScene;
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
 

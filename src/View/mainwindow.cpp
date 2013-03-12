@@ -4,24 +4,19 @@
 
 using namespace std;
 
-MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
-    ui(new Ui::MainWindow)
-{
-
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), ui(new Ui::MainWindow){
     ui->setupUi(this);
-
-    scene = new QGLWidget();
-    ui->glLayout->addWidget(scene,0,0);
+    qglscene = new QGLWidget();
+    xmlscene = new XmlScene("../src/scenes/sceneTest1.xml");
+    realScene = new RealScene();
+    ui->glLayout->addWidget(qglscene,0,0);
 }
 
-MainWindow::~MainWindow()
-{
+MainWindow::~MainWindow(){
     delete ui;
 }
 
-void MainWindow::changeEvent(QEvent *e)
-{
+void MainWindow::changeEvent(QEvent *e){
     QMainWindow::changeEvent(e);
     switch (e->type()) {
     case QEvent::LanguageChange:
@@ -37,8 +32,7 @@ void MainWindow::changeEvent(QEvent *e)
 // SLOTS ////////////////////////////////////
 /////////////////////////////////////////////
 
-void MainWindow::on_actionExit_triggered()
-{
+void MainWindow::on_actionExit_triggered(){
     QMessageBox *popupSave = new QMessageBox();
     popupSave->setVisible(true);
     popupSave->setText("The document has been modified.");
