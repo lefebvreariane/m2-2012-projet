@@ -2,10 +2,17 @@
 #define REALSCENE_H
 
 #include <QObject>
+#include <QString>
+#include <QFile>
+#include <QtXml/QDomDocument>
+#include <QtXml/QDomElement>
+#include <QtXml/QDomNode>
 #include <iostream>
 #include <vector>
 using std::vector;
 using std::pair;
+using std::cout;
+using std::endl;
 class RealScene : public QObject {
     Q_OBJECT
     vector<pair<float, float> > _matrice;
@@ -13,13 +20,14 @@ class RealScene : public QObject {
     vector<pair<float, float> > _poincon;
     vector<pair<float, float> > _tole;
 public:
-    // Constructeur & destructeur
+    // Constructeurs & destructeur
     explicit RealScene(
             vector<pair<float, float> > matrice,
             vector<pair<float, float> > devetisseur,
             vector<pair<float, float> > poincon,
             vector<pair<float, float> > tole,
             QObject *parent = 0) : QObject(parent), _matrice(matrice), _devetisseur(devetisseur), _poincon(poincon), _tole(tole){}
+    explicit RealScene(QString xmlFilePath, QObject *parent=0);
     virtual ~RealScene(){}
     // Modifieurs
     virtual void addMatrice(pair<float, float> p)       {_matrice.push_back(p);}
@@ -36,6 +44,14 @@ signals:
     
 public slots:
     
+protected:
+
+private:
+    void fillUnits(QDomElement e);
+    void fillMatrice(QDomElement e);
+    void fillDevetisseur(QDomElement e);
+    void fillPoincon(QDomElement e);
+    void fillTole(QDomElement e);
 };
 
 #endif // REALSCENE_H
