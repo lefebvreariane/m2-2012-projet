@@ -10,7 +10,8 @@
 #include <QTextEdit>
 #include <QMdiSubWindow>
 #include <QMessageBox>
-#include <QGLWidget>
+#include <View/GLWidget.hpp>
+#include <Model/scene.h>
 #include <QGridLayout>
 #include <QGraphicsScene>
 #include <QGraphicsView>
@@ -30,7 +31,8 @@ public:
     // ToolBar
     /// iconFinder sur internet!!!!
 
-    QGLWidget *scene;
+    GLWidget *glWidget;
+    Scene scene;
 
     MainWindow(QWidget *parent = 0);
     ~MainWindow();
