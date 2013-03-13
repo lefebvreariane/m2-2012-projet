@@ -1,4 +1,18 @@
 #include "scene.h"
+Scene::Scene(){}
+Scene::Scene(const Scene &scene){
+    _matrice = scene.matrice();
+    _devetisseur = scene.devetisseur();
+    _poincon = scene.poincon();
+    _tole = scene.tole();
+    /*QString uniteTemps;
+    QString uniteDistance;
+    int duree;
+    int axeX;
+    int axeY;
+    int epaisseurTole;
+    */
+}
 
 Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
     QDomDocument domDocument;
