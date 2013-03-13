@@ -1,6 +1,5 @@
 #include "scene.h"
-Scene::Scene(){}
-Scene::Scene(const Scene &scene){
+Scene::Scene(const Scene &scene) : QObject(scene.parent()){
     _matrice = scene.matrice();
     _devetisseur = scene.devetisseur();
     _poincon = scene.poincon();

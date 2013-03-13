@@ -7,11 +7,14 @@ TEMPLATE = app
 
 SOURCES += main.cpp \
     View/mainwindow.cpp \
+    View/GLWidget.cpp \
     Controler/Visualization.cpp \
     Model/scene.cpp
 
-HEADERS += Controler/Visualization.h \
-    View/mainwindow.h \
+HEADERS += Controler/Visualization.hpp \
+    View/mainwindow.hpp \
+    View/GLWidget.hpp \
     Model/scene.h
 
 FORMS += View/mainwindow.ui
+CONFIG += opengl
