@@ -30,17 +30,17 @@ class Scene : public QObject {
     vector<vector<pair<float, float> > >    _devetisseur;
     vector<pair<float, float> >             _poincon;
     vector<pair<float, float> >             _tole;
-    QString uniteTemps;
-    QString uniteDistance;
-    double duree;
-    double axeX;
-    double axeY;
-    double epaisseurTole;
-    double xTranslation;
-    double yTranslation;
-    double xRotation;
-    double yRotation;
-    double angle;
+    QString _uniteTemps;
+    QString _uniteDistance;
+    double _duree;
+    double _axeX;
+    double _axeY;
+    double _epaisseurTole;
+    double _xTranslation;
+    double _yTranslation;
+    double _xRotation;
+    double _yRotation;
+    double _angle;
 public:
     // Constructeurs & destructeur
     Scene(const Scene &scene);
@@ -62,6 +62,17 @@ public:
     virtual const vector<vector<pair<float, float> > > devetisseur()    const {return _devetisseur;}
     virtual const vector<pair<float, float> > poincon()                 const {return _poincon;}
     virtual const vector<pair<float, float> > tole()                    const {return _tole;}
+    virtual const QString uniteTemps()                                  const {return _uniteTemps;}
+    virtual const QString uniteDistance()                               const {return _uniteDistance;}
+    virtual const double duree()                                        const {return _duree;}
+    virtual const double axeX()                                         const {return _axeX;}
+    virtual const double axeY()                                         const {return _axeY;}
+    virtual const double epaisseurTole()                                const {return _epaisseurTole;}
+    virtual const double xTranslation()                                 const {return _xTranslation;}
+    virtual const double yTranslation()                                 const {return _yTranslation;}
+    virtual const double xRotation()                                    const {return _xRotation;}
+    virtual const double yRotation()                                    const {return _yRotation;}
+    virtual const double angle()                                        const {return _angle;}
     virtual void resetTole() {_tole.clear();}
     virtual void save() const;
 private:

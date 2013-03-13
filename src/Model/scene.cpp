@@ -1,16 +1,20 @@
 #include "scene.h"
 Scene::Scene(const Scene &scene) : QObject(scene.parent()){
-    _matrice = scene.matrice();
-    _devetisseur = scene.devetisseur();
-    _poincon = scene.poincon();
-    _tole = scene.tole();
-    /*QString uniteTemps;
-    QString uniteDistance;
-    int duree;
-    int axeX;
-    int axeY;
-    int epaisseurTole;
-    */
+    _matrice       = scene.matrice();
+    _devetisseur   = scene.devetisseur();
+    _poincon       = scene.poincon();
+    _tole          = scene.tole();
+    _uniteTemps    = scene.uniteTemps();
+    _uniteDistance = scene.uniteDistance();
+    _duree         = scene.duree();
+    _axeX          = scene.axeX();
+    _axeY          = scene.axeY();
+    _epaisseurTole = scene.epaisseurTole();
+    _xTranslation  = scene.xTranslation();
+    _yTranslation  = scene.yTranslation();
+    _xRotation     = scene.xRotation();
+    _yRotation     = scene.yRotation();
+    _angle         = scene.angle();
 }
 
 Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
@@ -48,12 +52,12 @@ void Scene::fillUnits       (QDomElement e){
     while (!node.isNull()){
         QDomElement elt = node.toElement();
         if (elt.tagName() == "time"){
-            uniteTemps      = elt.attribute("timeUnit");
-            duree           = elt.attribute("duration").toDouble();
+            _uniteTemps      = elt.attribute("timeUnit");
+            _duree           = elt.attribute("duration").toDouble();
         } else if (elt.tagName() == "distance"){
-            uniteDistance   = elt.attribute("distanceUnit");
-            axeX            = elt.attribute("xAxis").toDouble();
-            axeY            = elt.attribute("yAxis").toDouble();
+            _uniteDistance   = elt.attribute("distanceUnit");
+            _axeX            = elt.attribute("xAxis").toDouble();
+            _axeY            = elt.attribute("yAxis").toDouble();
         }
         node = node.nextSibling();
     }
@@ -90,13 +94,13 @@ void Scene::fillPoincon     (QDomElement e){
         if (elt.tagName() == "point")
             addPoicon(make_pair(elt.attribute("x").toDouble(), elt.attribute("y").toDouble()));
         else if (elt.tagName() == "transformation") {
-            xTranslation = elt.attribute("xTranslation").toDouble();
-            yTranslation = elt.attribute("yTranslation").toDouble();
+            _xTranslation = elt.attribute("xTranslation").toDouble();
+            _yTranslation = elt.attribute("yTranslation").toDouble();
         }
         else if (elt.tagName() == "rotation")       {
-            xRotation = elt.attribute("xRotation").toDouble();
-            yRotation = elt.attribute("yRotation").toDouble();
-            angle     = elt.attribute("angle").toDouble();
+            _xRotation = elt.attribute("xRotation").toDouble();
+            _yRotation = elt.attribute("yRotation").toDouble();
+            _angle     = elt.attribute("angle").toDouble();
         }
         node = node.nextSibling();
     }
@@ -108,7 +112,7 @@ void Scene::fillTole        (QDomElement e){
         addTole(make_pair(elt.attribute("x").toDouble(), elt.attribute("y").toDouble()));
         node = node.nextSibling();
     }
-    epaisseurTole = e.attribute("thickness").toDouble();
+    _epaisseurTole = e.attribute("thickness").toDouble();
 }
 
 void Scene::save() const{
@@ -128,12 +132,12 @@ void Scene::save() const{
     scene.appendChild(sheet);
 
     QDomElement time = domDocument.createElement("time");
-    time.setAttribute("timeUnits", uniteTemps);
-    time.setAttribute("duration", duree);
+    time.setAttribute("timeUnits", _uniteTemps);
+    time.setAttribute("duration", _duree);
     QDomElement distance = domDocument.createElement("distance");
-    distance.setAttribute("distanceUnit", uniteDistance);
-    distance.setAttribute("xAxis", axeX);
-    distance.setAttribute("yAxis", axeY);
+    distance.setAttribute("distanceUnit", _uniteDistance);
+    distance.setAttribute("xAxis", _axeX);
+    distance.setAttribute("yAxis", _axeY);
     units.appendChild(time);
     units.appendChild(distance);
 
@@ -158,6 +162,6 @@ void Scene::save() const{
     }
     // TODO: inclure les rotations/translations
 
-    sheet.setAttribute("thickness", epaisseurTole);
+    sheet.setAttribute("thickness", _epaisseurTole);
     // TODO: contenu de la tôle à spécifier
 }
