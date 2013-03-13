@@ -1,11 +1,9 @@
-#ifndef VISUALIZATION_H
-#define VISUALIZATION_H
+#ifndef VISUALIZATION_HPP
+#define VISUALIZATION_HPP
 
 class Visualization {
 
 public:
-
-
 
     Visualization();
     ~Visualization();
@@ -16,4 +14,4 @@ public:
 
 };
 
-#endif // VISUALIZATION_H
+#endif // VISUALIZATION_HPP
