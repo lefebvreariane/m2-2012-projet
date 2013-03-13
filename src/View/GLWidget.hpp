@@ -4,7 +4,10 @@
 #include <QPaintEvent>
 #include <QGLWidget>
 #include <QTime>
-#include <Model/scene.h>
+#include "Model/scene.h"
+#if defined ( __APPLE__ )
+#include <opengl/glu.h>
+#endif
 
 
 class GLWidget : public QGLWidget{

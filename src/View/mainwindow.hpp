@@ -10,8 +10,8 @@
 #include <QTextEdit>
 #include <QMdiSubWindow>
 #include <QMessageBox>
-#include <View/GLWidget.hpp>
-#include <Model/scene.h>
+#include "View/GLWidget.hpp"
+#include "Model/scene.h"
 #include <QGridLayout>
 #include <QGraphicsScene>
 #include <QGraphicsView>
