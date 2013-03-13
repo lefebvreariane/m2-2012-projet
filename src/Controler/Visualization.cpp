@@ -1,5 +1,9 @@
-#include "Visualization.h"
+#include "Visualization.hpp"
+
 #include <ctime>
+#include <iostream>
+
+using namespace std;
 
 Visualization::Visualization(){
 
