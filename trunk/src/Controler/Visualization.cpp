@@ -1,4 +1,4 @@
-#include "Visualization.hpp"
+#include "Visualization.h"
 
 #include <ctime>
 #include <iostream>

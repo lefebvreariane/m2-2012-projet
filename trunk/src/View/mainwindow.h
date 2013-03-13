@@ -15,7 +15,7 @@
 #include <QRadioButton>
 #include <QDoubleSpinBox>
 #include <QComboBox>
-#include "Model/realscene.h"
+#include "Model/scene.h"
 
 namespace Ui {
     class MainWindow;
