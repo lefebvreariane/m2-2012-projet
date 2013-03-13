@@ -6,7 +6,7 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent),
+    QMainWindow(parent), scene("../scenes/sceneTest1.xml"),
     ui(new Ui::MainWindow)
 {
 
@@ -23,8 +23,10 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuToolbars->addAction(actionVisualizationOptions);
 
     // scene
-    scene = new QGLWidget();
-    ui->glLayout->addWidget(scene,0,0);
+
+    //scene = Scene("../scenes/sceneTest1.xml");
+    glWidget = new GLWidget(scene, this);
+    ui->glLayout->addWidget(glWidget,0,0);
 }
 
 MainWindow::~MainWindow()
