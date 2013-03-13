@@ -64,8 +64,6 @@
      <property name="title">
       <string>Toolbars</string>
      </property>
-     <addaction name="actionSimulationOptions"/>
-     <addaction name="actionVisualizationOptions"/>
     </widget>
     <addaction name="menuToolbars"/>
    </widget>
@@ -94,7 +92,7 @@
    <property name="minimumSize">
     <size>
      <width>239</width>
-     <height>159</height>
+     <height>233</height>
     </size>
    </property>
    <property name="acceptDrops">
@@ -250,6 +248,63 @@
        </item>
       </layout>
      </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutButtonCalculation">
+       <item>
+        <widget class="QPushButton" name="pushButtonCancel">
+         <property name="enabled">
+          <bool>false</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Cancel</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButtonStartCalculation">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
+         <property name="minimumSize">
+          <size>
+           <width>0</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="maximumSize">
+          <size>
+           <width>16777215</width>
+           <height>25</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Start Calculation</string>
+         </property>
+         <property name="autoDefault">
+          <bool>false</bool>
+         </property>
+         <property name="default">
+          <bool>false</bool>
+         </property>
+         <property name="flat">
+          <bool>false</bool>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
     </layout>
    </widget>
   </widget>
@@ -381,12 +436,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>127</x>
-     <y>260</y>
+     <x>129</x>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>208</x>
-     <y>260</y>
+     <x>228</x>
+     <y>369</y>
     </hint>
    </hints>
   </connection>
@@ -397,12 +452,12 @@
    <slot>setValue(int)</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>210</x>
-     <y>245</y>
+     <x>228</x>
+     <y>369</y>
     </hint>
     <hint type="destinationlabel">
-     <x>146</x>
-     <y>243</y>
+     <x>148</x>
+     <y>369</y>
     </hint>
    </hints>
   </connection>
@@ -414,7 +469,7 @@
    <hints>
     <hint type="sourcelabel">
      <x>219</x>
-     <y>145</y>
+     <y>166</y>
     </hint>
     <hint type="destinationlabel">
      <x>330</x>
@@ -422,8 +477,41 @@
     </hint>
    </hints>
   </connection>
+  <connection>
+   <sender>pushButtonStartCalculation</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slot_pushButtonStartCancelToogled()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>228</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>333</x>
+     <y>244</y>
+    </hint>
+   </hints>
+  </connection>
+  <connection>
+   <sender>pushButtonCancel</sender>
+   <signal>clicked()</signal>
+   <receiver>MainWindow</receiver>
+   <slot>slot_pushButtonStartCancelToogled()</slot>
+   <hints>
+    <hint type="sourcelabel">
+     <x>24</x>
+     <y>280</y>
+    </hint>
+    <hint type="destinationlabel">
+     <x>332</x>
+     <y>216</y>
+    </hint>
+   </hints>
+  </connection>
  </connections>
  <slots>
   <slot>slot_radioButtonToogled(bool)</slot>
+  <slot>slot_pushButtonStartCancelToogled()</slot>
  </slots>
 </ui>
