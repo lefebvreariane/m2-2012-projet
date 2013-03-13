@@ -43,6 +43,9 @@ class Scene : public QObject {
     double angle;
 public:
     // Constructeurs & destructeur
+    Scene();
+    Scene(const Scene &scene);
+
     explicit Scene(
             vector<pair<float, float> > matrice,
             vector<vector<pair<float, float> > > devetisseur,
