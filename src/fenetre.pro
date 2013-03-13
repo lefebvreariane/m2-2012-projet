@@ -8,10 +8,10 @@ TEMPLATE = app
 SOURCES += main.cpp \
     View/mainwindow.cpp \
     Controler/Visualization.cpp \
-    Model/realscene.cpp
+    Model/scene.cpp
 
 HEADERS += Controler/Visualization.h \
     View/mainwindow.h \
-    Model/realscene.h
+    Model/scene.h
 
 FORMS += View/mainwindow.ui

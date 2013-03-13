@@ -1,6 +1,6 @@
-#include "realscene.h"
+#include "scene.h"
 
-RealScene::RealScene(QString xmlFilePath, QObject *parent) : QObject(parent){
+Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
     QDomDocument domDocument;
     QFile file(xmlFilePath);
     if (!file.open(QIODevice::ReadOnly))
@@ -30,7 +30,7 @@ RealScene::RealScene(QString xmlFilePath, QObject *parent) : QObject(parent){
     file.close();
 }
 
-void RealScene::fillUnits       (QDomElement e){
+void Scene::fillUnits       (QDomElement e){
     QDomNode node = e.firstChild();
     while (!node.isNull()){
         QDomElement elt = node.toElement();
@@ -45,7 +45,7 @@ void RealScene::fillUnits       (QDomElement e){
         node = node.nextSibling();
     }
 }
-void RealScene::fillMatrice     (QDomElement e){
+void Scene::fillMatrice     (QDomElement e){
     QDomNode node = e.firstChild();
     while (!node.isNull()){
         QDomElement elt = node.toElement();
@@ -55,7 +55,7 @@ void RealScene::fillMatrice     (QDomElement e){
     if (e.attribute("closedMatrix") == "False")
         addMatrice(make_pair(e.firstChild().toElement().attribute("x").toInt(), e.firstChild().toElement().attribute("y").toInt()));
 }
-void RealScene::fillDevetisseur (QDomElement e){
+void Scene::fillDevetisseur (QDomElement e){
     QDomNode node = e.firstChild();
     int i(0);
     while (!node.isNull()){
@@ -69,7 +69,7 @@ void RealScene::fillDevetisseur (QDomElement e){
         node = node.nextSibling();
     }
 }
-void RealScene::fillPoincon     (QDomElement e){
+void Scene::fillPoincon     (QDomElement e){
     QDomNode node = e.firstChild();
     while (!node.isNull()){
         QDomElement elt = node.toElement();
@@ -80,7 +80,7 @@ void RealScene::fillPoincon     (QDomElement e){
         node = node.nextSibling();
     }
 }
-void RealScene::fillTole        (QDomElement e){
+void Scene::fillTole        (QDomElement e){
     QDomNode node = e.firstChild();
     while (!node.isNull()){
         QDomElement elt = node.toElement();
@@ -88,4 +88,30 @@ void RealScene::fillTole        (QDomElement e){
         node = node.nextSibling();
     }
     epaisseurTole = e.attribute("thickness").toInt();
+}
+
+void Scene::save() const{
+    QDomDocument domDocument;
+    QDomNode xmlNode = domDocument.createProcessingInstruction("xml","version=\"1.0\" encoding=\"UTF-8\"");
+    domDocument.insertBefore(xmlNode, doc.firstChild());
+    QDomElement scene       = domDocument.createElement("scene");
+    QDomElement units       = domDocument.createElement("units");
+    QDomElement matrix      = domDocument.createElement("matrix");
+    QDomElement stripper    = domDocument.createElement("stripper");
+    QDomElement punch       = domDocument.createElement("punch");
+    QDomElement sheet       = domDocument.createElement("sheet");
+    scene.appendChild(units);
+    scene.appendChild(matrix);
+    scene.appendChild(stripper);
+    scene.appendChild(punch);
+    scene.appendChild(sheet);
+    QDomElement time = domDocument.createElement("time");
+    time.setAttribute("timeUnits", uniteTemps);
+    time.setAttribute("duration", duree);
+    QDomElement distance = domDocument.createElement("distance");
+    distance.setAttribute("distanceUnit", uniteDistance);
+    distance.setAttribute("xAxis", axeX);
+    distance.setAttribute("yAxis", axeY);
+    units.appendChild(time);
+    units.appendChild(distance);
 }
