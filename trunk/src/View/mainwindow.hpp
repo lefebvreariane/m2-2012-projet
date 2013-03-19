@@ -41,6 +41,7 @@ protected:
     void changeEvent(QEvent *e);
 
 private:
+    Visualization *visualization;
     Ui::MainWindow *ui;
 
 private slots:

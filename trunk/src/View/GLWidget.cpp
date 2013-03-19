@@ -8,11 +8,17 @@
 
 using namespace std;
 
-GLWidget::GLWidget(Scene _scene, QWidget *parent):
-        QGLWidget(parent), scene(_scene), Time(0)  {
+GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene _scene, QWidget *parent):
+    QGLWidget(parent),
+    scene(_scene),
+    step(0),
+    nbStep(_nbStep),
+    span(_span),
+    yInit(30){
     timer = new QTimer(this);
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
-    timer->start(100);
+    resizeGL(500,500);
+    timer->start(span*1000);
     //connect(*scene,SIGNAL(valueChanged()),this,SLOT(updateGL()));
 }
 
@@ -22,8 +28,9 @@ GLWidget::~GLWidget(){
 }
 
 void GLWidget::updateTime(){
-    Time += 0.1;
-    updateGL();
+    step += 1;
+    if (step < nbStep)
+        updateGL();
 }
 
 void GLWidget::initializeGL()
@@ -37,15 +44,35 @@ void GLWidget::initializeGL()
     glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
 
     // lumiere
-    glEnable(GL_LIGHTING);
+//    glEnable(GL_LIGHTING);
+//
+//    glEnable(GL_LIGHT0);
+//    float pos[] = {0, 0, 0, 1};
+//    float ambient[] = {0.25, 0.25, 0.25, 1};
+//    float diffuse[] = {0.75, 0.75, 0.75, 1};
+//    glLightfv(GL_LIGHT0, GL_POSITION, pos);
+//    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
+//    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+       GLfloat ambientLight[]={0.1,0.1,0.1,1.0};    	             // set ambient light parameters
+       GLfloat diffuseLight[]={0.8,0.8,0.8,1.0};    	             // set diffuse light parameters
+       GLfloat specularLight[]={0.5,0.5,0.5,1.0};  	               // set specular light parameters
+       glLightfv(GL_LIGHT0,GL_AMBIENT,ambientLight);
+       glLightfv(GL_LIGHT0,GL_DIFFUSE,diffuseLight);
+       glLightfv(GL_LIGHT0,GL_SPECULAR,specularLight);
 
-    glEnable(GL_LIGHT0);
-    float pos[] = {0, 0, 0, 1};
-    float ambient[] = {0.25, 0.25, 0.25, 1};
-    float diffuse[] = {0.75, 0.75, 0.75, 1};
-    glLightfv(GL_LIGHT0, GL_POSITION, pos);
-    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
+       GLfloat lightPos[]={0.0,30.0,60.0,0.0};      	              // set light position
+       glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
+
+       GLfloat specularReflection[]={1.0,1.0,1.0,1.0};  	          // set specularity
+       glMaterialfv(GL_FRONT, GL_SPECULAR, specularReflection);
+       glMateriali(GL_FRONT,GL_SHININESS,128);
+
+       glEnable(GL_LIGHT0);                         	              // activate light0
+       glEnable(GL_LIGHTING);                       	              // enable lighting
+       glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight); 	     // set light model
+       glEnable(GL_COLOR_MATERIAL);                 	              // activate material
+       glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
+       glEnable(GL_NORMALIZE);                      	              // normalize normal vectors
 
 }
 
@@ -54,7 +81,7 @@ void GLWidget::paintGL(){
     glLoadIdentity();
 
     //Affichage des objets
-    afficherCourbe();
+    afficherScene();
 }
 
 void GLWidget::paintEvent(QPaintEvent *event){
@@ -68,18 +95,19 @@ void GLWidget::resizeGL(int width, int height){
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 600.0f);
+    gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 700.0f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
-void GLWidget::afficherCourbe(){
+void GLWidget::afficherScene(){
     glPushMatrix();
     // Affichage de la position des Objets
     // --------------------
-        glTranslatef(0,0,-500);
+        glTranslatef(0,yInit-step*span*5,-600);
         glPointSize(5.0);
         GLfloat *point = new GLfloat[3];
+        glColor3f(255,0,0);
         glBegin(GL_POINTS);
             point[0] = -200;
             point[1] = 0;
