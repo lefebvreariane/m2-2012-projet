@@ -21,7 +21,7 @@ Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
     QDomNode node = racine.firstChild();
     while (!node.isNull()){
         QDomElement elt = node.toElement();
-//        cout << elt.tagName().toStdString() << endl;
+        //        cout << elt.tagName().toStdString() << endl;
         // Remplissage de la matrice.
         if (elt.tagName() == "matrix") this->fillMatrice(elt);
         else if (elt.tagName() == "strippers") this->fillStrippers(elt);
@@ -121,6 +121,40 @@ pair<pair<double, double> > Scene::min_max(){
         if (out.first.second  > _matrix[i].second) out.first.second  = _matrix[i].second;
         if (out.second.first  < _matrix[i].first)  out.second.first  = _matrix[i].first;
         if (out.second.second < _matrix[i].second) out.second.second = _matrix[i].second;
+    }
+    for (unsigned int i=0; i<_strippers; i++){
+        pair<vector<pair<double, double> >, vector<pair<double, double> > > tmpP = _strippers[i];
+        vector<pair<double, double> > v1(tmpP.first), v2(tmpP.second);
+        for (unsigned int i=0; i<v1.size(); i++){
+            if (out.first.first   > v1[i].first)  out.first.first   = v1[i].first;
+            if (out.first.second  > v1[i].second) out.first.second  = v1[i].second;
+            if (out.second.first  < v1[i].first)  out.second.first  = v1[i].first;
+            if (out.second.second < v1[i].second) out.second.second = v1[i].second;
+            if (out.first.first   > v2[i].first)  out.first.first   = v2[i].first;
+            if (out.first.second  > v2[i].second) out.first.second  = v2[i].second;
+            if (out.second.first  < v2[i].first)  out.second.first  = v2[i].first;
+            if (out.second.second < v2[i].second) out.second.second = v2[i].second;
+        }
+    }
+    for (unsigned int i=0; i<_punch.first.size(); i++){
+        if (out.first.first   > _punch.first[i].first)   out.first.first   = _punch.first[i].first;
+        if (out.first.second  > _punch.first[i].second)  out.first.second  = _punch.first[i].second;
+        if (out.second.first  < _punch.first[i].first)   out.second.first  = _punch.first[i].first;
+        if (out.second.second < _punch.first[i].second)  out.second.second = _punch.first[i].second;
+        if (out.first.first   > _punch.second[i].first)  out.first.first   = _punch.second[i].first;
+        if (out.first.second  > _punch.second[i].second) out.first.second  = _punch.second[i].second;
+        if (out.second.first  < _punch.second[i].first)  out.second.first  = _punch.second[i].first;
+        if (out.second.second < _punch.second[i].second) out.second.second = _punch.second[i].second;
+    }
+    for (unsigned int i=0; i<_sheet.first.size(); i++){
+        if (out.first.first   > _sheet.first[i].first)   out.first.first   = _sheet.first[i].first;
+        if (out.first.second  > _sheet.first[i].second)  out.first.second  = _sheet.first[i].second;
+        if (out.second.first  < _sheet.first[i].first)   out.second.first  = _sheet.first[i].first;
+        if (out.second.second < _sheet.first[i].second)  out.second.second = _sheet.first[i].second;
+        if (out.first.first   > _sheet.second[i].first)  out.first.first   = _sheet.second[i].first;
+        if (out.first.second  > _sheet.second[i].second) out.first.second  = _sheet.second[i].second;
+        if (out.second.first  < _sheet.second[i].first)  out.second.first  = _sheet.second[i].first;
+        if (out.second.second < _sheet.second[i].second) out.second.second = _sheet.second[i].second;
     }
     return out;
 }

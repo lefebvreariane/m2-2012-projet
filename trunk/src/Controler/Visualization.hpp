@@ -31,7 +31,6 @@ private:
 
     void creer_scenes();
     void time_vector();
-//private slots:
 
 };
 

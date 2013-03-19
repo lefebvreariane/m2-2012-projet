@@ -42,6 +42,7 @@ public:
     const pair<vector<pair<double, double> >, vector<pair<double, double> > >          punch()     const {return _punch;}
     const pair<vector<pair<double, double> >, vector<pair<double, double> > >          sheet()     const {return _sheet;}
     const double                                                                       thickness() const {return _thickness;}
+    const pair<pair<double, double>, pair<double, double> >                                                  min_max();
 private:
     void fillUnits       (QDomElement);
     void fillMatrice     (QDomElement);
