@@ -11,24 +11,21 @@
 #define tempsVitesse      (vitesse,      tempsMax, distanceMax) asin(vitesse*tempsMax/(PI*distanceMax))*tempsMax/(2*PI)
 #define tempsAcceleration (acceleration, tempsMax, distanceMax) acos((acceleration*pow(tempsMax,2))/(2*pow(PI,2)*distanceMax))*tempsMax/(2*PI)
 
-enum SpanType {TIME_SPAN, SPAN_LENGTH};
 
 class Visualization {
 
 public:
 
-    Visualization(double span, double totalTime, SpanType type);
+    Visualization(double span, double totalTime);
     ~Visualization();
 
-    double type() const {return _type;}
     double span() const {return _span;}
-    double total_time() const {return _totalTime;}
-    std::vector<double> time_vector() const {return _timeVector;}
+    double totalTime() const {return _totalTime;}
+    std::vector<double> timeVector() const {return _timeVector;}
 
 private:
     std::vector<double> _timeVector;
     std::vector<Scene> _scenes;
-    SpanType _type;
     double _span;
     double _totalTime;
 
