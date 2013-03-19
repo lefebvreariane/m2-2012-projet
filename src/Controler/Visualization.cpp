@@ -7,9 +7,9 @@
 using namespace std;
 
 Visualization::Visualization(double span, double totalTime, SpanType type)
-    : _span(span),
-      _totalTime(totalTime),
-      _type(type){
+    : _type(type),
+    _span(span),
+    _totalTime(totalTime){
     time_vector();
     creer_scenes();
 }
@@ -26,24 +26,24 @@ void Visualization::creer_scenes(){
 
 void Visualization::time_vector(){
     if (_type == TIME_SPAN){
-        int nbMoves = (int) (_totalTime/_timeSpan);
-        double mod = fmod(_span,_totalSpan);
+        int nbMoves = (int) (_totalTime/_span);
+        double mod = fmod(_span,_totalTime);
         vector<double> timeVector(nbMoves);
-        for(unsigned int i=0 ; i<nbMoves ; i++){
-            timeVector[i] = i*_timeSpan;
+        for(int i=0 ; i<nbMoves ; i++){
+            timeVector[i] = i*_span;
         }
         if (mod)
-            timeVector[i].push_back(_totalTime);
+            timeVector.push_back(_totalTime);
     }
     else{ // SPAN_LENGTH
-        int nbMoves = (int) (_totalTime/_timeSpan);
-        double mod = fmod(_span,_totalSpan);
+        int nbMoves = (int) (_totalTime/_span);
+        double mod = fmod(_span,_span);
         vector<double> timeVector(nbMoves);
-        for(unsigned int i=0 ; i<nbMoves ; i++){
+        for(int i=0 ; i<nbMoves ; i++){
             timeVector[i] = 1;
         }
         if (mod)
-            timeVector[i].push_back(_totalTime);
+            timeVector.push_back(_totalTime);
     }
     // appeler les macros pour avoir les déplacements correspondants
 }

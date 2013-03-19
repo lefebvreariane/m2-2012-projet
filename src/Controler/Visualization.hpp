@@ -17,7 +17,7 @@ class Visualization {
 
 public:
 
-    Visualization(double span, double totalTime);
+    Visualization(double span, double totalTime, SpanType type);
     ~Visualization();
 
     double type() const {return _type;}
