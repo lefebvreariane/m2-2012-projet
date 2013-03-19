@@ -16,9 +16,10 @@ Visualization::Visualization(double span, double totalTime):
 Visualization::~Visualization(){}
 
 void Visualization::creer_scenes(){
-    /*for (unsigned int i=0 ; i<timeVector.size() ; i++){
-        scenes.push_back();
-    }*/
+    Scene scene = Scene("../scenes/simpleScene.xml");
+    for (unsigned int i=0 ; i<_timeVector.size() ; i++){
+        scenes.push_back(scene);
+    }
 
 }
 
