@@ -22,15 +22,17 @@ public:
     double span() const {return _span;}
     double totalTime() const {return _totalTime;}
     std::vector<double> timeVector() const {return _timeVector;}
+    Scene scene() const {return _scene;}
 
 private:
     std::vector<double> _timeVector;
-    std::vector<Scene> _scenes;
+    Scene _scene;
     double _span;
     double _totalTime;
 
-    void creer_scenes();
+    void creer_scene();
     void time_vector();
+//private slots:
 
 };
 

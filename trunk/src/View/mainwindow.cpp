@@ -29,7 +29,7 @@ MainWindow::MainWindow(QWidget *parent) :
     //scene = Scene("../scenes/sceneTest1.xml");
     visualization = new Visualization(span,totalTime);
     cout << visualization->timeVector().size() << endl;
-    glWidget = new GLWidget(span, visualization->timeVector().size(),scene, this);
+    glWidget = new GLWidget(span, visualization->timeVector().size(),visualization->scene(), this);
     ui->glLayout->addWidget(glWidget,0,0);
 }
 

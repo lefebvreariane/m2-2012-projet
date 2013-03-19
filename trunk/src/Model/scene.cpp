@@ -1,4 +1,5 @@
 #include "scene.h"
+#include <limits>
 Scene::Scene(const Scene &scene) : QObject(scene.parent()){
     this->_matrix = scene.matrix();
     this->_strippers = scene.strippers();
@@ -112,17 +113,17 @@ void Scene::fillSheetUtil(QDomElement e, bool geometry){
     }
 }
 
-pair<pair<double, double> > Scene::min_max(){
-    pair<pair<double, double> > out = make_pair(
-                make_pair(numeric_limits<double>::max(), numeric_limits<double>::max()),
-                make_pair(numeric_limits<double>::min(), numeric_limits<double>::min()));
+pair<pair<double, double>, pair<double, double> > Scene::min_max(){
+    pair<pair<double, double>, pair<double, double> > out = make_pair(
+            make_pair(std::numeric_limits<double>::max(), std::numeric_limits<double>::max()),
+            make_pair(std::numeric_limits<double>::min(), std::numeric_limits<double>::min()));
     for (unsigned int i=0; i<_matrix.size(); i++){
         if (out.first.first   > _matrix[i].first)  out.first.first   = _matrix[i].first;
         if (out.first.second  > _matrix[i].second) out.first.second  = _matrix[i].second;
         if (out.second.first  < _matrix[i].first)  out.second.first  = _matrix[i].first;
         if (out.second.second < _matrix[i].second) out.second.second = _matrix[i].second;
     }
-    for (unsigned int i=0; i<_strippers; i++){
+    for (unsigned int i=0; i<_strippers.size(); i++){
         pair<vector<pair<double, double> >, vector<pair<double, double> > > tmpP = _strippers[i];
         vector<pair<double, double> > v1(tmpP.first), v2(tmpP.second);
         for (unsigned int i=0; i<v1.size(); i++){

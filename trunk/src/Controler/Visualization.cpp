@@ -7,20 +7,21 @@
 using namespace std;
 
 Visualization::Visualization(double span, double totalTime):
+    _scene("../scenes/simpleScene.xml"),
     _span(span),
     _totalTime(totalTime){
     time_vector();
-    creer_scenes();
+    creer_scene();
 }
 
 Visualization::~Visualization(){}
 
-void Visualization::creer_scenes(){
-    Scene scene = Scene("../scenes/simpleScene.xml");
-    for (unsigned int i=0 ; i<_timeVector.size() ; i++){
-        scenes.push_back(scene);
-    }
-
+void Visualization::creer_scene(){
+    // Passage à OpenFEM
+    // .........
+    // .........
+    // remplissage des étapes
+    //_scene.remplir_etapes();4
 }
 
 void Visualization::time_vector(){
