@@ -1,12 +1,13 @@
 #include "mainwindow.hpp"
 #include "ui_mainwindow.h"
+#include "Controler/Visualization.hpp"
 #include <iostream>
 #include <QAction>
 
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), scene("../src/scenes/simpleScene.xml"),
+    QMainWindow(parent), scene("../scenes/sceneTest1.xml"),
     ui(new Ui::MainWindow)
 {
 
@@ -23,14 +24,18 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuToolbars->addAction(actionVisualizationOptions);
 
     // scene
-
+    float span = 1;
+    float totalTime = 30;
     //scene = Scene("../scenes/sceneTest1.xml");
-    glWidget = new GLWidget(scene, this);
+    visualization = new Visualization(span,totalTime);
+    cout << visualization->timeVector().size() << endl;
+    glWidget = new GLWidget(span, visualization->timeVector().size(),scene, this);
     ui->glLayout->addWidget(glWidget,0,0);
 }
 
 MainWindow::~MainWindow()
 {
+    delete visualization;
     delete ui;
 }
 
