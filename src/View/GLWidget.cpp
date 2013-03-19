@@ -95,42 +95,95 @@ void GLWidget::resizeGL(int width, int height){
     glViewport(0, 0, width, height);
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 700.0f);
+    gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 200.0f);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 
 void GLWidget::afficherScene(){
+
     glPushMatrix();
-    // Affichage de la position des Objets
-    // --------------------
-        glTranslatef(0,yInit-step*span*5,-600);
-        glPointSize(5.0);
+        glTranslatef(0,0,-100);
         GLfloat *point = new GLfloat[3];
+        // affichage de la matrice
         glColor3f(255,0,0);
-        glBegin(GL_POINTS);
-            point[0] = -200;
-            point[1] = 0;
-            point[2] = 0;
-            glVertex3fv(point);
-            point[0] = 200;
-            point[1] = 0;
-            point[2] = 0;
-            glVertex3fv(point);
+        glBegin(GL_POLYGON);
+            for (unsigned int i=0 ; i<scene.matrix().size() ; i++){
+                point[0] = scene.matrix()[i].first;
+                point[1] = scene.matrix()[i].second;
+                point[2] = 0;
+                glVertex3fv(point);
+            }
         glEnd();
 
-        glBegin(GL_LINES);
-            point[0] = -200;
-            point[1] = 0;
+        // affichage du dévétisseur
+        glColor3f(125,125,125);
+        for (unsigned int i=0 ; i<scene.strippers().size() ; i++){
+            glBegin(GL_POLYGON);
+            for (unsigned int j=0 ; j<scene.strippers()[i].second.size() ; j++){
+                point[0] = scene.strippers()[i].second[j].first;
+                point[1] = scene.strippers()[i].second[j].second;
+                point[2] = 0;
+                glVertex3fv(point);
+            }
+            glEnd();
+        }
+
+        // affichage du poincon
+        glColor3f(0,0,255);
+        glBegin(GL_POLYGON);
+        for (unsigned int i=0 ; i<scene.punch().first.size() ; i++){
+            point[0] = scene.punch().first[i].first;
+            point[1] = scene.punch().first[i].second;
             point[2] = 0;
             glVertex3fv(point);
-            point[0] = 200;
-            point[1] = 0;
-            point[2] = 0;
-            glVertex3fv(point);
+        }
         glEnd();
-        delete [] point;
+
+        // affichage de la tôle
+        glColor3f(0,255,0);
+        glBegin(GL_POLYGON);
+        for (unsigned int i=0 ; i<scene.sheet().first.size() ; i++){
+            point[0] = scene.sheet().first[i].first;
+            point[1] = scene.sheet().first[i].second;
+            point[2] = 0;
+            glVertex3fv(point);
+        }
+        glEnd();
     glPopMatrix();
+
+
+
+//    glPushMatrix();
+//    // Affichage de la position des Objets
+//    // --------------------
+//        glTranslatef(0,yInit-step*span*5,-600);
+//        glPointSize(5.0);
+//        GLfloat *point = new GLfloat[3];
+//        glColor3f(255,0,0);
+//        glBegin(GL_POINTS);
+//            point[0] = -200;
+//            point[1] = 0;
+//            point[2] = 0;
+//            glVertex3fv(point);
+//            point[0] = 200;
+//            point[1] = 0;
+//            point[2] = 0;
+//            glVertex3fv(point);
+//        glEnd();
+//
+//        glBegin(GL_LINES);
+//            point[0] = -200;
+//            point[1] = 0;
+//            point[2] = 0;
+//            glVertex3fv(point);
+//            point[0] = 200;
+//            point[1] = 0;
+//            point[2] = 0;
+//            glVertex3fv(point);
+//        glEnd();
+//        delete [] point;
+//    glPopMatrix();
 }
 
 

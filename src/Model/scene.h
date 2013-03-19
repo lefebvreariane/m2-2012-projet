@@ -37,12 +37,12 @@ public:
     explicit Scene(QString xmlFilePath, QObject *parent=0);
     virtual ~Scene(){}
     // Getters
-    const vector<pair<double, double> >                                                matrix()    const {return _matrix;}
-    const vector<pair<vector<pair<double, double> >, vector<pair<double, double> > > > strippers() const {return _strippers;}
-    const pair<vector<pair<double, double> >, vector<pair<double, double> > >          punch()     const {return _punch;}
-    const pair<vector<pair<double, double> >, vector<pair<double, double> > >          sheet()     const {return _sheet;}
-    const double                                                                       thickness() const {return _thickness;}
-    const pair<pair<double, double>, pair<double, double> >                                                  min_max();
+    vector<pair<double, double> >                                                matrix()    const {return _matrix;}
+    vector<pair<vector<pair<double, double> >, vector<pair<double, double> > > > strippers() const {return _strippers;}
+    pair<vector<pair<double, double> >, vector<pair<double, double> > >          punch()     const {return _punch;}
+    pair<vector<pair<double, double> >, vector<pair<double, double> > >          sheet()     const {return _sheet;}
+    double                                                                       thickness() const {return _thickness;}
+    pair<pair<double, double>, pair<double, double> >                                                  min_max();
 private:
     void fillUnits       (QDomElement);
     void fillMatrice     (QDomElement);
