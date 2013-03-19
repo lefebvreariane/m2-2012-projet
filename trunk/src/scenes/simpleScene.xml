@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1" standalone="no"?>
+<scene>
+    <matrix>
+        <point x="0" y="0"/>
+        <point x="10" y="0"/>
+        <point x="10" y="10"/>
+        <point x="0" y="10"/>
+    </matrix>
+    <strippers>
+        <stripper>
+            <up>
+                <point x="0" y="15"/>
+                <point x="10" y="15"/>
+                <point x="10" y="20"/>
+                <point x="0" y="20"/>
+            </up>
+            <down>
+                <point x="0" y="12"/>
+                <point x="10" y="12"/>
+                <point x="10" y="17"/>
+                <point x="0" y="17"/>
+            </down>
+        </stripper>
+    </strippers>
+    <punch>
+        <up>
+            <point x="12" y="15"/>
+            <point x="15" y="15"/>
+            <point x="15" y="20"/>
+            <point x="12" y="20"/>
+        </up>
+        <down>
+            <point x="12" y="5"/>
+            <point x="15" y="5"/>
+            <point x="15" y="10"/>
+            <point x="12" y="10"/>
+        </down>
+    </punch>
+    <sheet thickness="2">
+        <geometry>
+            <point x="0" y="10"/>
+            <point x="15" y="10"/>
+            <point x="15" y="12"/>
+            <point x="0" y="12"/>
+        </geometry>
+        <neutral>
+            <point x="0" y="11"/>
+            <point x="15" y="11"/>
+        </neutral>
+    </sheet>
+</scene>

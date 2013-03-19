@@ -111,3 +111,16 @@ void Scene::fillSheetUtil(QDomElement e, bool geometry){
         node = node.nextSibling();
     }
 }
+
+pair<pair<double, double> > Scene::min_max(){
+    pair<pair<double, double> > out = make_pair(
+                make_pair(numeric_limits<double>::max(), numeric_limits<double>::max()),
+                make_pair(numeric_limits<double>::min(), numeric_limits<double>::min()));
+    for (unsigned int i=0; i<_matrix.size(); i++){
+        if (out.first.first   > _matrix[i].first)  out.first.first   = _matrix[i].first;
+        if (out.first.second  > _matrix[i].second) out.first.second  = _matrix[i].second;
+        if (out.second.first  < _matrix[i].first)  out.second.first  = _matrix[i].first;
+        if (out.second.second < _matrix[i].second) out.second.second = _matrix[i].second;
+    }
+    return out;
+}
