@@ -26,61 +26,32 @@ using std::endl;
 
 class Scene : public QObject {
     Q_OBJECT
-    vector<pair<float, float> >             _matrice;
-    vector<vector<pair<float, float> > >    _devetisseur;
-    vector<pair<float, float> >             _poincon;
-    vector<pair<float, float> >             _tole;
-    QString _uniteTemps;
-    QString _uniteDistance;
-    double _duree;
-    double _axeX;
-    double _axeY;
-    double _epaisseurTole;
-    double _xTranslation;
-    double _yTranslation;
-    double _xRotation;
-    double _yRotation;
-    double _angle;
+    vector<pair<double, double> >                                                _matrix;
+    vector<pair<vector<pair<double, double> >, vector<pair<double, double> > > > _strippers;
+    pair<vector<pair<double, double> >, vector<pair<double, double> > >          _punch;
+    pair<vector<pair<double, double> >, vector<pair<double, double> > >          _sheet;
+    double                                                                       _thickness;
 public:
     // Constructeurs & destructeur
     Scene(const Scene &scene);
-    Scene(
-            vector<pair<float, float> > matrice,
-            vector<vector<pair<float, float> > > devetisseur,
-            vector<pair<float, float> > poincon,
-            vector<pair<float, float> > tole,
-            QObject *parent = 0) : QObject(parent), _matrice(matrice), _devetisseur(devetisseur), _poincon(poincon), _tole(tole){}
     explicit Scene(QString xmlFilePath, QObject *parent=0);
     virtual ~Scene(){}
-    // Modifieurs
-    virtual void addMatrice(pair<float, float> p)               {_matrice.push_back(p);}
-    virtual void addDevetisseur(int i, pair<float, float> p)    {_devetisseur[i].push_back(p);}
-    virtual void addPoicon(pair<float, float> p)                {_poincon.push_back(p);}
-    virtual void addTole(pair<float, float> p)                  {_tole.push_back(p);}
-    // Accesseurs
-    virtual const vector<pair<float, float> > matrice()                 const {return _matrice;}
-    virtual const vector<vector<pair<float, float> > > devetisseur()    const {return _devetisseur;}
-    virtual const vector<pair<float, float> > poincon()                 const {return _poincon;}
-    virtual const vector<pair<float, float> > tole()                    const {return _tole;}
-    virtual const QString uniteTemps()                                  const {return _uniteTemps;}
-    virtual const QString uniteDistance()                               const {return _uniteDistance;}
-    virtual const double duree()                                        const {return _duree;}
-    virtual const double axeX()                                         const {return _axeX;}
-    virtual const double axeY()                                         const {return _axeY;}
-    virtual const double epaisseurTole()                                const {return _epaisseurTole;}
-    virtual const double xTranslation()                                 const {return _xTranslation;}
-    virtual const double yTranslation()                                 const {return _yTranslation;}
-    virtual const double xRotation()                                    const {return _xRotation;}
-    virtual const double yRotation()                                    const {return _yRotation;}
-    virtual const double angle()                                        const {return _angle;}
-    virtual void resetTole() {_tole.clear();}
-    virtual void save() const;
+    // Getters
+    const vector<pair<double, double> >                                                matrix()    const {return _matrix;}
+    const vector<pair<vector<pair<double, double> >, vector<pair<double, double> > > > strippers() const {return _strippers;}
+    const pair<vector<pair<double, double> >, vector<pair<double, double> > >          punch()     const {return _punch;}
+    const pair<vector<pair<double, double> >, vector<pair<double, double> > >          sheet()     const {return _sheet;}
+    const double                                                                       thickness() const {return _thickness;}
 private:
     void fillUnits       (QDomElement);
     void fillMatrice     (QDomElement);
-    void fillDevetisseur (QDomElement);
-    void fillPoincon     (QDomElement);
-    void fillTole        (QDomElement);
+    void fillStrippers   (QDomElement);
+    void fillStripper    (QDomElement, int);
+    void fillStripperUtil(QDomElement, int , bool);
+    void fillPunch       (QDomElement);
+    void fillPunchUtil   (QDomElement, bool);
+    void fillSheet       (QDomElement);
+    void fillSheetUtil   (QDomElement, bool);
 };
 
 #endif // REALSCENE_H
