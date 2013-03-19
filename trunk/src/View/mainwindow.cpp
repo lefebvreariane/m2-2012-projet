@@ -6,7 +6,7 @@
 using namespace std;
 
 MainWindow::MainWindow(QWidget *parent) :
-    QMainWindow(parent), scene("../scenes/sceneTest1.xml"),
+    QMainWindow(parent), scene("../src/scenes/simpleScene.xml"),
     ui(new Ui::MainWindow)
 {
 
