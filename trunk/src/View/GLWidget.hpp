@@ -10,6 +10,7 @@
 #include "Model/scene.h"
 #include "Controler/Visualization.hpp"
 
+enum MouseState {MOUSE_UP, MOUSE_DOWN, MOUSE_DRAGGED};
 
 class GLWidget : public QGLWidget{
     Q_OBJECT
@@ -24,13 +25,24 @@ protected:
     float step;
     unsigned int nbStep;
     float span;
-    float yInit;
+    std::pair<float,float> pMin;
+    std::pair<float,float> pMax;
+
+    // interaction souris
+    MouseState state;
+    float zoomFactor, transX, transY, mouseX, mouseY;
 
     void initializeGL();
     void paintGL();
     void resizeGL(int width, int height);
     void afficherScene();
     void paintEvent(QPaintEvent *event);
+
+    // evenements souris
+    void wheelEvent(QWheelEvent *event);
+    void mousePressEvent(QMouseEvent *event);
+    void mouseReleaseEvent(QMouseEvent *event);
+    void mouseMoveEvent(QMouseEvent *event);
 
 public slots:
     void updateTime();

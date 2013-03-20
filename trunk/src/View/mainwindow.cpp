@@ -17,18 +17,17 @@ MainWindow::MainWindow(QWidget *parent) :
     QAction *actionSimulationOptions = new QAction("Show Simulation Options", this);
     actionSimulationOptions = ui->dockWidgetSimulationOptions->toggleViewAction();
     connect(ui->actionSimulationOptions, SIGNAL(toggled(bool)), ui->dockWidgetSimulationOptions, SLOT(setVisible(bool)));
-    QAction *actionVisualizationOptions = new QAction("Show Visualization Options", this);
-    actionVisualizationOptions = ui->dockWidgetVisualizationOptions->toggleViewAction();
-    connect(ui->actionVisualizationOptions, SIGNAL(toggled(bool)), ui->dockWidgetVisualizationOptions, SLOT(setVisible(bool)));
+    QAction *actionPlayerOptions = new QAction("Show Player Options", this);
+    actionPlayerOptions = ui->dockWidgetPlayerOptions->toggleViewAction();
+    connect(ui->actionPlayerOptions, SIGNAL(toggled(bool)), ui->dockWidgetPlayerOptions, SLOT(setVisible(bool)));
     ui->menuToolbars->addAction(actionSimulationOptions);
-    ui->menuToolbars->addAction(actionVisualizationOptions);
+    ui->menuToolbars->addAction(actionPlayerOptions);
 
     // scene
     float span = 1;
     float totalTime = 30;
     //scene = Scene("../scenes/sceneTest1.xml");
     visualization = new Visualization(span,totalTime);
-    cout << visualization->timeVector().size() << endl;
     glWidget = new GLWidget(span, visualization->timeVector().size(),visualization->scene(), this);
     ui->glLayout->addWidget(glWidget,0,0);
 }

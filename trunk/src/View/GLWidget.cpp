@@ -13,13 +13,23 @@ GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene _scene, QWidget *par
     scene(_scene),
     step(0),
     nbStep(_nbStep),
-    span(_span),
-    yInit(30){
+    span(_span){
+
+    // bounding box
+    pair<pair<float,float> ,pair<float,float> > boundingBox = scene.min_max();
+    pMin = boundingBox.first;
+    pMax = boundingBox.second;
+
+    resizeGL(500,500);
+    // interactions souris
+    zoomFactor = 1;
+    transX = transY = 0;
+    state = MOUSE_UP;
+
+    // start timer
     timer = new QTimer(this);
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
-    resizeGL(500,500);
     timer->start(span*1000);
-    //connect(*scene,SIGNAL(valueChanged()),this,SLOT(updateGL()));
 }
 
 GLWidget::~GLWidget(){
@@ -38,47 +48,30 @@ void GLWidget::initializeGL()
     // GL init //
     glShadeModel(GL_SMOOTH);
     glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
-    glClearDepth(1.0f);
-    glEnable(GL_DEPTH_TEST);
-    glDepthFunc(GL_LEQUAL);
-    glHint(GL_PERSPECTIVE_CORRECTION_HINT, GL_NICEST);
-
-    // lumiere
-//    glEnable(GL_LIGHTING);
-//
-//    glEnable(GL_LIGHT0);
-//    float pos[] = {0, 0, 0, 1};
-//    float ambient[] = {0.25, 0.25, 0.25, 1};
-//    float diffuse[] = {0.75, 0.75, 0.75, 1};
-//    glLightfv(GL_LIGHT0, GL_POSITION, pos);
-//    glLightfv(GL_LIGHT0, GL_AMBIENT, ambient);
-//    glLightfv(GL_LIGHT0, GL_DIFFUSE, diffuse);
-       GLfloat ambientLight[]={0.1,0.1,0.1,1.0};    	             // set ambient light parameters
-       GLfloat diffuseLight[]={0.8,0.8,0.8,1.0};    	             // set diffuse light parameters
-       GLfloat specularLight[]={0.5,0.5,0.5,1.0};  	               // set specular light parameters
-       glLightfv(GL_LIGHT0,GL_AMBIENT,ambientLight);
-       glLightfv(GL_LIGHT0,GL_DIFFUSE,diffuseLight);
-       glLightfv(GL_LIGHT0,GL_SPECULAR,specularLight);
-
-       GLfloat lightPos[]={0.0,30.0,60.0,0.0};      	              // set light position
-       glLightfv(GL_LIGHT0,GL_POSITION,lightPos);
-
-       GLfloat specularReflection[]={1.0,1.0,1.0,1.0};  	          // set specularity
-       glMaterialfv(GL_FRONT, GL_SPECULAR, specularReflection);
-       glMateriali(GL_FRONT,GL_SHININESS,128);
-
-       glEnable(GL_LIGHT0);                         	              // activate light0
-       glEnable(GL_LIGHTING);                       	              // enable lighting
-       glLightModelfv(GL_LIGHT_MODEL_AMBIENT, ambientLight); 	     // set light model
-       glEnable(GL_COLOR_MATERIAL);                 	              // activate material
-       glColorMaterial(GL_FRONT,GL_AMBIENT_AND_DIFFUSE);
-       glEnable(GL_NORMALIZE);                      	              // normalize normal vectors
-
 }
 
 void GLWidget::paintGL(){
-    glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
+
+    // projection ortho
+    float w = (float) width()/zoomFactor;
+    float h = (float) height()/zoomFactor;
+
+    float l,r,b,t;
+    l = -w/2.f;
+    r = w/2.f;
+    b = -h/2.f;
+    t = h/2.f;
+    glOrtho(l,r,b,t,-1,1);
+
+    glMatrixMode(GL_MODELVIEW);
+    glLoadIdentity();
+
+    // translation
+    glTranslatef(transX/zoomFactor, -transY/zoomFactor, 0);
+
 
     //Affichage des objets
     afficherScene();
@@ -93,97 +86,113 @@ void GLWidget::resizeGL(int width, int height){
     if(height == 0)
         height = 1;
     glViewport(0, 0, width, height);
-    glMatrixMode(GL_PROJECTION);
-    glLoadIdentity();
-    gluPerspective(45.0f, (GLfloat)width/(GLfloat)height, 0.1f, 200.0f);
-    glMatrixMode(GL_MODELVIEW);
-    glLoadIdentity();
 }
 
 void GLWidget::afficherScene(){
 
     glPushMatrix();
-        glTranslatef(0,0,-100);
-        GLfloat *point = new GLfloat[3];
-        // affichage de la matrice
+        GLfloat *point = new GLfloat[2];
+        // hold die
         glColor3f(255,0,0);
         glBegin(GL_POLYGON);
             for (unsigned int i=0 ; i<scene.matrix().size() ; i++){
                 point[0] = scene.matrix()[i].first;
                 point[1] = scene.matrix()[i].second;
-                point[2] = 0;
-                glVertex3fv(point);
+                glVertex2fv(point);
             }
         glEnd();
 
-        // affichage du dévétisseur
-        glColor3f(125,125,125);
+        // strippers
+        glColor3f(20,20,20);
         for (unsigned int i=0 ; i<scene.strippers().size() ; i++){
             glBegin(GL_POLYGON);
             for (unsigned int j=0 ; j<scene.strippers()[i].second.size() ; j++){
                 point[0] = scene.strippers()[i].second[j].first;
                 point[1] = scene.strippers()[i].second[j].second;
-                point[2] = 0;
-                glVertex3fv(point);
+                glVertex2fv(point);
             }
             glEnd();
         }
 
-        // affichage du poincon
+        // punch
         glColor3f(0,0,255);
         glBegin(GL_POLYGON);
         for (unsigned int i=0 ; i<scene.punch().first.size() ; i++){
             point[0] = scene.punch().first[i].first;
             point[1] = scene.punch().first[i].second;
-            point[2] = 0;
-            glVertex3fv(point);
+            glVertex2fv(point);
         }
         glEnd();
 
-        // affichage de la tôle
+        // metal strip
         glColor3f(0,255,0);
         glBegin(GL_POLYGON);
         for (unsigned int i=0 ; i<scene.sheet().first.size() ; i++){
             point[0] = scene.sheet().first[i].first;
             point[1] = scene.sheet().first[i].second;
-            point[2] = 0;
-            glVertex3fv(point);
+            glVertex2fv(point);
         }
         glEnd();
     glPopMatrix();
-
-
-
-//    glPushMatrix();
-//    // Affichage de la position des Objets
-//    // --------------------
-//        glTranslatef(0,yInit-step*span*5,-600);
-//        glPointSize(5.0);
-//        GLfloat *point = new GLfloat[3];
-//        glColor3f(255,0,0);
-//        glBegin(GL_POINTS);
-//            point[0] = -200;
-//            point[1] = 0;
-//            point[2] = 0;
-//            glVertex3fv(point);
-//            point[0] = 200;
-//            point[1] = 0;
-//            point[2] = 0;
-//            glVertex3fv(point);
-//        glEnd();
-//
-//        glBegin(GL_LINES);
-//            point[0] = -200;
-//            point[1] = 0;
-//            point[2] = 0;
-//            glVertex3fv(point);
-//            point[0] = 200;
-//            point[1] = 0;
-//            point[2] = 0;
-//            glVertex3fv(point);
-//        glEnd();
-//        delete [] point;
-//    glPopMatrix();
 }
 
+void GLWidget::wheelEvent(QWheelEvent *event){
+    if (event->delta() > 0)
+        zoomFactor += 0.1;
+    else if(zoomFactor > 0.1)
+        zoomFactor -= 0.1;
+    updateGL();
+}
 
+void GLWidget::mousePressEvent(QMouseEvent *event){
+    switch (state) {
+    case MOUSE_UP:
+        mouseX = event->pos().x();
+        mouseY = event->pos().y();
+        state = MOUSE_DOWN;
+        break;
+    default:
+        break;
+    }
+}
+
+void GLWidget::mouseReleaseEvent(QMouseEvent *event){
+    switch (state) {
+    case MOUSE_DOWN:
+        mouseX = event->pos().x();
+        mouseY = event->pos().y();
+        // grab a point
+        // ..........
+        // ..........
+        // change mouse state
+        state = MOUSE_UP;
+        break;
+    case MOUSE_DRAGGED:
+        state = MOUSE_UP;
+        break;
+    default:
+        break;
+    }
+    updateGL();
+}
+
+void GLWidget::mouseMoveEvent(QMouseEvent *event){
+    switch (state) {
+    case MOUSE_DOWN:
+        transX -= mouseX - event->pos().x();
+        transY -= mouseY - event->pos().y();
+        mouseX = event->pos().x();
+        mouseY = event->pos().y();
+        state = MOUSE_DRAGGED;
+        break;
+    case MOUSE_DRAGGED:
+        transX -= mouseX - event->pos().x();
+        transY -= mouseY - event->pos().y();
+        mouseX = event->pos().x();
+        mouseY = event->pos().y();
+        state = MOUSE_DRAGGED;
+    default:
+        break;
+    }
+    updateGL();
+}

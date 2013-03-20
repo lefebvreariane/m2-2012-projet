@@ -308,7 +308,7 @@
     </layout>
    </widget>
   </widget>
-  <widget class="QDockWidget" name="dockWidgetVisualizationOptions">
+  <widget class="QDockWidget" name="dockWidgetPlayerOptions">
    <property name="windowTitle">
     <string>Visualisation Options</string>
    </property>
@@ -414,7 +414,7 @@
     <string>Simulation Options</string>
    </property>
   </action>
-  <action name="actionVisualizationOptions">
+  <action name="actionPlayerOptions">
    <property name="checkable">
     <bool>true</bool>
    </property>
