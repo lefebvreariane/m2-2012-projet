@@ -4,6 +4,7 @@
 #include <QObject>
 #include <iostream>
 #include <vector>
+using std::make_pair;
 using std::pair;
 using std::vector;
 
@@ -16,6 +17,7 @@ public:
     explicit Step(const Step &step);
     const vector<pair<double, double> > punch() const {return _punch;}
     const vector<pair<double, double> > sheet() const {return _sheet;}
+    const pair<pair<double, double>, pair<double, double> > min_max() const;
 };
 
 #endif // STEP_H

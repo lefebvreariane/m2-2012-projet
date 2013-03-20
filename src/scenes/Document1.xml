@@ -1,0 +1,110 @@
+<scene>
+    <matrix>
+        <point x="7.45" y="0.00"/>
+        <point x="-10.00" y="0.00"/>
+        <point x="-10.00" y="-10.00"/>
+        <point x="8.45" y="-10.00"/>
+        <point x="8.45" y="-1.00"/>
+        <point x="8.45" y="-0.92"/>
+        <point x="8.44" y="-0.84"/>
+        <point x="8.43" y="-0.77"/>
+        <point x="8.40" y="-0.69"/>
+        <point x="8.38" y="-0.62"/>
+        <point x="8.34" y="-0.55"/>
+        <point x="8.31" y="-0.48"/>
+        <point x="8.26" y="-0.41"/>
+        <point x="8.21" y="-0.35"/>
+        <point x="8.16" y="-0.29"/>
+        <point x="8.10" y="-0.24"/>
+        <point x="8.04" y="-0.19"/>
+        <point x="7.98" y="-0.15"/>
+        <point x="7.91" y="-0.11"/>
+        <point x="7.84" y="-0.08"/>
+        <point x="7.76" y="-0.05"/>
+        <point x="7.69" y="-0.03"/>
+        <point x="7.61" y="-0.01"/>
+        <point x="7.53" y="-0.00"/>
+    </matrix>
+    <strippers>
+        <stripper>
+            <up>
+                <point x="9.45" y="6.00"/>
+                <point x="-10.00" y="6.00"/>
+                <point x="-10.00" y="1.00"/>
+                <point x="9.45" y="1.00"/>
+            </up>
+            <down>
+                <point x="9.45" y="6.00"/>
+                <point x="-10.00" y="6.00"/>
+                <point x="-10.00" y="1.00"/>
+                <point x="9.45" y="1.00"/>
+            </down>
+        </stripper>
+    </strippers>
+    <punch>
+        <up>
+            <point x="19.45" y="1.50"/>
+            <point x="19.45" y="16.50"/>
+            <point x="9.45" y="16.50"/>
+            <point x="9.45" y="2.50"/>
+            <point x="9.46" y="2.42"/>
+            <point x="9.47" y="2.34"/>
+            <point x="9.48" y="2.27"/>
+            <point x="9.50" y="2.19"/>
+            <point x="9.53" y="2.12"/>
+            <point x="9.56" y="2.05"/>
+            <point x="9.60" y="1.98"/>
+            <point x="9.64" y="1.91"/>
+            <point x="9.69" y="1.85"/>
+            <point x="9.75" y="1.79"/>
+            <point x="9.80" y="1.74"/>
+            <point x="9.87" y="1.69"/>
+            <point x="9.93" y="1.65"/>
+            <point x="10.00" y="1.61"/>
+            <point x="10.07" y="1.58"/>
+            <point x="10.14" y="1.55"/>
+            <point x="10.22" y="1.53"/>
+            <point x="10.30" y="1.51"/>
+            <point x="10.37" y="1.50"/>
+            <point x="10.45" y="1.50"/>
+        </up>
+        <down>
+            <point x="19.45" y="1.50"/>
+            <point x="19.45" y="16.50"/>
+            <point x="9.45" y="16.50"/>
+            <point x="9.45" y="2.50"/>
+            <point x="9.46" y="2.42"/>
+            <point x="9.47" y="2.34"/>
+            <point x="9.48" y="2.27"/>
+            <point x="9.50" y="2.19"/>
+            <point x="9.53" y="2.12"/>
+            <point x="9.56" y="2.05"/>
+            <point x="9.60" y="1.98"/>
+            <point x="9.64" y="1.91"/>
+            <point x="9.69" y="1.85"/>
+            <point x="9.75" y="1.79"/>
+            <point x="9.80" y="1.74"/>
+            <point x="9.87" y="1.69"/>
+            <point x="9.93" y="1.65"/>
+            <point x="10.00" y="1.61"/>
+            <point x="10.07" y="1.58"/>
+            <point x="10.14" y="1.55"/>
+            <point x="10.22" y="1.53"/>
+            <point x="10.30" y="1.51"/>
+            <point x="10.37" y="1.50"/>
+            <point x="10.45" y="1.50"/>
+        </down>
+    </punch>
+    <sheet thickness="1">
+        <geometry>
+            <point x="-17.55" y="1.00"/>
+            <point x="-17.55" y="0.00"/>
+            <point x="17.50" y="0.00"/>
+            <point x="17.50" y="1.00"/>
+        </geometry>
+        <neutral>
+            <point x="-17.55" y="0.50"/>
+            <point x="17.50" y="0.50"/>
+        </neutral>
+    </sheet>
+</scene>
