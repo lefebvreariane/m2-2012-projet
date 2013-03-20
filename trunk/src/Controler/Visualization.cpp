@@ -7,7 +7,8 @@
 using namespace std;
 
 Visualization::Visualization(double span, double totalTime):
-    _scene("../scenes/simpleScene.xml"),
+    _scene("../src/scenes/Document1.xml"),
+    //_scene("../src/scenes/simpleScene.xml"),
     _span(span),
     _totalTime(totalTime){
     time_vector();
