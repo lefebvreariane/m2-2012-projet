@@ -21,7 +21,7 @@ void Visualization::creer_scene(){
     // .........
     // .........
     // remplissage des étapes
-    //_scene.remplir_etapes();4
+    //_scene.remplir_etapes();
 }
 
 void Visualization::time_vector(){
