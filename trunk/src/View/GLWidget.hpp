@@ -16,10 +16,15 @@ class GLWidget : public QGLWidget{
     Q_OBJECT
 
 public:
-    Scene scene;
+    Scene *scene;
 
-    GLWidget(float _span, unsigned int nbStep, Scene _scene, QWidget *parent = 0);
+    GLWidget(float _span, unsigned int nbStep, Scene *_scene, QWidget *parent = 0);
     ~GLWidget();
+
+    void start_timer(int _step);
+    int stop_timer();
+    void set_step(int _step){step = _step; updateGL();}
+    bool is_timer_active();
 
 protected:
     float step;
@@ -46,7 +51,8 @@ protected:
 
 public slots:
     void updateTime();
-
+signals:
+    void updateSlider(int);
 private:
     QTimer* timer;
 

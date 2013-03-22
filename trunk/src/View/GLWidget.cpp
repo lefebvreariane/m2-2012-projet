@@ -8,19 +8,18 @@
 
 using namespace std;
 
-GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene _scene, QWidget *parent):
+GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene *_scene, QWidget *parent):
     QGLWidget(parent),
     scene(_scene),
     step(0),
     nbStep(_nbStep),
     span(_span){
-
     // bounding box
-    pair<pair<float,float> ,pair<float,float> > boundingBox = scene.min_max();
+    pair<pair<float,float> ,pair<float,float> > boundingBox = scene->min_max();
     pMin = boundingBox.first;
     pMax = boundingBox.second;
-
     resizeGL(500,500);
+
     // interactions souris
     zoomFactor = 1;
     transX = transY = 0;
@@ -29,18 +28,39 @@ GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene _scene, QWidget *par
     // start timer
     timer = new QTimer(this);
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
-    timer->start(span*1000);
+
 }
 
 GLWidget::~GLWidget(){
-    timer->stop();
+    if (timer->isActive())
+        timer->stop();
     delete timer;
 }
 
+bool GLWidget::is_timer_active(){
+    return timer->isActive();
+}
+
 void GLWidget::updateTime(){
-    step += 1;
-    if (step < nbStep)
+    if (step < nbStep){
+        step += 1;
+        emit(this->updateSlider(step));
         updateGL();
+    }
+    else{
+        timer->stop();
+        emit(this->updateSlider(step));
+    }
+}
+
+void GLWidget::start_timer(int _step){
+    step = _step;
+    timer->start(span);
+}
+
+int GLWidget::stop_timer(){
+    timer->stop();
+    return step;
 }
 
 void GLWidget::initializeGL()
@@ -95,20 +115,20 @@ void GLWidget::afficherScene(){
     // hold die
     glColor3f(255,0,0);
     glBegin(GL_POLYGON);
-    for (unsigned int i=0 ; i<scene.matrix().size() ; i++){
-        point[0] = scene.matrix()[i].first;
-        point[1] = scene.matrix()[i].second;
+    for (unsigned int i=0 ; i<scene->matrix().size() ; i++){
+        point[0] = scene->matrix()[i].first;
+        point[1] = scene->matrix()[i].second;
         glVertex2fv(point);
     }
     glEnd();
 
     // strippers
     glColor3f(100,100,100);
-    for (unsigned int i=0 ; i<scene.strippers().size() ; i++){
+    for (unsigned int i=0 ; i<scene->strippers().size() ; i++){
         glBegin(GL_POLYGON);
-        for (unsigned int j=0 ; j<scene.strippers()[i].second.size() ; j++){
-            point[0] = scene.strippers()[i].second[j].first;
-            point[1] = scene.strippers()[i].second[j].second;
+        for (unsigned int j=0 ; j<scene->strippers()[i].second.size() ; j++){
+            point[0] = scene->strippers()[i].second[j].first;
+            point[1] = scene->strippers()[i].second[j].second;
             glVertex2fv(point);
         }
         glEnd();
@@ -117,9 +137,10 @@ void GLWidget::afficherScene(){
     // punch
     glColor3f(0,0,255);
     glBegin(GL_POLYGON);
-    for (unsigned int i=0 ; i<scene.punch().first.size() ; i++){
-        point[0] = scene.punch().first[i].first;
-        point[1] = scene.punch().first[i].second;
+    // affichage du polygone scene->punch()[step]...
+    for (unsigned int i=0 ; i<scene->punch().first.size() ; i++){
+        point[0] = scene->punch().first[i].first;
+        point[1] = scene->punch().first[i].second;
         glVertex2fv(point);
     }
     glEnd();
@@ -127,9 +148,10 @@ void GLWidget::afficherScene(){
     // metal strip
     glColor3f(0,255,0);
     glBegin(GL_POLYGON);
-    for (unsigned int i=0 ; i<scene.sheet().second.size() ; i++){
-        point[0] = scene.sheet().second[i].first;
-        point[1] = scene.sheet().second[i].second;
+    // affichage du polygone scene->sheet()[step]...
+    for (unsigned int i=0 ; i<scene->sheet().second.size() ; i++){
+        point[0] = scene->sheet().second[i].first;
+        point[1] = scene->sheet().second[i].second;
         glVertex2fv(point);
     }
     glEnd();
@@ -196,3 +218,4 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event){
     }
     updateGL();
 }
+

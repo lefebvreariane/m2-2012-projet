@@ -3,6 +3,7 @@
 #include "Controler/Visualization.hpp"
 #include <iostream>
 #include <QAction>
+#include <QTimer>
 
 using namespace std;
 
@@ -23,12 +24,17 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->menuToolbars->addAction(actionSimulationOptions);
     ui->menuToolbars->addAction(actionPlayerOptions);
 
+    // Player
+    ui->pushButtonFirst->setIcon(QIcon("../View/img/First.png"));
+    ui->pushButtonLast->setIcon(QIcon("../View/img/Last.png"));
+    ui->pushButtonPlay->setIcon(QIcon("../View/img/Play.png"));
+    ui->pushButtonPause->setIcon(QIcon("../View/img/Pause.png"));
+
     // scene
-    float span = 1;
-    float totalTime = 30;
     //scene = Scene("../scenes/sceneTest1.xml");
-    visualization = new Visualization(span,totalTime);
-    glWidget = new GLWidget(span, visualization->timeVector().size(),visualization->scene(), this);
+    visualization = new Visualization(ui->spinBoxTime->value(),ui->spinBoxTotalTime->value()*1000);
+    glWidget = new GLWidget(ui->spinBoxTime->value(), visualization->timeVector().size(),&(visualization->scene), this);
+    connect(glWidget,SIGNAL(updateSlider(int)),this,SLOT(slot_uiUpdateStep(int)));
     ui->glLayout->addWidget(glWidget,0,0);
 }
 
@@ -57,48 +63,66 @@ void MainWindow::changeEvent(QEvent *e)
 
 void MainWindow::on_actionExit_triggered()
 {
-    QMessageBox *popupSave = new QMessageBox();
-    popupSave->setVisible(true);
-    popupSave->setText("The document has been modified.");
-    popupSave->setInformativeText("Do you want to save your changes?");
-    popupSave->setStandardButtons(QMessageBox::Save | QMessageBox::Discard | QMessageBox::Cancel);
-    popupSave->setDefaultButton(QMessageBox::Save);
-    int ret = popupSave->exec();
-    switch (ret) {
-    case QMessageBox::Save:
-        // Save was clicked
-        close();
-        break;
-    case QMessageBox::Discard:
-        // Don't Save was clicked
-        close();
-        break;
-    case QMessageBox::Cancel:
-        // Cancel was clicked
-        break;
-    default:
-        // should never be reached
-        break;
-    }
+   close();
 }
 
-void MainWindow::slot_radioButtonToogled(bool checked){
+void MainWindow::slot_pushButtonStartClicked(){
+    ui->pushButtonStartCalculation->setText("Calcul in process ...");
+    ui->pushButtonStartCalculation->setEnabled(false);
+    ui->pushButtonFirst->setEnabled(false);
+    ui->pushButtonLast->setEnabled(false);
+    ui->pushButtonPause->setEnabled(false);
+    ui->pushButtonPlay->setEnabled(false);
+    ui->spinBoxEtapes->setMaximum(visualization->totalTime()/visualization->span());
+    ui->sliderEtapes->setMaximum(ui->spinBoxEtapes->maximum());
+    // Start calcul
 
-    ui->comboBoxTime->setEnabled(checked);
-    ui->doubleSpinBoxTime->setEnabled(checked);
-
-    ui->comboBoxPas->setEnabled(!checked);
-    ui->doubleSpinBoxPas->setEnabled(!checked);
+    // Fin calcul
+    ui->pushButtonPlay->setEnabled(true);
+    ui->pushButtonPlay->setFocus();
+    ui->pushButtonFirst->setEnabled(true);
+    ui->pushButtonLast->setEnabled(true);
+    ui->pushButtonStartCalculation->setEnabled(true);
+    ui->sliderEtapes->setEnabled(true);
+    ui->spinBoxEtapes->setEnabled(true);
+    ui->pushButtonStartCalculation->setText("Start");
 }
 
-void MainWindow::slot_pushButtonStartCancelToogled(){
-    if (ui->pushButtonCancel->isEnabled()){
-        // The cancel button has just been toogled
-        ui->pushButtonStartCalculation->setEnabled(true);
-        ui->pushButtonCancel->setEnabled(false);
+void MainWindow::slot_stepChanged(int step){
+    glWidget->set_step(step-1);
+}
+void MainWindow::slot_pushButtonPauseClicked(){
+    glWidget->stop_timer();
+    ui->pushButtonFirst->setEnabled(true);
+    ui->pushButtonLast->setEnabled(true);
+    ui->pushButtonPlay->setEnabled(true);
+    ui->pushButtonPause->setEnabled(false);
+    ui->sliderEtapes->setEnabled(true);
+    ui->spinBoxEtapes->setEnabled(true);
+    glWidget->set_step(ui->spinBoxEtapes->value()-1);
+}
+void MainWindow::slot_pushButtonPlayClicked(){
+    ui->pushButtonPlay->setEnabled(false);
+    ui->pushButtonPause->setEnabled(true);
+    ui->pushButtonFirst->setEnabled(false);
+    ui->pushButtonLast->setEnabled(false);
+    ui->sliderEtapes->setEnabled(false);
+    ui->spinBoxEtapes->setEnabled(false);
+    glWidget->start_timer(ui->sliderEtapes->value()-1);
+}
+void MainWindow::slot_pushButtonFirstClicked(){
+    glWidget->set_step(0);
+    ui->spinBoxEtapes->setValue(1);
+}
+void MainWindow::slot_pushButtonLastClicked(){
+    glWidget->set_step(ui->spinBoxEtapes->maximum()-1);
+    ui->spinBoxEtapes->setValue(ui->spinBoxEtapes->maximum());
+}
+
+void MainWindow::slot_uiUpdateStep(int step){
+    if (glWidget->is_timer_active()){
+        ui->spinBoxEtapes->setValue(step);
     }
-    else{
-        ui->pushButtonStartCalculation->setEnabled(false);
-        ui->pushButtonCancel->setEnabled(true);
-    }
+    else
+        this->slot_pushButtonPauseClicked();
 }
