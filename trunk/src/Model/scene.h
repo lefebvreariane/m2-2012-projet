@@ -16,14 +16,6 @@ using std::make_pair;
 using std::cout;
 using std::endl;
 
-#define PI atan(1)*4
-#define distanceTemps     (temps, tempsMax, distanceMax)        -distanceMax/2*cos(2*PI*temps/tempsMax)+distanceMax/2
-#define vitesseTemps      (temps, tempsMax, distanceMax)        PI*distanceMax/tempsMax*sin(2*PI*temps/tempsMax)
-#define accelerationTemps (temps, tempsMax, distanceMax)        2*pow(PI,2)*distanceMax/pow(tempsMax,2)*cos(2*PI*temps/tempsMax)
-#define tempsDistance     (distance,     tempsMax, distanceMax) acos((distance-(distanceMax/2))/(-distanceMax/2))/(2*PI/tempsMax)
-#define tempsVitesse      (vitesse,      tempsMax, distanceMax) asin(vitesse*tempsMax/(PI*distanceMax))*tempsMax/(2*PI)
-#define tempsAcceleration (acceleration, tempsMax, distanceMax) acos((acceleration*pow(tempsMax,2))/(2*pow(PI,2)*distanceMax))*tempsMax/(2*PI)
-
 class Scene : public QObject {
     Q_OBJECT
     vector<pair<double, double> >                                                _matrix;
@@ -31,6 +23,10 @@ class Scene : public QObject {
     pair<vector<pair<double, double> >, vector<pair<double, double> > >          _punch;
     pair<vector<pair<double, double> >, vector<pair<double, double> > >          _sheet;
     double                                                                       _thickness;
+
+    vector<vector<pair<double, double> > > _sheetNeutralFibers;
+    vector<vector<pair<double, double> > > _sheetBorders;
+    vector<pair<double, double> > _sheetArea;
 public:
     // Constructeurs & destructeur
     Scene(const Scene &scene);
@@ -42,7 +38,9 @@ public:
     pair<vector<pair<double, double> >, vector<pair<double, double> > >          punch()     const {return _punch;}
     pair<vector<pair<double, double> >, vector<pair<double, double> > >          sheet()     const {return _sheet;}
     double                                                                       thickness() const {return _thickness;}
-    pair<pair<double, double>, pair<double, double> >                                                  min_max();
+    pair<pair<double, double>, pair<double, double> >                            min_max();
+
+    vector<vector<pair<double, double> > > triangleMatrix();
 private:
     void fillUnits       (QDomElement);
     void fillMatrice     (QDomElement);
@@ -53,6 +51,8 @@ private:
     void fillPunchUtil   (QDomElement, bool);
     void fillSheet       (QDomElement);
     void fillSheetUtil   (QDomElement, bool);
+
+    static pair<double, double> intersection(pair<pair<double, double>, pair<double, double> > a, pair<pair<double, double>, pair<double, double> > b);
 };
 
 #endif // REALSCENE_H
