@@ -15,22 +15,22 @@
 class Visualization {
 
 public:
+    Scene scene;
 
-    Visualization(double span, double totalTime);
+    Visualization(int span, int totalTime);
     ~Visualization();
 
-    double span() const {return _span;}
-    double totalTime() const {return _totalTime;}
-    std::vector<double> timeVector() const {return _timeVector;}
-    Scene scene() const {return _scene;}
+    int span() const {return _span;}
+    int totalTime() const {return _totalTime;}
+    std::vector<int> timeVector() const {return _timeVector;}
+    void updateVisu(int span, int totalTime);
+    void creer_scene();
 
 private:
-    std::vector<double> _timeVector;
-    Scene _scene;
-    double _span;
-    double _totalTime;
+    std::vector<int> _timeVector;
+    int _span;
+    int _totalTime;
 
-    void creer_scene();
     void time_vector();
 //private slots:
 
