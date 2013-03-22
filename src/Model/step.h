@@ -4,6 +4,7 @@
 #include <QObject>
 #include <iostream>
 #include <vector>
+#include <limits>
 using std::make_pair;
 using std::pair;
 using std::vector;
