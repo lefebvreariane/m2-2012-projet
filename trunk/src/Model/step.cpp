@@ -1,4 +1,5 @@
 #include "step.h"
+#include <limits>
 
 Step::Step(QObject *parent) : QObject(parent){
 }
