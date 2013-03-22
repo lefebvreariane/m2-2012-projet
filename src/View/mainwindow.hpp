@@ -46,8 +46,13 @@ private:
 
 private slots:
     void on_actionExit_triggered();
-    void slot_radioButtonToogled(bool checked);
-    void slot_pushButtonStartCancelToogled();
+    void slot_pushButtonStartClicked();
+    void slot_stepChanged(int step);
+    void slot_pushButtonPlayClicked();
+    void slot_pushButtonPauseClicked();
+    void slot_pushButtonFirstClicked();
+    void slot_pushButtonLastClicked();
+    void slot_uiUpdateStep(int step);
 };
 
 #endif // MAINWINDOW_HPP
