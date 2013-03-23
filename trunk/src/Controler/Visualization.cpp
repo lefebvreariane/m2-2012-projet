@@ -12,6 +12,7 @@ Visualization::Visualization(int span, int totalTime):
     _span(span),
     _totalTime(totalTime){
     time_vector();
+    creer_scene();
 }
 
 Visualization::~Visualization(){}
