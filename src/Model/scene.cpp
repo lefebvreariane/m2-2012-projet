@@ -1,6 +1,7 @@
 #include "scene.h"
 #include <limits>
 #include <cmath>
+#include <cstdlib>
 #define PI atan(1)*4
 Scene::Scene(const Scene &scene) : QObject(scene.parent()){
     this->_matrix = scene.matrix();
@@ -268,20 +269,21 @@ static vector<vector<pair<pair<double, double>, pair<double, double> > > > segme
     for (unsigned int i=0; i<in.size(); i++){
         for (unsigned int j=0; j<in.size(); j++){
             for (unsigned int k=0; k<in.size(); k++){
-                if (i != j && j != k && k != j){
+                if (i != j && j != k && k != i){
                     if (in[i].second == in[j].first && in[j].second == in[j].first && in[k].second == in[i].first){
+//                        cout << "Autruche" << endl;
                         vector<pair<pair<double, double>, pair<double, double> > > tmp;
                         tmp.push_back(in[i]);
                         tmp.push_back(in[j]);
                         tmp.push_back(in[k]);
-                        if (isConvexe(tmp))
+                        if (!isConvexe(tmp))
                             out.push_back(tmp);
                     } else if(in[i].second == in[k].first && in[k].second == in[j].first && in[j].second == in[i].first){
                         vector<pair<pair<double, double>, pair<double, double> > > tmp;
                         tmp.push_back(in[i]);
                         tmp.push_back(in[k]);
                         tmp.push_back(in[j]);
-                        if (isConvexe(tmp))
+                        if (!isConvexe(tmp))
                             out.push_back(tmp);
                     }
                 }
@@ -294,7 +296,9 @@ static vector<vector<pair<pair<double, double>, pair<double, double> > > > segme
 vector<vector<pair<double, double> > > Scene::triangleMatrix(){
     vector<pair<pair<double, double>, pair<double, double> > > tmp = pointsToSegments(_matrix);
     vector<pair<pair<double, double>, pair<double, double> > > tmp2 = addSegments(tmp);
+//    cout << tmp2.size() << endl;
     vector<vector<pair<pair<double, double>, pair<double, double> > > > tmp3 = segmentsToTriangles(tmp2);
+//    cout << tmp3.size() << endl;
     vector<vector<pair<double, double> > > out;
     for (unsigned int i=0; i<tmp3.size(); i++){
         vector<pair<double, double> > tmp;
