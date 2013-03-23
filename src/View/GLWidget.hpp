@@ -17,6 +17,8 @@ class GLWidget : public QGLWidget{
 
 public:
     Scene *scene;
+    bool trackingSelected;
+    bool distanceSelected;
 
     GLWidget(float _span, unsigned int nbStep, Scene *_scene, QWidget *parent = 0);
     ~GLWidget();
@@ -32,6 +34,7 @@ protected:
     float span;
     std::pair<float,float> pMin;
     std::pair<float,float> pMax;
+    std::vector< std::vector< std::pair< double, double > > > mesh;
 
     // interaction souris
     MouseState state;
@@ -49,12 +52,20 @@ protected:
     void mouseReleaseEvent(QMouseEvent *event);
     void mouseMoveEvent(QMouseEvent *event);
 
+    bool grab_point(float mouseX, float mouseY, float *point);
+
 public slots:
     void updateTime();
 signals:
     void updateSlider(int);
 private:
     QTimer* timer;
+    float point1[3];
+    float point2[3];
+    bool point1Grabbed;
+    bool point2Grabbed;
+    bool trackingDone;
+    bool distanceDone;
 
 };
 
