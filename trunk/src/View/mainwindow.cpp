@@ -126,3 +126,28 @@ void MainWindow::slot_uiUpdateStep(int step){
     else
         this->slot_pushButtonPauseClicked();
 }
+
+void MainWindow::on_actionPointTracking_toggled(bool checked){
+    if (checked){
+        glWidget->trackingSelected = true;
+        ui->actionDistance->setChecked(false);
+        glWidget->distanceSelected = false;
+    }
+    else{
+        glWidget->trackingSelected = false;
+    }
+    glWidget->updateGL();
+}
+
+
+void MainWindow::on_actionDistance_toggled(bool checked){
+    if (checked){
+        glWidget->distanceSelected = true;
+        ui->actionPointTracking->setChecked(false);
+        glWidget->trackingSelected = false;
+    }
+    else{
+        glWidget->distanceSelected = false;
+    }
+    glWidget->updateGL();
+}
