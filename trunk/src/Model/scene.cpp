@@ -11,6 +11,20 @@ Scene::Scene(const Scene &scene) : QObject(scene.parent()){
     this->_thickness = scene.thickness();
 }
 
+Scene::Scene(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, int thickness)
+    : _matrix(matrix), _thickness(thickness){
+
+    _punch.first = punch;
+    _punch.second = punch;
+
+    _strippers.resize(1);
+    _strippers[0].first = stripper;
+    _strippers[0].second = stripper;
+
+    _sheet.first = geom;
+    _sheet.second = neut;
+}
+
 Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
     QDomDocument domDocument;
     QFile file(xmlFilePath);
@@ -34,6 +48,7 @@ Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
         else if (elt.tagName() == "sheet") this->fillSheet(elt);
         node = node.nextSibling();
     }
+    vector<vector<pair<double, double> > > test = triangleMatrix();
 }
 
 void Scene::fillMatrice(QDomElement e){
@@ -238,10 +253,14 @@ static bool isConvexe(pair<pair<double, double>, pair<double, double> > a, pair<
     return beta-alpha <= 180;
 }
 
+static bool isConvexe(vector<pair<double, double> > in){
+    pair<pair<double, double>, pair<double, double> > a = make_pair(in[0], in[1]);
+    pair<pair<double, double>, pair<double, double> > b = make_pair(in[1], in[2]);
+    return isConvexe(a,b);
+}
+
 static bool isConvexe(vector<pair<pair<double, double>, pair<double, double> > > in){
-    pair<pair<double, double>, pair<double, double> > s1 = in[0];
-    pair<pair<double, double>, pair<double, double> > s2 = in[1];
-    return isConvexe(s1, s2);
+    return isConvexe(in[0], in[1]);
 }
 
 static vector<pair<pair<double, double>, pair<double, double> > > addSegments(vector<pair<pair<double, double>, pair<double, double> > > in){
@@ -264,27 +283,38 @@ static vector<pair<pair<double, double>, pair<double, double> > > addSegments(ve
     return out;
 }
 
+static bool connected(pair<pair<double, double>, pair<double, double> > a, pair<pair<double, double>, pair<double, double> > b){
+    return (a.first == b.first || a.first == b.second || a.second == b.first || a.second == b.second) &&
+            ((a.first != b.first && a.second != b.second) || (a.first != b.second && a.second == b.first));
+}
+
 static vector<vector<pair<pair<double, double>, pair<double, double> > > > segmentsToTriangles(vector<pair<pair<double, double>, pair<double, double> > > in){
     vector<vector<pair<pair<double, double>, pair<double, double> > > > out;
     for (unsigned int i=0; i<in.size(); i++){
         for (unsigned int j=0; j<in.size(); j++){
             for (unsigned int k=0; k<in.size(); k++){
-                if (i != j && j != k && k != i){
-                    if (in[i].second == in[j].first && in[j].second == in[j].first && in[k].second == in[i].first){
-//                        cout << "Autruche" << endl;
-                        vector<pair<pair<double, double>, pair<double, double> > > tmp;
-                        tmp.push_back(in[i]);
-                        tmp.push_back(in[j]);
-                        tmp.push_back(in[k]);
-                        if (!isConvexe(tmp))
-                            out.push_back(tmp);
-                    } else if(in[i].second == in[k].first && in[k].second == in[j].first && in[j].second == in[i].first){
-                        vector<pair<pair<double, double>, pair<double, double> > > tmp;
-                        tmp.push_back(in[i]);
-                        tmp.push_back(in[k]);
-                        tmp.push_back(in[j]);
-                        if (!isConvexe(tmp))
-                            out.push_back(tmp);
+                if (connected(in[i], in[j]) && connected(in[i], in[k]) && connected(in[j], in[k])){
+                    vector<pair<pair<double, double>, pair<double, double> > > tmp;
+                    tmp.push_back(in[i]);
+                    tmp.push_back(in[j]);
+                    tmp.push_back(in[k]);
+                    out.push_back(tmp);
+                    if (i != j && j != k && k != i){
+                        if (in[i].second == in[j].first && in[j].second == in[j].first && in[k].second == in[i].first){
+                            vector<pair<pair<double, double>, pair<double, double> > > tmp;
+                            tmp.push_back(in[i]);
+                            tmp.push_back(in[j]);
+                            tmp.push_back(in[k]);
+                            if (!isConvexe(tmp))
+                                out.push_back(tmp);
+                        } else if(in[i].second == in[k].first && in[k].second == in[j].first && in[j].second == in[i].first){
+                            vector<pair<pair<double, double>, pair<double, double> > > tmp;
+                            tmp.push_back(in[i]);
+                            tmp.push_back(in[k]);
+                            tmp.push_back(in[j]);
+                            if (!isConvexe(tmp))
+                                out.push_back(tmp);
+                        }
                     }
                 }
             }
@@ -293,18 +323,33 @@ static vector<vector<pair<pair<double, double>, pair<double, double> > > > segme
     return out;
 }
 
+static vector<pair<double, double> > cleanTriangle(vector<pair<pair<double, double>, pair<double, double> > > in){
+    pair<double, double> p1 = in[0].first;
+    pair<double, double> p2 = in[0].second;
+    pair<double, double> p3;
+    if      (in[1].first != p1 && in[1].first != p2)   p3 = in[1].first;
+    else if (in[2].first != p1 && in[2].first != p2)   p3 = in[2].first;
+    else if (in[1].second != p1 && in[1].second != p2) p3 = in[1].second;
+    else if (in[2].second != p1 && in[2].second != p2) p3 = in[2].second;
+    assert(p1 != p2 && p2 != p3 && p3 != p1);
+    vector<pair<double, double> > out;
+    out.push_back(p1);
+    out.push_back(p2);
+    out.push_back(p3);
+    if (!isConvexe(out)){
+        out[0] = p3;
+        out[2] = p1;
+    }
+    return out;
+}
+
 vector<vector<pair<double, double> > > Scene::triangleMatrix(){
     vector<pair<pair<double, double>, pair<double, double> > > tmp = pointsToSegments(_matrix);
     vector<pair<pair<double, double>, pair<double, double> > > tmp2 = addSegments(tmp);
-//    cout << tmp2.size() << endl;
     vector<vector<pair<pair<double, double>, pair<double, double> > > > tmp3 = segmentsToTriangles(tmp2);
-//    cout << tmp3.size() << endl;
     vector<vector<pair<double, double> > > out;
     for (unsigned int i=0; i<tmp3.size(); i++){
-        vector<pair<double, double> > tmp;
-        for (unsigned int j=0; j<tmp3[i].size(); j++)
-            tmp.push_back(tmp3[i][j].first);
-        out.push_back(tmp);
+        out.push_back(cleanTriangle(tmp3[i]));
     }
     return out;
 }
