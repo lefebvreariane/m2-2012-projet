@@ -53,6 +53,8 @@ public:
         _steps.push_back(step);
     }
 
+    void fillAll(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, int thickness);
+
 private:
     void fillUnits       (QDomElement);
     void fillMatrice     (QDomElement);

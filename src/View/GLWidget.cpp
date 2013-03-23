@@ -173,8 +173,7 @@ void GLWidget::afficherScene(){
     glColor3f(0,0,255);
     glBegin(GL_POLYGON);
     // affichage du polygone scene->punch()[step]...
-//    for (unsigned int i=0 ; i<scene->punch().first.size() ; i++){
-    for (unsigned int i=0; i<scene->punch().first.size() ; i++){
+    for (unsigned int i=0 ; i<scene->punch().first.size() ; i++){
         point[0] = scene->punch().first[i].first;
         point[1] = scene->punch().first[i].second;
         glVertex2fv(point);
