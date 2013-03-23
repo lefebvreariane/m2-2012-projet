@@ -1,6 +1,6 @@
 #include "fakesimu.h"
 
-fakeSimu::fakeSimu(QObject *parent) : QObject(parent){
+fakeSimu::fakeSimu(Scene *scene, QObject *parent) : QObject(parent){
     _matrix.push_back(make_pair(7.45  ,  0.00));
     _matrix.push_back(make_pair(-10.00,  0.00));
     _matrix.push_back(make_pair(-10.00,  -10.00));
@@ -68,10 +68,10 @@ fakeSimu::fakeSimu(QObject *parent) : QObject(parent){
     _time = 5;
     _fps = 25;
     _punchDistance = 10;
-
-    _scene = new Scene(_matrix, _punch, _stripper, _sheetGeom, _sheetNeut, _thickness);
-    for (int i=0; i<_time*_fps; i++)
-        _scene->addStep(generateStep(i));
+    scene->fillAll(_matrix, _punch, _stripper, _sheetGeom, _sheetNeut, _thickness);
+    for (int i=0; i<_time*_fps; i++){
+        scene->addStep(generateStep(i));
+    }
 }
 
 fakeSimu::fakeSimu(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, QObject *parent):

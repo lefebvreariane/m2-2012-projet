@@ -26,16 +26,13 @@ class fakeSimu : public QObject
     int      _time;
     int      _fps;
     int      _punchDistance;
-    Scene    *_scene;
 public:
-    explicit fakeSimu(QObject *parent = 0);
+    explicit fakeSimu(Scene *scene, QObject *parent = 0);
     explicit fakeSimu(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, QObject *parent);
-    virtual ~fakeSimu(){
-        delete _scene;
-    }
+    virtual ~fakeSimu(){}
 
     Step* generateStep(int id);
-    Scene* scene() {return _scene;}
+    //Scene* scene() {return scene;}
 };
 
 #endif // FAKESIMU_H

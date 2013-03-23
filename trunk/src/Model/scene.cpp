@@ -51,6 +51,22 @@ Scene::Scene(QString xmlFilePath, QObject *parent) : QObject(parent){
     vector<vector<pair<double, double> > > test = triangleMatrix();
 }
 
+void Scene::fillAll(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, int thickness){
+    _matrix = matrix;
+
+    _punch.first = punch;
+    _punch.second = punch;
+
+    _strippers.resize(1);
+    _strippers[0].first = stripper;
+    _strippers[0].second = stripper;
+
+    _sheet.second = geom;
+    _sheet.first = neut;
+
+    _thickness = thickness;
+}
+
 void Scene::fillMatrice(QDomElement e){
     QDomNode node = e.firstChild();
     while (!node.isNull()){

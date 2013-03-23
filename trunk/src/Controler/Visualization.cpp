@@ -3,14 +3,15 @@
 #include <ctime>
 #include <iostream>
 #include <cmath>
-
+#include "../Model/fakesimu.h"
 using namespace std;
 
 Visualization::Visualization(int span, int totalTime):
-        scene("../scenes/Document2#1.xml"),
+    //scene("../scenes/Document2#1.xml"),
     //_scene("../scenes/simpleScene.xml"),
     _span(span),
     _totalTime(totalTime){
+    fakeSimu *f = new fakeSimu(&scene);
     time_vector();
     creer_scene();
 }
