@@ -45,8 +45,8 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-    void on_actionDistance_toggled(bool );
-    void on_actionPointTracking_toggled(bool );
+    void on_actionDistance_toggled(bool checked);
+    void on_actionPointTracking_toggled(bool checked);
     void on_actionExit_triggered();
     void slot_pushButtonStartClicked();
     void slot_stepChanged(int step);
@@ -55,6 +55,8 @@ private slots:
     void slot_pushButtonFirstClicked();
     void slot_pushButtonLastClicked();
     void slot_uiUpdateStep(int step);
+    void slot_update_status(float x1,float y1);
+    void slot_update_status(float x1,float y1,float x2,float y2);
 };
 
 #endif // MAINWINDOW_HPP

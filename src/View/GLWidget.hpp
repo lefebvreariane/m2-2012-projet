@@ -17,19 +17,22 @@ class GLWidget : public QGLWidget{
 
 public:
     Scene *scene;
+    float step;
     bool trackingSelected;
     bool distanceSelected;
+    bool point1Grabbed;
+    bool point2Grabbed;
 
     GLWidget(float _span, unsigned int nbStep, Scene *_scene, QWidget *parent = 0);
     ~GLWidget();
 
     void start_timer(int _step);
     int stop_timer();
-    void set_step(int _step){step = _step; updateGL();}
+    void set_step(int _step) {step = _step; updateGL();}
+    float *getPoint1() {return point1;}
     bool is_timer_active();
 
 protected:
-    float step;
     unsigned int nbStep;
     float span;
     std::pair<float,float> pMin;
@@ -58,12 +61,12 @@ public slots:
     void updateTime();
 signals:
     void updateSlider(int);
+    void calculerDistance(float x1, float y1, float x2, float y2);
+    void point_a_afficher(float x1, float y1);
 private:
     QTimer* timer;
-    float point1[3];
-    float point2[3];
-    bool point1Grabbed;
-    bool point2Grabbed;
+    float point1[2];
+    float point2[2];
     bool trackingDone;
     bool distanceDone;
 
