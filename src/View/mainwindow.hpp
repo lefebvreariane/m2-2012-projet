@@ -49,7 +49,6 @@ private slots:
     void on_actionPointTracking_toggled(bool checked);
     void on_actionExit_triggered();
     void slot_pushButtonStartClicked();
-    void slot_stepChanged(int step);
     void slot_pushButtonPlayClicked();
     void slot_pushButtonPauseClicked();
     void slot_pushButtonFirstClicked();
@@ -57,6 +56,7 @@ private slots:
     void slot_uiUpdateStep(int step);
     void slot_update_status(float x1,float y1);
     void slot_update_status(float x1,float y1,float x2,float y2);
+    void slot_update_glStep(int _step);
 };
 
 #endif // MAINWINDOW_HPP

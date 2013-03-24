@@ -49,9 +49,9 @@ bool GLWidget::is_timer_active(){
 
 void GLWidget::updateTime(){
     if (step < nbStep){
-        step++;
         emit(this->updateSlider(step));
         updateGL();
+        step++;
     }
     else{
         timer->stop();
@@ -177,20 +177,52 @@ void GLWidget::afficherScene(){
         point[1] = scene->steps()[step]->punch()[i].second;
         glVertex2fv(point);
     }
-    cout << step << endl;
     glEnd();
 
     // metal strip
     glColor3f(0,255,0);
-    glBegin(GL_POLYGON);
-    // affichage du polygone scene->sheet()[step]...
-    for (unsigned int i=0 ; i<scene->sheet().second.size() ; i++){
-        point[0] = scene->sheet().second[i].first;
-        point[1] = scene->sheet().second[i].second;
+    // affichage du polygone scene->sheetGeom()[step]...
+    unsigned int size = scene->steps()[step]->sheetGeom().size();
+    for (unsigned int i=0 ; i<size/2-1 ; i++){
+        glBegin(GL_POLYGON);
+            // bot-left
+            point[0] = scene->steps()[step]->sheetGeom()[i].first;
+            point[1] = scene->steps()[step]->sheetGeom()[i].second;
+            glVertex2fv(point);
+            // bot-right
+            point[0] = scene->steps()[step]->sheetGeom()[i+1].first;
+            point[1] = scene->steps()[step]->sheetGeom()[i+1].second;
+            glVertex2fv(point);
+            //top-right
+            point[0] = scene->steps()[step]->sheetGeom()[(size-1)-(i+1)].first;
+            point[1] = scene->steps()[step]->sheetGeom()[(size-1)-(i+1)].second;
+            glVertex2fv(point);
+            // top-left
+            point[0] = scene->steps()[step]->sheetGeom()[(size-1)-i].first;
+            point[1] = scene->steps()[step]->sheetGeom()[(size-1)-i].second;
+            glVertex2fv(point);
+            // bot-left
+            point[0] = scene->steps()[step]->sheetGeom()[i].first;
+            point[1] = scene->steps()[step]->sheetGeom()[i].second;
+            glVertex2fv(point);
+        glEnd();
+    }
+    //cout << step << endl;
+
+    // neutral fiber
+    glColor3f(0,0,0);
+    glBegin(GL_LINES);
+    for (unsigned int i=0 ; i<scene->steps()[step]->sheetNeut().size()-1 ; i++){
+        point[0] = scene->steps()[step]->sheetNeut()[i].first;
+        point[1] = scene->steps()[step]->sheetNeut()[i].second;
+        glVertex2fv(point);
+        point[0] = scene->steps()[step]->sheetNeut()[i+1].first;
+        point[1] = scene->steps()[step]->sheetNeut()[i+1].second;
         glVertex2fv(point);
     }
     glEnd();
-    glPopMatrix();
+    
+    // interactions
     glPointSize(5.f);
     if(point1Grabbed){
         glBegin(GL_POINTS);
@@ -224,6 +256,8 @@ void GLWidget::afficherScene(){
             glVertex2fv(point2);
         glEnd();
     }
+
+    glPopMatrix();
 }
 
 void GLWidget::wheelEvent(QWheelEvent *event){
