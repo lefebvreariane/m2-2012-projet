@@ -129,35 +129,6 @@ void GLWidget::afficherScene(){
         glVertex2fv(point);
     }
     glEnd();
-    /*
-    glBegin(GL_TRIANGLES);
-    for (unsigned int i=0 ; i<mesh.size() ; i++){
-        point[0] = mesh[i][0].first;
-        point[1] = mesh[i][0].second;
-        glVertex2fv(point);
-        point[0] = mesh[i][2].first;
-        point[1] = mesh[i][2].second;
-        glVertex2fv(point);
-        point[0] = mesh[i][1].first;
-        point[1] = mesh[i][1].second;
-        glVertex2fv(point);
-    }
-    glEnd();
-    glBegin(GL_POINTS);
-    for (unsigned int i=0 ; i<mesh.size() ; i++){
-        point[0] = mesh[i][0].first;
-        point[1] = mesh[i][0].second;
-        cout << point[0] << ", " << point[1] << endl;
-        glVertex2fv(point);
-        point[0] = mesh[i][2].first;
-        point[1] = mesh[i][2].second;
-        glVertex2fv(point);
-        point[0] = mesh[i][1].first;
-        point[1] = mesh[i][1].second;
-        glVertex2fv(point);
-    }
-    glEnd();
-    */
 
     // strippers
     glColor3f(255,255,0);
@@ -182,7 +153,7 @@ void GLWidget::afficherScene(){
     glEnd();
 
     // area
-    glColor3f(100,255,100);
+    glColor3f(0.7f,1.f,0.7f);
     unsigned int size = scene->steps()[step]->sheetGeom().size();
     if (areaSelected && step>0){
         deque<pair<double,double> > endArea;
