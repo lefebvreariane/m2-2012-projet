@@ -14,7 +14,7 @@ class Step : public QObject{
     vector<pair<double, double> > _punch;
     vector<pair<double, double> > _sheet;
 public:
-    explicit Step(vector<pair<double, double> > punch, QObject *parent=0);
+    explicit Step(vector<pair<double, double> > punch, vector<pair<double, double> > sheet, QObject *parent=0);
     explicit Step(const Step &step);
     const vector<pair<double, double> > punch() const {return _punch;}
     const vector<pair<double, double> > sheet() const {return _sheet;}

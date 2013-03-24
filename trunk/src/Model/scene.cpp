@@ -2,6 +2,7 @@
 #include <limits>
 #include <cmath>
 #include <cstdlib>
+#include <cassert>
 #define PI atan(1)*4
 Scene::Scene(const Scene &scene) : QObject(scene.parent()){
     this->_matrix = scene.matrix();
@@ -368,4 +369,50 @@ vector<vector<pair<double, double> > > Scene::triangleMatrix(){
         out.push_back(cleanTriangle(tmp3[i]));
     }
     return out;
+}
+
+void Scene::increase_resolution_sheet(){
+    vector<pair<double, double> > tmpGeom;
+    vector<pair<double, double> > tmpNeut;
+    float distX = _sheet.second[1].first - _sheet.second[0].first; // distX = x2 - x1
+
+    tmpGeom.push_back(_sheet.second[1]);
+    tmpNeut.push_back(_sheet.first[0]);
+    float spanX = distX/125;
+    pair<double,double> point;
+    for (unsigned int j=1 ; j<125 ; j++){
+        point.first = _sheet.second[1].first+j*spanX;
+        point.second = _sheet.second[1].second;
+        tmpGeom.push_back(point);
+        point.first = _sheet.first[0].first+j*spanX;
+        point.second = _sheet.first[0].second;
+        tmpNeut.push_back(point);
+    }
+    _sheet.first = tmpNeut;
+    tmpGeom.push_back(_sheet.second[2]);
+    tmpGeom.push_back(_sheet.second[3]);
+    for (unsigned int j=1 ; j<125 ; j++){
+        point.first = _sheet.second[3].first-j*spanX;
+        point.second = _sheet.second[3].second;
+        tmpGeom.push_back(point);
+    }
+    tmpGeom.push_back(_sheet.second[0]);
+    _sheet.second = tmpGeom;
+}
+
+int Scene::tracking(float pointOld[2], int step){
+    pair<double,double> pointNew = steps()[step]->sheet()[0];
+    int indice, distMin, dist;
+    distMin = indice = dist = 0;
+    // search the nearest point on the sheet
+    distMin = sqrt(pow(pointNew.first-pointOld[0],2)+pow(pointNew.second-pointOld[1],2));
+    for (unsigned int i=0 ; i<steps()[step]->sheet().size() ; i++){
+        pointNew = steps()[step]->sheet()[i];
+        dist = sqrt(pow(pointNew.first-pointOld[0],2)+pow(pointNew.second-pointOld[1],2));
+        if (distMin > dist){
+            indice = i;
+            distMin = dist;
+        }
+    }
+    return indice;
 }

@@ -49,11 +49,11 @@ public:
     vector<Step*> steps() {return _steps;}
 
     vector<vector<pair<double, double> > > triangleMatrix();
-    void addStep(Step *step){
-        _steps.push_back(step);
-    }
+    void addStep(Step *step){_steps.push_back(step);}
 
     void fillAll(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, int thickness);
+    void increase_resolution_sheet();
+    int tracking(float pointOld[2], int step);
 
 private:
     void fillUnits       (QDomElement);
