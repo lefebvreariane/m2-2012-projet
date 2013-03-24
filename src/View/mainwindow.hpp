@@ -45,6 +45,7 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
+    void on_actionArea_toggled(bool checked);
     void on_actionDistance_toggled(bool checked);
     void on_actionPointTracking_toggled(bool checked);
     void on_actionExit_triggered();

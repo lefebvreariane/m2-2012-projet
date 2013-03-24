@@ -20,8 +20,10 @@ public:
     float step;
     bool trackingSelected;
     bool distanceSelected;
+    bool areaSelected;
     bool point1Grabbed;
     bool point2Grabbed;
+    int trackingPoint;
 
     GLWidget(float _span, unsigned int nbStep, Scene *_scene, QWidget *parent = 0);
     ~GLWidget();

@@ -5,6 +5,7 @@
 #include <cmath>
 #include <QImage>
 #include <QTimer>
+#include <deque>
 
 using namespace std;
 
@@ -30,11 +31,12 @@ GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene *_scene, QWidget *pa
     state = MOUSE_UP;
     point1Grabbed = point2Grabbed = trackingSelected = distanceSelected = false;
     trackingDone = distanceDone = false;
+    trackingPoint = -1;
+    areaSelected = false;
 
     // start timer
     timer = new QTimer(this);
     QObject::connect(timer,SIGNAL(timeout()),this,SLOT(updateTime()));
-
 }
 
 GLWidget::~GLWidget(){
@@ -158,7 +160,7 @@ void GLWidget::afficherScene(){
     */
 
     // strippers
-    glColor3f(100,100,100);
+    glColor3f(255,255,0);
     for (unsigned int i=0 ; i<scene->strippers().size() ; i++){
         glBegin(GL_POLYGON);
         for (unsigned int j=0 ; j<scene->strippers()[i].second.size() ; j++){
@@ -179,10 +181,54 @@ void GLWidget::afficherScene(){
     }
     glEnd();
 
+    // area
+    glColor3f(100,255,100);
+    unsigned int size = scene->steps()[step]->sheetGeom().size();
+    if (areaSelected && step>0){
+        deque<pair<double,double> > endArea;
+        endArea.push_front(scene->steps()[step]->sheetGeom()[(int) (size/2-1)]);
+        endArea.push_front(scene->steps()[0]->sheetGeom()[(int) (size/2)]);
+        for (unsigned int i=0 ; i<size/2-1 ; i++){
+            glBegin(GL_POLYGON);
+                // bot-left
+                point[0] = scene->steps()[step]->sheetGeom()[i].first;
+                point[1] = scene->steps()[step]->sheetGeom()[i].second;
+                glVertex2fv(point);
+                // bot-right
+                point[0] = scene->steps()[step]->sheetGeom()[i+1].first;
+                point[1] = scene->steps()[step]->sheetGeom()[i+1].second;
+                glVertex2fv(point);
+                //top-right
+                point[0] = scene->steps()[0]->sheetGeom()[(size-1)-(i+1)].first;
+                point[1] = scene->steps()[0]->sheetGeom()[(size-1)-(i+1)].second;
+                glVertex2fv(point);
+                // top-left
+                point[0] = scene->steps()[0]->sheetGeom()[(size-1)-i].first;
+                point[1] = scene->steps()[0]->sheetGeom()[(size-1)-i].second;
+                glVertex2fv(point);
+                // bot-left
+                point[0] = scene->steps()[step]->sheetGeom()[i].first;
+                point[1] = scene->steps()[step]->sheetGeom()[i].second;
+                glVertex2fv(point);
+            glEnd();
+        }
+        for (int i=0; i<step ; i++){
+            endArea.push_front(scene->steps()[i]->sheetGeom()[size/2-1]);
+        }
+        endArea.push_front(scene->steps()[step]->sheetGeom()[(int) (size/2-1)]);
+        glBegin(GL_POLYGON);
+        for (deque<pair<double,double> >::iterator i=endArea.begin(); i!=endArea.end() ; ++i){
+                point[0] = (*i).first;
+                point[1] = (*i).second;
+                glVertex2fv(point);
+            }
+        glEnd();
+    }
+
     // metal strip
+
     glColor3f(0,255,0);
     // affichage du polygone scene->sheetGeom()[step]...
-    unsigned int size = scene->steps()[step]->sheetGeom().size();
     for (unsigned int i=0 ; i<size/2-1 ; i++){
         glBegin(GL_POLYGON);
             // bot-left
@@ -224,12 +270,6 @@ void GLWidget::afficherScene(){
     
     // interactions
     glPointSize(5.f);
-    if(point1Grabbed){
-        glBegin(GL_POINTS);
-            glColor3f(255,255,255);
-            glVertex2fv(point1);
-        glEnd();
-    }
     if(point2Grabbed){
         glBegin(GL_POINTS);
             glColor3f(255,255,255);
@@ -238,23 +278,44 @@ void GLWidget::afficherScene(){
     }
     // visualize tracking
     if (trackingSelected && trackingDone){
+        glColor3f(255,255,255);
         glBegin(GL_POINTS);
-            glColor3f(255,255,255);
-            glVertex2fv(point1);
+            point[0] = scene->steps()[step]->sheetGeom()[trackingPoint].first;
+            point[1] = scene->steps()[step]->sheetGeom()[trackingPoint].second;
+            glVertex2fv(point);
         glEnd();
+        for (int i=0; i<step-1 ; i++){
+            glBegin(GL_LINES);
+                point[0] = scene->steps()[i]->sheetGeom()[trackingPoint].first;
+                point[1] = scene->steps()[i]->sheetGeom()[trackingPoint].second;
+                glVertex2fv(point);
+                point[0] = scene->steps()[i+1]->sheetGeom()[trackingPoint].first;
+                point[1] = scene->steps()[i+1]->sheetGeom()[trackingPoint].second;
+                glVertex2fv(point);
+            glEnd();
+        }
     }
 
+
+
     //visualize distance
-    if (distanceSelected && distanceDone){
-        glBegin(GL_POINTS);
-            glColor3f(255,255,255);
-            glVertex2fv(point1);
-            glVertex2fv(point2);
-        glEnd();
-        glBegin(GL_LINES);
-            glVertex2fv(point1);
-            glVertex2fv(point2);
-        glEnd();
+    if (distanceSelected){
+        if(point1Grabbed){
+            glBegin(GL_POINTS);
+                glColor3f(255,255,255);
+                glVertex2fv(point1);
+            glEnd();
+        }
+        if (distanceDone){
+            glBegin(GL_POINTS);
+                glColor3f(255,255,255);
+                glVertex2fv(point2);
+            glEnd();
+            glBegin(GL_LINES);
+                glVertex2fv(point1);
+                glVertex2fv(point2);
+            glEnd();
+        }
     }
 
     glPopMatrix();

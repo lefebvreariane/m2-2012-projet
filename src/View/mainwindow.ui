@@ -66,6 +66,8 @@
     <addaction name="separator"/>
     <addaction name="actionPointTracking"/>
     <addaction name="actionDistance"/>
+    <addaction name="separator"/>
+    <addaction name="actionArea"/>
    </widget>
    <addaction name="menuFile"/>
    <addaction name="menuTools"/>
@@ -514,6 +516,14 @@
    </property>
    <property name="text">
     <string>Distance</string>
+   </property>
+  </action>
+  <action name="actionArea">
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+   <property name="text">
+    <string>Area</string>
    </property>
   </action>
  </widget>

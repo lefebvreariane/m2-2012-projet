@@ -39,7 +39,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(glWidget,SIGNAL(point_a_afficher(float,float)),this,SLOT(slot_update_status(float,float)));
     connect(glWidget,SIGNAL(calculerDistance(float,float,float,float)),this,SLOT(slot_update_status(float,float,float,float)));
     connect(ui->sliderEtapes, SIGNAL(sliderMoved(int)), this, SLOT(slot_update_glStep(int)));
-    connect(ui->spinBoxEtapes, SIGNAL(editingFinished()), this, SLOT(slot_update_glStep(int)));
     ui->glLayout->addWidget(glWidget,0,0);
 }
 
@@ -142,9 +141,11 @@ void MainWindow::slot_uiUpdateStep(int step){
 void MainWindow::on_actionPointTracking_toggled(bool checked){
     if (checked){
         glWidget->trackingSelected = true;
+        glWidget->areaSelected = false;
         glWidget->point1Grabbed = false;
         glWidget->distanceSelected = false;
         ui->actionDistance->setChecked(false);
+        ui->actionArea->setChecked(false);
     }
     else{
         glWidget->trackingSelected = false;
@@ -157,10 +158,12 @@ void MainWindow::on_actionPointTracking_toggled(bool checked){
 void MainWindow::on_actionDistance_toggled(bool checked){
     if (checked){
         glWidget->distanceSelected = true;
+        glWidget->areaSelected = false;
         glWidget->point1Grabbed = false;
         glWidget->point2Grabbed = false;
         glWidget->trackingSelected = false;
         ui->actionPointTracking->setChecked(false);
+        ui->actionArea->setChecked(false);
     }
     else{
         glWidget->distanceSelected = false;
@@ -170,6 +173,21 @@ void MainWindow::on_actionDistance_toggled(bool checked){
     glWidget->updateGL();
 }
 
+
+void MainWindow::on_actionArea_toggled(bool checked){
+    if (checked){
+        glWidget->areaSelected = true;
+        glWidget->trackingSelected = false;
+        glWidget->point1Grabbed = false;
+        glWidget->point2Grabbed = false;
+        glWidget->distanceSelected = false;
+        ui->actionPointTracking->setChecked(false);
+        ui->actionDistance->setChecked(false);
+    }
+    else
+        glWidget->areaSelected = false;
+    glWidget->updateGL();
+}
 
 void MainWindow::slot_update_status(float x1, float y1, float x2, float y2){
     stringstream s;
@@ -184,9 +202,12 @@ void MainWindow::slot_update_status(float x1, float y1){
     stringstream s;
     if(glWidget->trackingSelected){
         s << "Point to track = (" << x1 << ", " << y1 << ")";
+        glWidget->trackingPoint = visualization->scene.tracking(x1,y1,glWidget->step);
     }
-    else
-        s << "Point 1 = (" << x1 << ", " << y1 << ")";
+    else{
+        s << "Point 1 = (" << visualization->scene.steps()[glWidget->step]->sheetGeom()[glWidget->trackingPoint].first << ", ";
+        s << visualization->scene.steps()[glWidget->step]->sheetGeom()[glWidget->trackingPoint].second << ")";
+    }
     QString ss = QString::fromStdString(s.str());
     statusBar()->showMessage(ss);
 }
@@ -194,3 +215,4 @@ void MainWindow::slot_update_status(float x1, float y1){
 void MainWindow::slot_update_glStep(int _step){
     glWidget->set_step(_step-1);
 }
+
