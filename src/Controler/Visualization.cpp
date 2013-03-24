@@ -7,13 +7,14 @@
 using namespace std;
 
 Visualization::Visualization(int span, int totalTime):
-    //scene("../scenes/Document2#1.xml"),
+    //scene("../scenes/Document21.xml"),
     //_scene("../scenes/simpleScene.xml"),
     _span(span),
     _totalTime(totalTime){
     fakeSimu *f = new fakeSimu(&scene);
+    delete f;
     time_vector();
-    creer_scene();
+    //creer_scene();
 }
 
 Visualization::~Visualization(){}
