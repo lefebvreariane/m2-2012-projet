@@ -1,7 +1,7 @@
 #include "step.h"
 #include <limits>
 
-Step::Step(vector<pair<double, double> > punch, QObject *parent) : QObject(parent), _punch(punch){
+Step::Step(vector<pair<double, double> > punch, vector<pair<double,double> > sheet, QObject *parent) : QObject(parent), _punch(punch), _sheet(sheet){
 }
 Step::Step(const Step &step) : QObject(step.parent()){
     this->_punch = step.punch();

@@ -1,4 +1,5 @@
 #include "fakesimu.h"
+#include <cassert>
 
 fakeSimu::fakeSimu(Scene *scene, QObject *parent) : QObject(parent){
     _matrix.push_back(make_pair(7.45  ,  0.00));
@@ -69,6 +70,13 @@ fakeSimu::fakeSimu(Scene *scene, QObject *parent) : QObject(parent){
     _fps = 25;
     _punchDistance = 10;
     scene->fillAll(_matrix, _punch, _stripper, _sheetGeom, _sheetNeut, _thickness);
+    // --------------------
+    // increase the resolution of the metalSheet
+    if (scene->sheet().second.size() == 4){
+        scene->increase_resolution_sheet();
+    }
+    // --------------------
+
     for (int i=0; i<_time*_fps; i++){
         scene->addStep(generateStep(i));
     }
@@ -86,10 +94,12 @@ Step* fakeSimu::generateStep(int id){
     assert(id>=0 && id<=frames);
 
     vector<pair<double, double> > punch;
-    double punchMove = distanceTemps(id, _time, _punchDistance);
+    double punchMove = distanceTemps((1000/_fps)*id, _time*1000, _punchDistance);
     for (unsigned int i=0; i<_punch.size(); i++)
-        punch.push_back(make_pair(_punch[i].first, _punch[i].second+punchMove));
+        punch.push_back(make_pair(_punch[i].first, _punch[i].second-punchMove));
 
-    Step *step = new Step(punch);
+    vector<pair<double, double> > sheet;
+    // remplir les sheets;
+    Step *step = new Step(punch, sheet);
     return step;
 }
