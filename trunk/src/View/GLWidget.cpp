@@ -25,11 +25,11 @@ GLWidget::GLWidget(float _span, unsigned int _nbStep, Scene *_scene, QWidget *pa
 //    cout << "taille: " << mesh.size() << endl;
 
     // interactions souris
-    zoomFactor = 1;
-    transX = transY = 0;
+    zoomFactor = 1.;
+    transX = transY = 0.;
     state = MOUSE_UP;
     point1Grabbed = point2Grabbed = trackingSelected = distanceSelected = false;
-    trackingDone = false;
+    trackingDone = distanceDone = false;
 
     // start timer
     timer = new QTimer(this);
@@ -49,7 +49,7 @@ bool GLWidget::is_timer_active(){
 
 void GLWidget::updateTime(){
     if (step < nbStep){
-        step += 1;
+        step++;
         emit(this->updateSlider(step));
         updateGL();
     }
@@ -85,19 +85,18 @@ void GLWidget::paintGL(){
     float w = (float) width()/zoomFactor;
     float h = (float) height()/zoomFactor;
 
-    float l,r,b,t;
-    l = -w/2.f;
-    r = w/2.f;
-    b = -h/2.f;
-    t = h/2.f;
-    glOrtho(l,r,b,t,-1,1);
+    float left,right,bottom,top;
+    left = -w/2.f;
+    right = w/2.f;
+    bottom = -h/2.f;
+    top = h/2.f;
+    glOrtho(left,right,bottom,top,-1,1);
 
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 
     // translation
     glTranslatef(transX/zoomFactor, -transY/zoomFactor, 0);
-
 
     //Affichage des objets
     afficherScene();
@@ -118,6 +117,7 @@ void GLWidget::afficherScene(){
 
     glPushMatrix();
     GLfloat *point = new GLfloat[2];
+
     // hold die
     glColor3f(255,0,0);
     glBegin(GL_POLYGON);
@@ -172,12 +172,12 @@ void GLWidget::afficherScene(){
     // punch
     glColor3f(0,0,255);
     glBegin(GL_POLYGON);
-    // affichage du polygone scene->punch()[step]...
-    for (unsigned int i=0 ; i<scene->punch().first.size() ; i++){
-        point[0] = scene->punch().first[i].first;
-        point[1] = scene->punch().first[i].second;
+    for (unsigned int i=0 ; i<scene->steps()[step]->punch().size() ; i++){
+        point[0] = scene->steps()[step]->punch()[i].first;
+        point[1] = scene->steps()[step]->punch()[i].second;
         glVertex2fv(point);
     }
+    cout << step << endl;
     glEnd();
 
     // metal strip
@@ -191,7 +191,7 @@ void GLWidget::afficherScene(){
     }
     glEnd();
     glPopMatrix();
-    glPointSize(0.5f);
+    glPointSize(5.f);
     if(point1Grabbed){
         glBegin(GL_POINTS);
             glColor3f(255,255,255);
@@ -205,12 +205,15 @@ void GLWidget::afficherScene(){
         glEnd();
     }
     // visualize tracking
-    if (trackingDone){
-        // TODO
+    if (trackingSelected && trackingDone){
+        glBegin(GL_POINTS);
+            glColor3f(255,255,255);
+            glVertex2fv(point1);
+        glEnd();
     }
 
     //visualize distance
-    if (distanceDone){
+    if (distanceSelected && distanceDone){
         glBegin(GL_POINTS);
             glColor3f(255,255,255);
             glVertex2fv(point1);
@@ -224,11 +227,13 @@ void GLWidget::afficherScene(){
 }
 
 void GLWidget::wheelEvent(QWheelEvent *event){
-    if (event->delta() > 0)
-        zoomFactor += 0.1;
-    else if(zoomFactor > 0.1)
-        zoomFactor -= 0.1;
-    updateGL();
+    if (state == MOUSE_UP){
+        if (event->delta() > 0)
+            zoomFactor += 0.2;
+        else if(zoomFactor > 0.2)
+            zoomFactor -= 0.2;
+        updateGL();
+    }
 }
 
 void GLWidget::mousePressEvent(QMouseEvent *event){
@@ -236,22 +241,44 @@ void GLWidget::mousePressEvent(QMouseEvent *event){
     case MOUSE_UP:
         mouseX = event->pos().x();
         mouseY = event->pos().y();
+        if (distanceSelected){
+            if (trackingDone){
+                point1Grabbed = false;
+                trackingDone = false;
+            }
+            if (distanceDone){
+                point1Grabbed = false;
+                point2Grabbed = false;
+                distanceDone = false;
+            }
+        }
+        if (trackingSelected){
+            if (distanceDone){
+                point1Grabbed = false;
+                point2Grabbed = false;
+                distanceDone = false;
+            }
+            if (trackingDone){
+                point1Grabbed = false;
+                trackingDone = false;
+            }
+        }
+
         state = MOUSE_DOWN;
+        updateGL();
         break;
     default:
         break;
     }
 }
 bool GLWidget::grab_point(float mouseX, float mouseY, float *point){
-    double mvMatrix[16];
-    double projMatrix[16];
-    int viewPort[4];
-    glGetDoublev(GL_MODELVIEW_MATRIX, mvMatrix);
-    glGetDoublev(GL_PROJECTION_MATRIX, projMatrix);
-    glGetIntegerv(GL_VIEWPORT, viewPort);
-    return gluUnProject((double) mouseX, (double) mouseY,0.,
-                          mvMatrix, projMatrix, viewPort,
-                          (double *) &(point[0]), (double *) &(point[1]), (double *) &(point[2]));
+    float w = (float) width()/zoomFactor;
+    float h = (float) height()/zoomFactor;
+    w = w/2.;
+    h = h/2.;
+    point[0] = mouseX/zoomFactor - w - transX/zoomFactor;
+    point[1] = (height()-mouseY)/zoomFactor - h + transY/zoomFactor;
+    return true;
 }
 
 void GLWidget::mouseReleaseEvent(QMouseEvent *event){
@@ -260,48 +287,74 @@ void GLWidget::mouseReleaseEvent(QMouseEvent *event){
         mouseX = event->pos().x();
         mouseY = event->pos().y();
         if (trackingSelected){
-            distanceDone = false;
             // grab a point
-            if (!point1Grabbed)
+            if (!point1Grabbed){
                 point1Grabbed = grab_point(mouseX,mouseY,point1);
-            else {
+                emit(point_a_afficher(point1[0],point1[1]));
+            }
+            if (point1Grabbed) {
                 //scene->compute_tracking(point1);
                 trackingDone = true;
-                point1Grabbed = false;
+                //emit(tracking(point1[0],point1[1], step)); // scene.compute_tracking(point1);
             }
+            // ----------------------
+            cout << "I'm tracking : " << endl;
+            cout << "trackingSelected : " << trackingSelected << endl;
+            cout << "trackingDone : " << trackingDone << endl;
+            cout << "distanceSelected : " << distanceSelected << endl;
+            cout << "distanceDone : " << distanceDone << endl;
+            if (trackingDone)
+                cout << "point1 : (" << point1[0] << ", " << point1[1] << ")" << endl;
+            cout << endl;
+            // ----------------------
         }
         else if (distanceSelected){
             trackingDone = false;
             // grab a point
             if (!point1Grabbed){
                 point1Grabbed = grab_point(mouseX,mouseY,point1);
+                emit(point_a_afficher(point1[0],point1[1]));
             }
-            else {
+            else if (point1Grabbed && !point2Grabbed) {
                 point2Grabbed = grab_point(mouseX,mouseY,point2);
             }
             if (point2Grabbed){
                 //scene->compute_distance(point1, point2);
                 distanceDone = true;
-                point1Grabbed = point2Grabbed = false;
+                emit(calculerDistance(point1[0],point1[1],point2[0],point2[1]));
             }
+            // -------------------------
+            cout << "I'm distancing : " << endl;
+            cout << "trackingSelected : " << trackingSelected << endl;
+            cout << "trackingDone : " << trackingDone << endl;
+            cout << "distanceSelected : " << distanceSelected << endl;
+            cout << "distanceDone : " << distanceDone << endl;
+            if (distanceDone){
+                cout << "point1 : (" << point1[0] << ", " << point1[1] << ")" << endl;
+                cout << "point2 : (" << point2[0] << ", " << point2[1] << ")" << endl;
+            }
+            cout << endl;
+            // -------------------------
         }
-        else {
-            point1Grabbed = false;
-            point2Grabbed = false;
-            trackingDone = false;
-            distanceDone = false;
+        else{
+            cout << "I'm doing nothing : " << endl;
+            cout << "trackingSelected : " << trackingSelected << endl;
+            cout << "trackingDone : " << trackingDone << endl;
+            cout << "distanceSelected : " << distanceSelected << endl;
+            cout << "distanceDone : " << distanceDone << endl;
+            cout << endl;
         }
-
         // change mouse state
         state = MOUSE_UP;
+        updateGL();
         break;
     case MOUSE_DRAGGED:
         state = MOUSE_UP;
+        updateGL();
         break;
     default:
         break;
     }
-    updateGL();
 }
 
 void GLWidget::mouseMoveEvent(QMouseEvent *event){
@@ -311,13 +364,12 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event){
 
     switch (state) {
     case MOUSE_DOWN:
-        if (dx > 2 && dy > 2){
-            transX -= dx;
-            transY -= dy;
-            mouseX = event->pos().x();
-            mouseY = event->pos().y();
-            state = MOUSE_DRAGGED;
-        }
+        transX -= dx;
+        transY -= dy;
+        mouseX = event->pos().x();
+        mouseY = event->pos().y();
+        state = MOUSE_DRAGGED;
+        updateGL();
         break;
     case MOUSE_DRAGGED:
         transX -= dx;
@@ -325,9 +377,9 @@ void GLWidget::mouseMoveEvent(QMouseEvent *event){
         mouseX = event->pos().x();
         mouseY = event->pos().y();
         state = MOUSE_DRAGGED;
+        updateGL();
     default:
         break;
     }
-    updateGL();
 }
 

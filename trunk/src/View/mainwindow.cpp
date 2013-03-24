@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 #include "Controler/Visualization.hpp"
 #include <iostream>
+#include <sstream>
 #include <QAction>
 #include <QTimer>
 
@@ -35,6 +36,8 @@ MainWindow::MainWindow(QWidget *parent) :
     visualization = new Visualization(ui->spinBoxTime->value(),ui->spinBoxTotalTime->value()*1000);
     glWidget = new GLWidget(ui->spinBoxTime->value(), visualization->timeVector().size(),&(visualization->scene), this);
     connect(glWidget,SIGNAL(updateSlider(int)),this,SLOT(slot_uiUpdateStep(int)));
+    connect(glWidget,SIGNAL(point_a_afficher(float,float)),this,SLOT(slot_update_status(float,float)));
+    connect(glWidget,SIGNAL(calculerDistance(float,float,float,float)),this,SLOT(slot_update_status(float,float,float,float)));
     ui->glLayout->addWidget(glWidget,0,0);
 }
 
@@ -108,6 +111,9 @@ void MainWindow::slot_pushButtonPlayClicked(){
     ui->pushButtonLast->setEnabled(false);
     ui->sliderEtapes->setEnabled(false);
     ui->spinBoxEtapes->setEnabled(false);
+
+    //if (glWidget->point1Grabbed)
+    //    scene.tracking(glWidget->getPoint1(),ui->spinBoxEtapes->value()-1);
     glWidget->start_timer(ui->sliderEtapes->value()-1);
 }
 void MainWindow::slot_pushButtonFirstClicked(){
@@ -130,11 +136,13 @@ void MainWindow::slot_uiUpdateStep(int step){
 void MainWindow::on_actionPointTracking_toggled(bool checked){
     if (checked){
         glWidget->trackingSelected = true;
-        ui->actionDistance->setChecked(false);
+        glWidget->point1Grabbed = false;
         glWidget->distanceSelected = false;
+        ui->actionDistance->setChecked(false);
     }
     else{
         glWidget->trackingSelected = false;
+        glWidget->point1Grabbed = false;
     }
     glWidget->updateGL();
 }
@@ -143,11 +151,36 @@ void MainWindow::on_actionPointTracking_toggled(bool checked){
 void MainWindow::on_actionDistance_toggled(bool checked){
     if (checked){
         glWidget->distanceSelected = true;
-        ui->actionPointTracking->setChecked(false);
+        glWidget->point1Grabbed = false;
+        glWidget->point2Grabbed = false;
         glWidget->trackingSelected = false;
+        ui->actionPointTracking->setChecked(false);
     }
     else{
         glWidget->distanceSelected = false;
+        glWidget->point1Grabbed = false;
+        glWidget->point2Grabbed = false;
     }
     glWidget->updateGL();
+}
+
+
+void MainWindow::slot_update_status(float x1, float y1, float x2, float y2){
+    stringstream s;
+    s << "Point 1 = (" << x1 << ", " << y1 << ")    ";
+    s << "Point 2 = (" << x2 << ", " << y2 << ")    ";
+    s << "Distance = " << sqrt(pow(x2-x1,2) + pow(y2-y1,2));
+    QString ss = QString::fromStdString(s.str());
+    statusBar()->showMessage(ss);
+}
+
+void MainWindow::slot_update_status(float x1, float y1){
+    stringstream s;
+    if(glWidget->trackingSelected){
+        s << "Point to track = (" << x1 << ", " << y1 << ")";
+    }
+    else
+        s << "Point 1 = (" << x1 << ", " << y1 << ")";
+    QString ss = QString::fromStdString(s.str());
+    statusBar()->showMessage(ss);
 }
