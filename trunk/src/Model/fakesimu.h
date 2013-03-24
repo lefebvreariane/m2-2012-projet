@@ -32,7 +32,8 @@ public:
     virtual ~fakeSimu(){}
 
     Step* generateStep(int id, Scene *scene);
-    //Scene* scene() {return scene;}
+    pair<double, double> getRotationPoint(Scene *scene);
+    void applyRotation(Scene *scene);
 };
 
 #endif // FAKESIMU_H

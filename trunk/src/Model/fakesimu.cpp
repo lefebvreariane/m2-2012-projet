@@ -111,3 +111,43 @@ Step* fakeSimu::generateStep(int id, Scene *scene){
     Step *step = new Step(punch, sheet);
     return step;
 }
+
+pair<double, double> fakeSimu::getRotationPoint(Scene *scene){
+    double x(scene->matrix()[0].first);
+    for (unsigned int i=0; i<scene->matrix().size(); i++)
+        if (scene->matrix()[i].first > x)
+            x = scene->matrix()[i].first;
+    pair<double, double> out = make_pair(x+.5, .5);
+    return out;
+}
+
+void fakeSimu::applyRotation(Scene *scene){
+    pair<double, double> centre = getRotationPoint(scene);
+    int firstFrame(9), lastFrame(64);
+    for (int i=firstFrame; i<=lastFrame+1; i++){
+        double deg = -92 * (i-firstFrame)/(lastFrame-firstFrame);
+        deg = PI * deg / 180;
+        vector<pair<double, double> > neut = scene->steps()[i]->sheetNeut();
+        for (unsigned int j=0; j<neut.size(); j++){
+            if (neut[j].first > centre.first){
+                double dist = sqrt(pow(centre.first-neut[j].first, 2) + pow(centre.second-neut[j].second, 2));
+                scene->steps()[i]->setSheetNeut(j, make_pair(dist*cos(deg)+centre.first, dist*sin(deg)+centre.second));
+            }
+        }
+        vector<pair<double, double> > geom = scene->steps()[i]->sheetGeom();
+        for (unsigned int j=0; j<geom.size(); j++){
+            if (geom[j].first > centre.first-.5 && j<=geom.size()/2){
+                double dist = sqrt(pow(centre.first-.5-geom[j].first, 2) + pow(centre.second-.5-geom[j].second, 2));
+                scene->steps()[i]->setSheetGeom(j, make_pair(dist*cos(deg)+centre.first-.5, dist*sin(deg)+centre.second-.5));
+            }
+            if(geom[j].first > centre.first+.5 && j>=geom.size()/2){
+                double dist = sqrt(pow(centre.first+.5-geom[j].first, 2) + pow(centre.second+.5-geom[j].second, 2));
+                scene->steps()[i]->setSheetGeom(j, make_pair(dist*cos(deg)+centre.first+.5, dist*sin(deg)+centre.second+.5));
+            }
+        }
+    }
+    vector<pair<double, double> > neut = scene->steps()[lastFrame-1]->sheetNeut();
+    vector<pair<double, double> > geom = scene->steps()[lastFrame-1]->sheetGeom();
+    for (unsigned int i=lastFrame; i<scene->steps().size(); i++)
+        scene->steps()[i]->replaceSheet(neut, geom);
+}

@@ -12,6 +12,7 @@ Visualization::Visualization(int span, int totalTime):
     _span(span),
     _totalTime(totalTime){
     fakeSimu *f = new fakeSimu(&scene);
+    f->applyRotation(&scene);
     delete f;
     time_vector();
     //creer_scene();

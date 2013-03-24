@@ -21,6 +21,16 @@ public:
     const vector<pair<double, double> > sheetGeom() const {return _sheetGeom;}
     const vector<pair<double, double> > sheetNeut() const {return _sheetNeut;}
     const pair<pair<double, double>, pair<double, double> > min_max() const;
+    void setSheetNeut(int id, pair<double, double> p){
+        _sheetNeut[id] = p;
+    }
+    void setSheetGeom(int id, pair<double, double> p){
+        _sheetGeom[id] = p;
+    }
+    void replaceSheet(vector<pair<double, double> > neut, vector<pair<double, double> > geom){
+        _sheetGeom = geom;
+        _sheetNeut = neut;
+    }
 };
 
 #endif // STEP_H
