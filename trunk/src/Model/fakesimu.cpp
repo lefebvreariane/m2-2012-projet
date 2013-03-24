@@ -69,6 +69,8 @@ fakeSimu::fakeSimu(Scene *scene, QObject *parent) : QObject(parent){
     _time = 5;
     _fps = 25;
     _punchDistance = 10;
+
+
     scene->fillAll(_matrix, _punch, _stripper, _sheetGeom, _sheetNeut, _thickness);
     // --------------------
     // increase the resolution of the metalSheet
@@ -76,9 +78,8 @@ fakeSimu::fakeSimu(Scene *scene, QObject *parent) : QObject(parent){
         scene->increase_resolution_sheet();
     }
     // --------------------
-
     for (int i=0; i<_time*_fps; i++){
-        scene->addStep(generateStep(i));
+        scene->addStep(generateStep(i, scene));
     }
 }
 
@@ -89,17 +90,24 @@ static double distanceTemps(double temps, double tempsMax, double distanceMax){
     return -distanceMax/2*cos(2*PI*temps/tempsMax)+distanceMax/2;
 }
 
-Step* fakeSimu::generateStep(int id){
+Step* fakeSimu::generateStep(int id, Scene *scene){
     int frames = _time*_fps;
     assert(id>=0 && id<=frames);
-
-    vector<pair<double, double> > punch;
     double punchMove = distanceTemps((1000/_fps)*id, _time*1000, _punchDistance);
+
+    // fill the punch
+    vector<pair<double, double> > punch;
     for (unsigned int i=0; i<_punch.size(); i++)
         punch.push_back(make_pair(_punch[i].first, _punch[i].second-punchMove));
 
-    vector<pair<double, double> > sheet;
-    // remplir les sheets;
+    // fill the sheet
+    pair<vector<pair<double, double> >,vector<pair<double, double> > > sheet;
+    for (unsigned int i=0; i<scene->sheet().second.size(); i++)
+        sheet.first.push_back(make_pair(scene->sheet().second[i].first, scene->sheet().second[i].second));
+    for (unsigned int i=0; i<scene->sheet().first.size(); i++)
+        sheet.second.push_back(make_pair(scene->sheet().first[i].first, scene->sheet().first[i].second));
+
+    // create the step
     Step *step = new Step(punch, sheet);
     return step;
 }

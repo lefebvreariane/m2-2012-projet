@@ -31,7 +31,7 @@ public:
     explicit fakeSimu(vector<pair<double, double> > matrix, vector<pair<double, double> > punch, vector<pair<double, double> > stripper, vector<pair<double, double> > geom, vector<pair<double, double> > neut, QObject *parent);
     virtual ~fakeSimu(){}
 
-    Step* generateStep(int id);
+    Step* generateStep(int id, Scene *scene);
     //Scene* scene() {return scene;}
 };
 

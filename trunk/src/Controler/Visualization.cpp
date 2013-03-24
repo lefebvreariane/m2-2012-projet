@@ -30,13 +30,10 @@ void Visualization::creer_scene(){
 
 void Visualization::time_vector(){
     int nbMoves = _totalTime/_span;
-    int modulo = _totalTime%_span;
     _timeVector.resize(nbMoves);
     for(int i=0 ; i<nbMoves ; i++){
         _timeVector[i] = i*_span;
     }
-    if (modulo)
-        _timeVector.push_back(_totalTime);
 }
 
 void Visualization::updateVisu(int span, int totalTime){

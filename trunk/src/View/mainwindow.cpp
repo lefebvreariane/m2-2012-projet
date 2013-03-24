@@ -38,6 +38,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(glWidget,SIGNAL(updateSlider(int)),this,SLOT(slot_uiUpdateStep(int)));
     connect(glWidget,SIGNAL(point_a_afficher(float,float)),this,SLOT(slot_update_status(float,float)));
     connect(glWidget,SIGNAL(calculerDistance(float,float,float,float)),this,SLOT(slot_update_status(float,float,float,float)));
+    connect(ui->sliderEtapes, SIGNAL(sliderMoved(int)), this, SLOT(slot_update_glStep(int)));
+    connect(ui->spinBoxEtapes, SIGNAL(editingFinished()), this, SLOT(slot_update_glStep(int)));
     ui->glLayout->addWidget(glWidget,0,0);
 }
 
@@ -78,6 +80,9 @@ void MainWindow::slot_pushButtonStartClicked(){
     ui->pushButtonPlay->setEnabled(false);
     ui->spinBoxEtapes->setMaximum(visualization->totalTime()/visualization->span());
     ui->sliderEtapes->setMaximum(ui->spinBoxEtapes->maximum());
+    ui->sliderEtapes->setValue(1);
+    glWidget->set_step(ui->sliderEtapes->value()-1);
+    glWidget->updateGL();
     // Start calcul
 
     // Fin calcul
@@ -91,9 +96,6 @@ void MainWindow::slot_pushButtonStartClicked(){
     ui->pushButtonStartCalculation->setText("Start");
 }
 
-void MainWindow::slot_stepChanged(int step){
-    glWidget->set_step(step-1);
-}
 void MainWindow::slot_pushButtonPauseClicked(){
     glWidget->stop_timer();
     ui->pushButtonFirst->setEnabled(true);
@@ -104,6 +106,7 @@ void MainWindow::slot_pushButtonPauseClicked(){
     ui->spinBoxEtapes->setEnabled(true);
     glWidget->set_step(ui->spinBoxEtapes->value()-1);
 }
+
 void MainWindow::slot_pushButtonPlayClicked(){
     ui->pushButtonPlay->setEnabled(false);
     ui->pushButtonPause->setEnabled(true);
@@ -111,11 +114,14 @@ void MainWindow::slot_pushButtonPlayClicked(){
     ui->pushButtonLast->setEnabled(false);
     ui->sliderEtapes->setEnabled(false);
     ui->spinBoxEtapes->setEnabled(false);
-
+    if (ui->sliderEtapes->value() == (int) visualization->timeVector().size()){
+        ui->sliderEtapes->setValue(1);
+    }
     //if (glWidget->point1Grabbed)
     //    scene.tracking(glWidget->getPoint1(),ui->spinBoxEtapes->value()-1);
     glWidget->start_timer(ui->sliderEtapes->value()-1);
 }
+
 void MainWindow::slot_pushButtonFirstClicked(){
     glWidget->set_step(0);
     ui->spinBoxEtapes->setValue(1);
@@ -127,7 +133,7 @@ void MainWindow::slot_pushButtonLastClicked(){
 
 void MainWindow::slot_uiUpdateStep(int step){
     if (glWidget->is_timer_active()){
-        ui->spinBoxEtapes->setValue(step);
+        ui->spinBoxEtapes->setValue(step+1);
     }
     else
         this->slot_pushButtonPauseClicked();
@@ -183,4 +189,8 @@ void MainWindow::slot_update_status(float x1, float y1){
         s << "Point 1 = (" << x1 << ", " << y1 << ")";
     QString ss = QString::fromStdString(s.str());
     statusBar()->showMessage(ss);
+}
+
+void MainWindow::slot_update_glStep(int _step){
+    glWidget->set_step(_step-1);
 }
