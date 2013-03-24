@@ -401,15 +401,15 @@ void Scene::increase_resolution_sheet(){
     _sheet.second = tmpGeom;
 }
 
-int Scene::tracking(float pointOld[2], int step){
+int Scene::tracking(float x1, float y1, int step){
     pair<double,double> pointNew = steps()[step]->sheetGeom()[0];
     int indice, distMin, dist;
     distMin = indice = dist = 0;
     // search the nearest point on the sheet
-    distMin = sqrt(pow(pointNew.first-pointOld[0],2)+pow(pointNew.second-pointOld[1],2));
+    distMin = sqrt(pow(pointNew.first-x1,2)+pow(pointNew.second-y1,2));
     for (unsigned int i=0 ; i<steps()[step]->sheetGeom().size() ; i++){
         pointNew = steps()[step]->sheetGeom()[i];
-        dist = sqrt(pow(pointNew.first-pointOld[0],2)+pow(pointNew.second-pointOld[1],2));
+        dist = sqrt(pow(pointNew.first-x1,2)+pow(pointNew.second-y1,2));
         if (distMin > dist){
             indice = i;
             distMin = dist;
