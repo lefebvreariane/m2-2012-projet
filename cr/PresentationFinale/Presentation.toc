@@ -1,0 +1,22 @@
+\beamer@endinputifotherversion {3.20pt}
+\select@language {french}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@subsectionintoc {1}{1}{Missler Software}{3}{0}{1}
+\beamer@subsectionintoc {1}{2}{Outillage progressif}{4}{0}{1}
+\beamer@subsectionintoc {1}{3}{Op\IeC {\'e}rations de base}{5}{0}{1}
+\beamer@sectionintoc {2}{Contenu du projet}{6}{0}{2}
+\beamer@subsectionintoc {2}{1}{Projet du client}{7}{0}{2}
+\beamer@subsectionintoc {2}{2}{T\IeC {\^a}ches \IeC {\`a} r\IeC {\'e}aliser}{9}{0}{2}
+\beamer@subsubsectionintoc {2}{2}{1}{Interface utilisateur}{9}{0}{2}
+\beamer@subsubsectionintoc {2}{2}{2}{Chargement d'une sc\IeC {\`e}ne}{10}{0}{2}
+\beamer@subsubsectionintoc {2}{2}{3}{Moteur de d\IeC {\'e}formations}{11}{0}{2}
+\beamer@subsectionintoc {2}{3}{Liste des livrables}{12}{0}{2}
+\beamer@sectionintoc {3}{Description des m\IeC {\'e}thodes}{13}{0}{3}
+\beamer@subsectionintoc {3}{1}{M\IeC {\'e}thodologie g\IeC {\'e}n\IeC {\'e}rale}{14}{0}{3}
+\beamer@subsectionintoc {3}{2}{M\IeC {\'e}thodes utilis\IeC {\'e}es ou envisag\IeC {\'e}es}{14}{0}{3}
+\beamer@subsectionintoc {3}{3}{Proc\IeC {\'e}d\IeC {\'e}s de validation}{14}{0}{3}
+\beamer@sectionintoc {4}{R\IeC {\'e}sultats}{14}{0}{4}
+\beamer@subsectionintoc {4}{1}{Exp\IeC {\'e}rimentations r\IeC {\'e}alis\IeC {\'e}es}{15}{0}{4}
+\beamer@subsectionintoc {4}{2}{\IeC {\'E}valuation des r\IeC {\'e}sultats}{15}{0}{4}
+\beamer@subsectionintoc {4}{3}{Critiques et commentaires}{15}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{15}{0}{5}
