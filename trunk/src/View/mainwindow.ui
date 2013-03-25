@@ -2,6 +2,9 @@
 <ui version="4.0">
  <class>MainWindow</class>
  <widget class="QMainWindow" name="MainWindow">
+  <property name="enabled">
+   <bool>true</bool>
+  </property>
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -140,7 +143,7 @@
           <item>
            <widget class="QSpinBox" name="spinBoxTime">
             <property name="enabled">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -188,7 +191,7 @@
           <item>
            <widget class="QSpinBox" name="spinBoxTotalTime">
             <property name="enabled">
-             <bool>true</bool>
+             <bool>false</bool>
             </property>
             <property name="minimumSize">
              <size>
@@ -445,6 +448,9 @@
            <height>25</height>
           </size>
          </property>
+         <property name="acceptDrops">
+          <bool>false</bool>
+         </property>
          <property name="minimum">
           <number>1</number>
          </property>
@@ -554,11 +560,11 @@
    <hints>
     <hint type="sourcelabel">
      <x>228</x>
-     <y>376</y>
+     <y>405</y>
     </hint>
     <hint type="destinationlabel">
-     <x>149</x>
-     <y>376</y>
+     <x>150</x>
+     <y>405</y>
     </hint>
    </hints>
   </connection>

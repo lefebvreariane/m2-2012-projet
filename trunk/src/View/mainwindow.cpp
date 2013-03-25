@@ -91,7 +91,7 @@ void MainWindow::slot_pushButtonStartClicked(){
     ui->pushButtonLast->setEnabled(true);
     ui->pushButtonStartCalculation->setEnabled(true);
     ui->sliderEtapes->setEnabled(true);
-    ui->spinBoxEtapes->setEnabled(true);
+//    ui->spinBoxEtapes->setEnabled(true);
     ui->pushButtonStartCalculation->setText("Start");
 }
 
@@ -102,7 +102,7 @@ void MainWindow::slot_pushButtonPauseClicked(){
     ui->pushButtonPlay->setEnabled(true);
     ui->pushButtonPause->setEnabled(false);
     ui->sliderEtapes->setEnabled(true);
-    ui->spinBoxEtapes->setEnabled(true);
+  //  ui->spinBoxEtapes->setEnabled(true);
     glWidget->set_step(ui->spinBoxEtapes->value()-1);
 }
 
@@ -112,7 +112,7 @@ void MainWindow::slot_pushButtonPlayClicked(){
     ui->pushButtonFirst->setEnabled(false);
     ui->pushButtonLast->setEnabled(false);
     ui->sliderEtapes->setEnabled(false);
-    ui->spinBoxEtapes->setEnabled(false);
+//    ui->spinBoxEtapes->setEnabled(false);
     if (ui->sliderEtapes->value() == (int) visualization->timeVector().size()){
         ui->sliderEtapes->setValue(1);
     }
@@ -201,12 +201,12 @@ void MainWindow::slot_update_status(float x1, float y1, float x2, float y2){
 void MainWindow::slot_update_status(float x1, float y1){
     stringstream s;
     if(glWidget->trackingSelected){
-        s << "Point to track = (" << x1 << ", " << y1 << ")";
         glWidget->trackingPoint = visualization->scene.tracking(x1,y1,glWidget->step);
+        s << "Point to track = (" << visualization->scene.steps()[glWidget->step]->sheetGeom()[glWidget->trackingPoint].first << ", ";
+        s << visualization->scene.steps()[glWidget->step]->sheetGeom()[glWidget->trackingPoint].second << ")";
     }
     else{
-        s << "Point 1 = (" << visualization->scene.steps()[glWidget->step]->sheetGeom()[glWidget->trackingPoint].first << ", ";
-        s << visualization->scene.steps()[glWidget->step]->sheetGeom()[glWidget->trackingPoint].second << ")";
+        s << "Point 1 = (" << x1 << ", " << y1 << ")";
     }
     QString ss = QString::fromStdString(s.str());
     statusBar()->showMessage(ss);
