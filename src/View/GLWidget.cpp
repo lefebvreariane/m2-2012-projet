@@ -80,6 +80,8 @@ void GLWidget::initializeGL()
 
 void GLWidget::paintGL(){
     glClear(GL_COLOR_BUFFER_BIT);
+    glEnable(GL_BLEND) ;
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) ;
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
 
@@ -102,6 +104,7 @@ void GLWidget::paintGL(){
 
     //Affichage des objets
     afficherScene();
+    glDisable(GL_BLEND);
 }
 
 void GLWidget::paintEvent(QPaintEvent *event){
@@ -153,7 +156,7 @@ void GLWidget::afficherScene(){
     glEnd();
 
     // area
-    glColor3f(0.7f,1.f,0.7f);
+    glColor4f(0.7f,1.f,0.7f,0.5f);
     unsigned int size = scene->steps()[step]->sheetGeom().size();
     if (areaSelected && step>0){
         deque<pair<double,double> > endArea;
@@ -288,7 +291,6 @@ void GLWidget::afficherScene(){
             glEnd();
         }
     }
-
     glPopMatrix();
 }
 

@@ -123,9 +123,9 @@ pair<double, double> fakeSimu::getRotationPoint(Scene *scene){
 
 void fakeSimu::applyRotation(Scene *scene){
     pair<double, double> centre = getRotationPoint(scene);
-    int firstFrame(9), lastFrame(64);
+    int firstFrame(9), lastFrame(30);
     for (int i=firstFrame; i<=lastFrame+1; i++){
-        double deg = -92 * (i-firstFrame)/(lastFrame-firstFrame);
+        double deg = -95 * (i-firstFrame)/(lastFrame-firstFrame);
         deg = PI * deg / 180;
         vector<pair<double, double> > neut = scene->steps()[i]->sheetNeut();
         for (unsigned int j=0; j<neut.size(); j++){
