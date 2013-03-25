@@ -1,0 +1,30 @@
+\select@language {french}
+\contentsline {section}{\numberline {1}Notre projet}{2}
+\contentsline {subsection}{\numberline {1.1}Le projet du client}{2}
+\contentsline {subsection}{\numberline {1.2}Notre r\IeC {\'e}\IeC {\'e}criture}{2}
+\contentsline {subsection}{\numberline {1.3}T\IeC {\^a}ches \IeC {\`a} r\IeC {\'e}aliser}{2}
+\contentsline {subsubsection}{\numberline {1.3.1}Interface utilisateur}{2}
+\contentsline {subsubsection}{\numberline {1.3.2}Chargement d'une sc\IeC {\`e}ne}{3}
+\contentsline {subsubsection}{\numberline {1.3.3}Moteur de d\IeC {\'e}formation par \IeC {\'e}l\IeC {\'e}ments finis}{3}
+\contentsline {subsection}{\numberline {1.4}Les livrables en fin de projet}{3}
+\contentsline {section}{\numberline {2}Description des donn\IeC {\'e}es disponibles}{4}
+\contentsline {section}{\numberline {3}Description des m\IeC {\'e}thodes}{4}
+\contentsline {subsection}{\numberline {3.1}Introduction \IeC {\`a} la m\IeC {\'e}thodologie g\IeC {\'e}n\IeC {\'e}rale}{4}
+\contentsline {subsection}{\numberline {3.2}M\IeC {\'e}thodes utilis\IeC {\'e}es ou envisag\IeC {\'e}es}{4}
+\contentsline {subsubsection}{\numberline {3.2.1}D\IeC {\'e}placement du poin\IeC {\c c}on}{4}
+\contentsline {subsubsection}{\numberline {3.2.2}Interactions \IeC {\`a} la souris}{4}
+\contentsline {subsubsection}{\numberline {3.2.3}Affichage de formes complexes}{5}
+\contentsline {subsection}{\numberline {3.3}Proc\IeC {\'e}d\IeC {\'e}s de validation}{5}
+\contentsline {section}{\numberline {4}R\IeC {\'e}sultats}{5}
+\contentsline {subsection}{\numberline {4.1}Exp\IeC {\'e}rimentations r\IeC {\'e}alis\IeC {\'e}es}{5}
+\contentsline {subsubsection}{\numberline {4.1.1}Simulation simple}{5}
+\contentsline {subsubsection}{\numberline {4.1.2}Suivi d'un point}{6}
+\contentsline {subsubsection}{\numberline {4.1.3}Distance entre deux points}{7}
+\contentsline {subsubsection}{\numberline {4.1.4}Aire couverte par la t\IeC {\^o}le}{7}
+\contentsline {subsection}{\numberline {4.2}\IeC {\'E}valuation de la qualit\IeC {\'e} des r\IeC {\'e}sultats}{8}
+\contentsline {subsection}{\numberline {4.3}Critiques et commentaires}{8}
+\contentsline {section}{\numberline {5}Conclusion}{9}
+\contentsline {section}{\numberline {6}Diagramme de Gantt}{9}
+\contentsline {subsection}{\numberline {6.1}Diagramme de Gantt initialement pr\IeC {\'e}vu au d\IeC {\'e}but du projet}{9}
+\contentsline {subsection}{\numberline {6.2}Diagramme de Gantt revu et corrig\IeC {\'e}}{9}
+\contentsline {section}{\numberline {A}Fichier de sc\IeC {\`e}ne au format XML}{10}
