@@ -13,10 +13,12 @@
 \beamer@subsectionintoc {2}{3}{Liste des livrables}{12}{0}{2}
 \beamer@sectionintoc {3}{Description des m\IeC {\'e}thodes}{13}{0}{3}
 \beamer@subsectionintoc {3}{1}{M\IeC {\'e}thodologie g\IeC {\'e}n\IeC {\'e}rale}{14}{0}{3}
-\beamer@subsectionintoc {3}{2}{M\IeC {\'e}thodes utilis\IeC {\'e}es ou envisag\IeC {\'e}es}{14}{0}{3}
-\beamer@subsectionintoc {3}{3}{Proc\IeC {\'e}d\IeC {\'e}s de validation}{14}{0}{3}
-\beamer@sectionintoc {4}{R\IeC {\'e}sultats}{14}{0}{4}
-\beamer@subsectionintoc {4}{1}{Exp\IeC {\'e}rimentations r\IeC {\'e}alis\IeC {\'e}es}{15}{0}{4}
-\beamer@subsectionintoc {4}{2}{\IeC {\'E}valuation des r\IeC {\'e}sultats}{15}{0}{4}
-\beamer@subsectionintoc {4}{3}{Critiques et commentaires}{15}{0}{4}
-\beamer@sectionintoc {5}{Conclusion}{15}{0}{5}
+\beamer@subsectionintoc {3}{2}{M\IeC {\'e}thodes envisag\IeC {\'e}es ou utilis\IeC {\'e}es}{15}{0}{3}
+\beamer@sectionintoc {4}{R\IeC {\'e}sultats}{17}{0}{4}
+\beamer@subsectionintoc {4}{1}{Exp\IeC {\'e}rimentations r\IeC {\'e}alis\IeC {\'e}es}{18}{0}{4}
+\beamer@subsectionintoc {4}{2}{\IeC {\'E}valuation des r\IeC {\'e}sultats}{23}{0}{4}
+\beamer@subsectionintoc {4}{3}{Critiques et commentaires}{25}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{26}{0}{5}
+\beamer@subsectionintoc {5}{1}{Diagrammes de Gantt}{28}{0}{5}
+\beamer@subsectionintoc {5}{2}{Perspectives}{30}{0}{5}
+\beamer@subsectionintoc {5}{3}{Questions}{31}{0}{5}

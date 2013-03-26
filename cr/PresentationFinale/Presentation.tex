@@ -3,10 +3,26 @@
 \usepackage[utf8]{inputenc}
 \usepackage[T1]{fontenc}
 \usepackage[francais]{babel}
+\usepackage{movie15}
 
 \usetheme{Darmstadt}
 \usecolortheme{seahorse}
-\setbeamertemplate{footline}[frame number]
+%\setbeamertemplate{footline}[frame number]
+\setbeamertemplate{footline}{
+    \leavevmode%
+    \hbox{\hspace*{-0.06cm}
+        %\begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,center]{author in head/foot}%
+        %\usebeamerfont{author in head/foot}\insertshortauthor%~~(\insertshortinstitute)
+        %\end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.8\paperwidth,ht=2.25ex,dp=1ex,center]{section in head/foot}%
+            \usebeamerfont{section in head/foot}\insertshorttitle
+        \end{beamercolorbox}%
+        \begin{beamercolorbox}[wd=.2\paperwidth,ht=2.25ex,dp=1ex,right]{section in head/foot}%
+            \usebeamerfont{section in head/foot}\insertshortdate{}\hspace*{2em}
+            \insertframenumber{} / \inserttotalframenumber\hspace*{2ex}
+    \end{beamercolorbox}}%
+    \vskip0pt%
+}
 
 \usepackage{graphicx}
 
@@ -151,17 +167,178 @@
 
 \section{Description des méthodes}
 \subsection{Méthodologie générale}
-\subsection{Méthodes utilisées ou envisagées}
-\subsection{Procédés de validation}
+\begin{frame}
+    \frametitle{Architecture}
+    \begin{itemize}
+        \item Modèle MVC.
+        \item Librairie graphique Qt.
+        \item Multi-plateforme.
+    \end{itemize}
+\end{frame}
+\subsection{Méthodes envisagées ou utilisées}
+\begin{frame}
+    \frametitle{Méthodes envisagées}
+    \begin{columns}
+        \column{.6\textwidth}
+        \begin{itemize}
+            \item Affichage de formes complexes.
+                \begin{itemize}
+                    \item Polygones concaves.
+                    \item Polygones avec auto-intersections.
+                \end{itemize}
+            \item Nécesite:
+                \begin{itemize}
+                    \item Concavité $\rightarrow$ triangulation.
+                    \item Intersection $\rightarrow$ nouveau polygone.
+                \end{itemize}
+        \end{itemize}
+        \column{.4\textwidth}
+        \begin{figure}
+            \includegraphics[width=.5\textwidth]{img/concave.png}
+            \caption{Formes complexes}
+        \end{figure}
+    \end{columns}
+\end{frame}
+\begin{frame}
+    \frametitle{Méthodes utilisées}
+    %Déplacement du poinçon: bielle-manivelle $\rightarrow$ vitesse variable.
+    \begin{center}
+        $P(t) = \frac{-Dmax}{2}*\cos(\frac{2}{Tmax}*\pi*t)+\frac{Dmax}{2}$
+    \end{center}
+    \begin{figure}
+        \includegraphics[width=.7\textwidth]{img/bielle.jpg}
+        \caption{Système bielle-manivelle}
+    \end{figure}
+\end{frame}
+
 
 \section{Résultats}
 \subsection{Expérimentations réalisées}
+\begin{frame}
+    \frametitle{Procédés de validation}
+    \begin{figure}
+        \includegraphics[width=.45\textwidth]{img/fenetreInitiale.png}$~~~$
+        \includegraphics[width=.45\textwidth]{img/fenetreInitiale2.png}
+        \caption{Tests unitaires}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Suivi de point}
+    \begin{figure}
+        \includegraphics[width=.8\textwidth]{img/tracking.png}
+        \caption{Trajectoire d'un point de la tôle}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Distance entre deux points}
+    \begin{figure}
+        \includegraphics[width=.8\textwidth]{img/distance.png}
+        \caption{Distance entre deux points}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Aire de couverture}
+    \begin{figure}
+        \includegraphics[width=.8\textwidth]{img/area.png}
+        \caption{Aire couverte par la tôle}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Démonstration}
+    \begin{center}
+        \includemovie[attach=true,autoplay]{217pt}{162pt}{Pliage.mov}
+    \end{center}
+\end{frame}
 \subsection{Évaluation des résultats}
+\begin{frame}
+    \frametitle{Qualité des résultats}
+    \begin{itemize}
+        \item Le rendu:
+            \begin{itemize}
+                \item Lecteur opérationel et robuste.
+                \item Durée et pas de temps fixes.
+            \end{itemize}
+        \item Suivi d'un point:
+            \begin{itemize}
+                \item Modifiable en cours de simulation.
+                \item Affichage en temps réel.
+                \item Coordonées réelles.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
+\begin{frame}
+    \frametitle{Qualité des résultats}
+    \begin{itemize}
+        \item Distance entre deux points:
+            \begin{itemize}
+                \item Affichage dans la barre de status.
+                \item Coordonées réelles.
+                \item Limite: translation.
+            \end{itemize}
+        \item Aire de couverture:
+            \begin{itemize}
+                \item Temps réel.
+                \item Transparence.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
 \subsection{Critiques et commentaires}
+\begin{frame}
+    \frametitle{Critiques et commentaires}
+    \begin{itemize}
+        \item Les plus:
+            \begin{itemize}
+                \item Spécification Image et CAO remplies.
+                \item Mouvement du poinçon réaliste.
+                \item Peut fonctionner sur des simulations réalistes.
+            \end{itemize}
+        \item Les moins:
+            \begin{itemize}
+                \item Formes complexes.
+                \item Moteur de déformation $\rightarrow$ Cas particulier.
+            \end{itemize}
+    \end{itemize}
+\end{frame}
 
 \section{Conclusion}
+\begin{frame}
+    \frametitle{Conclusion}
+    \begin{itemize}
+        \item Absence du membre MCS.
+        \item Séparation nette dans l'application.
+        \item Relation avec le client.
+    \end{itemize}
+\end{frame}
 \subsection{Diagrammes de Gantt}
+\begin{frame}
+    \frametitle{Plan initial}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/gantt.png}
+        \caption{Répartition initiale}
+    \end{figure}
+\end{frame}
+\begin{frame}
+    \frametitle{Fin de projet}
+    \begin{figure}
+        \includegraphics[width=\textwidth]{img/ganttFin.png}
+        \caption{Répartition en fin de projet}
+    \end{figure}
+\end{frame}
 \subsection{Perspectives}
+\begin{frame}
+    \frametitle{Perspectives}
+    \begin{itemize}
+        \item Faire varier l'épaisseur de la tôle.
+        \item Triangulation pour les formes complexes.
+        \item Intégrer le moteur de déformations.
+    \end{itemize}
+\end{frame}
 \subsection{Questions}
+\begin{frame}
+    \frametitle{Questions}
+    Merci pour votre attention\\[3.5cm]
+    \hfill Des questions?
+\end{frame}
+
 
 \end{document}
