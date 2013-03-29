@@ -50,9 +50,9 @@ L'entreprise Missler Software  représentée par M. Frédéric PONTAROLLO travai
 \begin{itemize}
         \renewcommand{\labelitemi}{$\bullet$}
     \item Implémenter une application permettant la simulation réaliste en deux dimensions du pliage d'une tôle par un outillage progressif.
-La problématique étant d'approcher au mieux le comportement de la tôle lors du retour élastique ayant lieu durant le retrait du poinçon.
+        La problématique étant d'approcher au mieux le comportement de la tôle lors du retour élastique ayant lieu durant le retrait du poinçon.
     \item Représenter l'aire couverte par le déplacement de la tôle, ainsi que la trajectoire d'un point choisi par l'utilisateur.
-En effet les parties libres de la tôle lors de la déformation suivent une trajectoire non intuitive.
+        En effet les parties libres de la tôle lors de la déformation suivent une trajectoire non intuitive.
 \end{itemize}
 
 \subsection{Notre réécriture}
@@ -61,12 +61,12 @@ L'utilisateur doit pouvoir visualiser la simulation. Des interactions à la sour
 
 \subsection{Tâches à réaliser}
 Le groupe de projet était initialement composé de trois membres.
-Deux issus de la spécialité Image et CAO ont étés attribués à la gestion de l'interface utilisateur, ainsi qu'au rendu graphique et du dialogue avec la partie simulation physique.
+Deux issus de la spécialité Image et CAO ont été affectés à la gestion de l'interface utilisateur, ainsi qu'au rendu graphique et du dialogue avec la partie simulation physique.
 Cette dernière a été donnée à réaliser au troisième membre issu de la spécialité MCS.
 
 \subsubsection{Interface utilisateur}
 L'interface utilisateur consiste en une fenêtre permettant de choisir la durée d'une simulation ainsi que le pas temporel entre chaque étape de la déformation.
-Elle est aussi dotée d'un lecteur donnant la possibilité à l'utilisateur de visualiser étape par étape ou sous forme d'une vidéo la déformation.\\
+Elle est aussi dotée d'un lecteur donnant la possibilité à l'utilisateur de visualiser étape par étape ou sous forme d'une animation la déformation.\\
 La zone de rendu implémentée en OpenGL est située à droite de la fenêtre, on y retrouve la scène composée de:
 \begin{itemize}
         \renewcommand{\labelitemi}{$\bullet$}
@@ -88,7 +88,7 @@ La deuxième affiche la distance entre deux points préalablement sélectionnés
 
 \subsubsection{Chargement d'une scène}
 Une scène est décrite par un fichier au format XML (Exemple en Annexe 1) contenant les différentes informations permettant la réalisation de la simulation d'une déformation.
-Un parseur est donc nécessaire afin de remplir les différentes structures de données qui serviront aux calculs et au rendu.
+Un parseur est donc nécessaire afin de remplir les différentes structures de données qui serviront aux calculs et aux rendus.
 
 \subsubsection{Moteur de déformation par éléments finis}
 La partie du projet concernant la déformation à proprement parler devait être réalisée par notre trinôme de la spécialité MCS.
@@ -151,7 +151,7 @@ Les images présentées dans cette partie sont issues d'une simulation naïve d'
 \subsection{Expérimentations réalisées}
 \subsubsection{Simulation simple}
 Dans cette simulation, la tôle représentée en vert avec sa fibre neutre en noir est maintenue à gauche entre la matrice en rouge et le dévêtisseur en jaune.
-Le poinçon en bleu descend à la verticale, pour venir frapper la tôle.
+Le poinçon en bleu descend à la verticale pour venir frapper la tôle.
 \begin{figure}[H]
     \begin{center}
         \includegraphics[width=.8\textwidth]{img/fenetreInitiale.png}
@@ -199,7 +199,7 @@ Les quatre spécifications principales étaient:
 \begin{itemize}
         \renewcommand{\labelitemi}{$\bullet$}
     \item Le rendu d'une simulation de pliage en OpenGL.
-        Nous avons un lecteur opérationnel, et robuste.
+        Nous avons un lecteur opérationnel et robuste.
         Comme nous avons une simulation non réaliste dans l'attente des résultats du moteur de déformation, nous ne pouvons pas faire varier le pas et la durée totale de visualisation.\\
     \item Le suivi d'un point de la tôle au cours du temps.
         Nous affichons en blanc la trajectoire parcourue jusqu'à l'étape courante.
@@ -207,14 +207,14 @@ Les quatre spécifications principales étaient:
         Les coordonnées affichées sont les coordonnées du monde réel.\\
     \item Le calcul de distance entre deux points.
         Les deux points choisis sont affichés et reliés.
-        Leurs coordonnées correspondent à celle dans le monde réel.
-        Lorsque les deux points et la ligne sont affichés, s'il y a translation de la scène par l'utilisateur, cet affichage est perdu, mais les informations reste dans la barre de statut.\\
+        Leurs coordonnées correspondent à celles dans le monde réel.
+        Lorsque les deux points et la ligne sont affichés, s'il y a translation de la scène par l'utilisateur, cet affichage est perdu mais les informations reste dans la barre de statut.\\
     \item L'affichage de l'aire couverte par la tôle au cours du temps.
         Nous affichons en vert pâle avec transparence l'aire de couverture jusqu'à l'étape courante.\\
 \end{itemize}
 
 \subsection{Critiques et commentaires}
-Notre application remplie les spécifications initialement demandées par le client pour ce qui est des affichages et des interactions utilisateur.
+Notre application remplit les spécifications initialement demandées par le client pour ce qui est des affichages et des interactions utilisateur.
 Elle peut donc fonctionner sur une simulation réaliste.
 Cependant, en l'absence de la boîte noire qu'est le moteur de déformation, nous avons dû créer notre propre simulation, ce qui nous a amené à adapter le code initialement général pour ce cas particulier.\\
 Nous avons fait face à plusieurs difficultés.
@@ -226,7 +226,8 @@ Jusqu'à il y a deux semaines, nous ne savions pas comment palier à cette absen
 
 \section{Conclusion}
 Pour conclure ce rapport, nous avons répondu aux spécifications du client sur la partie Image et CAO.
-M. Frédéric PONTAROLLO et M. Christophe PICARD se sont rendus très disponibles et à notre écoute durant ce projet, nous les en remercions vivement.
+M. Frédéric PONTAROLLO et M. Christophe PICARD se sont rendus très disponibles et à notre écoute durant ce projet?
+Nous les en remercions vivement.
 
 \section{Diagramme de Gantt}
 \subsection{Diagramme de Gantt initialement prévu au début du projet}
