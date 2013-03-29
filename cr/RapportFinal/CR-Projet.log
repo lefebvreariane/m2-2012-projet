@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.3.1)  25 MAR 2013 18:40
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012) (format=pdflatex 2013.3.1)  28 MAR 2013 08:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -548,13 +548,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 217--226
 [8] <img/gantt.png, id=59, 1271.75125pt x 401.5pt>
 File: img/gantt.png Graphic file (type png)
  <use img/gantt.png>
-Package pdftex.def Info: img/gantt.png used on input line 234.
+Package pdftex.def Info: img/gantt.png used on input line 235.
 (pdftex.def)             Requested size: 360.0pt x 113.65675pt.
 
 <img/GanttFin.png, id=60, 1259.70625pt x 257.96375pt>
 File: img/GanttFin.png Graphic file (type png)
  <use img/GanttFin.png>
-Package pdftex.def Info: img/GanttFin.png used on input line 239.
+Package pdftex.def Info: img/GanttFin.png used on input line 240.
 (pdftex.def)             Requested size: 360.0pt x 73.72116pt.
 
 (./CR-Projet.lof)
@@ -570,10 +570,10 @@ File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 ) [10]
 [11] [12] (./CR-Projet.aux) ) 
 Here is how much of TeX's memory you used:
- 4435 strings out of 493488
- 59107 string characters out of 3141327
+ 4437 strings out of 493488
+ 59130 string characters out of 3141327
  164329 words of memory out of 3000000
- 7670 multiletter control sequences out of 15000+200000
+ 7672 multiletter control sequences out of 15000+200000
  15274 words of font info for 35 fonts, out of 3000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,6n,51p,309b,1642s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -594,7 +594,7 @@ pfb></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfcc1728.pf
 b></usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1095.pfb>
 </usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfrm1200.pfb></
 usr/local/texlive/2012/texmf-dist/fonts/type1/public/cm-super/sfti1200.pfb>
-Output written on CR-Projet.pdf (13 pages, 498567 bytes).
+Output written on CR-Projet.pdf (13 pages, 498788 bytes).
 PDF statistics:
  126 PDF objects out of 1000 (max. 8388607)
  84 compressed objects within 1 object stream
